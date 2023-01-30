@@ -6,40 +6,29 @@
             {
                 "oid": "01A",
                 "answer": "Sleep!!",
-                "score": [
-                    {
-                        "Ascore": 25
-                    },
-                    {
-                        "Bscore": -1
-                    }
-                ],
-                "nextQuestion": 2
+                "score": {
+                    "Ascore": 25,
+                    "Bscore": -1
+                },
+                "nextQuestion": 2,
+                "characterStyle": "sad.jpg"
             },
             {
                 "oid": "01B",
                 "answer": "Studyy!!",
-                "score": [
-                    {
-                        "Ascore": 25
-                    },
-                    {
-                        "Bscore": -1
-                    }
-                ],
+                "score": {
+                    "Ascore": 25,
+                    "Bscore": -1
+                },
                 "nextQuestion": 5
             },
             {
                 "oid": "01C",
                 "answer": "Reading!!",
-                "score": [
-                    {
-                        "Ascore": 25
-                    },
-                    {
-                        "Bscore": -1
-                    }
-                ],
+                "score": {
+                    "Ascore": 25,
+                    "Bscore": -1
+                },
                 "nextQuestion": 5
             }
         ]
@@ -51,27 +40,19 @@
             {
                 "oid": "02A",
                 "answer": "option A",
-                "score": [
-                    {
-                        "Ascore": 25
-                    },
-                    {
-                        "Bscore": -1
-                    }
-                ],
+                "score": {
+                    "Ascore": 25,
+                    "Bscore": -1
+                },
                 "nextQuestion": 3
             },
             {
                 "oid": "02B",
                 "answer": "option B",
-                "score": [
-                    {
-                        "Ascore": 25
-                    },
-                    {
-                        "Bscore": -1
-                    }
-                ],
+                "score": {
+                    "Ascore": 25,
+                    "Bscore": -1
+                },
                 "nextQuestion": 5
             }
         ]
@@ -83,27 +64,19 @@
             {
                 "oid": "03A",
                 "answer": "option 3A",
-                "score": [
-                    {
-                        "Ascore": 25
-                    },
-                    {
-                        "Bscore": -1
-                    }
-                ],
+                "score": {
+                    "Ascore": 25,
+                    "Bscore": -1
+                },
                 "nextQuestion": 4
             },
             {
                 "oid": "03B",
                 "answer": "option 3B",
-                "score": [
-                    {
-                        "Ascore": 25
-                    },
-                    {
-                        "Bscore": -1
-                    }
-                ],
+                "score": {
+                    "Ascore": 25,
+                    "Bscore": -1
+                },
                 "nextQuestion": 5
             }
         ]

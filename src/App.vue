@@ -2,6 +2,7 @@
 import data from "./assets/data-mockup.json";
 import { ref, reactive } from "vue";
 
+let user = ref({name:"Jolly Dev",ages:23})
 let now = ref({})
 let endGame = ref()
 const score = reactive({ AScore: 0, BScore: 0 })
@@ -36,6 +37,13 @@ const select = (event) => {
 function getCurrentQuestion() {
   return now.value
 }
+
+function getQuestion(){
+  if(getCurrentQuestion()?.Question?.includes("$NAME")){
+    console.log( getCurrentQuestion().Question.replace("$NAME", user.name))
+    return getCurrentQuestion().Question.replace("$NAME", user.name);
+  }else {return getCurrentQuestion().Question}
+}
 </script>
 
 <template>
@@ -47,10 +55,10 @@ function getCurrentQuestion() {
       </div>
     </div>
 <hr class="m-5">
-    <button @click="getCurrentQuestion" class="btn bg-gray-700 p-2 mr-5 rounded-xl text-red-500 font-extrabold">Now
+    <button @click="getQuestion" class="btn bg-gray-700 p-2 mr-5 rounded-xl text-red-500 font-extrabold">Now
       question</button>
     <button @click="gameStart" class="btn bg-gray-700 p-2 rounded-xl text-red-500 font-extrabold">Start</button>
-    <div class="font-extrabold text-5xl mt-5">{{ now.Question }}</div>
+    <div class="font-extrabold text-5xl mt-5">{{ getQuestion() }}</div>
     <button @click="select" v-for="(choice, index) in now.Option" :key="index"
       class="btn bg-yellow-500 m-5 w-48 rounded hover:bg-orange-600" :id="choice.oid">
       [{{ choice.oid }}] {{ choice.answer }}

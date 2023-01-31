@@ -46,7 +46,7 @@ function getCurrentQuestion() {
       <div class="m-auto w-96 bg-yellow-400 p-10 rounded-xl text-3xl font-extrabold text-center">Under Construction
       </div>
     </div>
-    <p>Hello World</p>
+<hr class="m-5">
     <button @click="getCurrentQuestion" class="btn bg-gray-700 p-2 mr-5 rounded-xl text-red-500 font-extrabold">Now
       question</button>
     <button @click="gameStart" class="btn bg-gray-700 p-2 rounded-xl text-red-500 font-extrabold">Start</button>

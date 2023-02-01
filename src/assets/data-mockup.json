@@ -1,84 +1,76 @@
 [
     {
-        "No": "1",
-        "Question": "Hi $NAME, What are you doing?",
-        "Option": [
+        "no": "1",
+        "dialog": "$NAME //เดินออกจากห้องเรียน",
+        "options": [
             {
-                "oid": "01A",
-                "answer": "Sleep!!",
-                "score": {
-                    "Ascore": 25,
-                    "Bscore": -1
-                },
-                "nextQuestion": 2,
-                "characterStyle": "sad.jpg"
-            },
-            {
-                "oid": "01B",
-                "answer": "Studyy!!",
-                "score": {
-                    "Ascore": 25,
-                    "Bscore": -1
-                },
-                "nextQuestion": 5
-            },
-            {
-                "oid": "01C",
-                "answer": "Reading!!",
-                "score": {
-                    "Ascore": 25,
-                    "Bscore": -1
-                },
-                "nextQuestion": 5
-            }
-        ]
+            "id": "01A",
+            "message": "//กลับบ้าน",
+            "score": -2,
+            "next": 7,
+            "characterMood": "sad.jpg"
+        },
+        {
+            "id": "01B",
+            "message": "ไปกินข้าว",
+            "score": 2,
+            "next": 2,
+            "characterMood": "smile.jpg"
+        }],
+        "background": "room-11.jpg"
     },
     {
-        "No": "2",
-        "Question": "something...",
-        "Option": [
-            {
-                "oid": "02A",
-                "answer": "option A",
-                "score": {
-                    "Ascore": 25,
-                    "Bscore": -1
-                },
-                "nextQuestion": 3
-            },
-            {
-                "oid": "02B",
-                "answer": "option B",
-                "score": {
-                    "Ascore": 25,
-                    "Bscore": -1
-                },
-                "nextQuestion": 5
-            }
-        ]
+        "no": "2",
+        "dialog": "“ป้ะ ไปกินข้าวกัน นี่เพื่อน ๆ ของเค้าเอง”",
+        "options": [],
+        "background": "elevator.jpg"
     },
     {
-        "No": "3",
-        "Question": "----3----",
-        "Option": [
+        "no": "3",
+        "dialog": "“เพื่อน ๆ นี่ $NAME นะ”",
+        "options": [
             {
-                "oid": "03A",
-                "answer": "option 3A",
-                "score": {
-                    "Ascore": 25,
-                    "Bscore": -1
-                },
-                "nextQuestion": 4
+                "id": "03A",
+                "message": "ไง เรา $NAME นะ ยินดีที่ได้รู้จัก",
+                "score": 2,
+                "next": 5,
+                "characterMood": "smile.jpg"
             },
             {
-                "oid": "03B",
-                "answer": "option 3B",
-                "score": {
-                    "Ascore": 25,
-                    "Bscore": -1
-                },
-                "nextQuestion": 5
+                "id": "03B",
+                "message": "สวัสดีครับทุกคน ฝากเนื้อฝากตัวด้วยนะครับ",
+                "score": 2,
+                "next": 7,
+                "characterMood": "smile.jpg"
+            },
+            {
+                "id": "03C",
+                "message": "โบกมือ ส่งยิ้มให้ทุกคน",
+                "score": 1,
+                "next": 0,
+                "characterMood": "sad.jpg"
             }
-        ]
+        ],
+        "background": "elevator.jpg"
+    },
+    {
+        "no": "7",
+        "dialog": "เรียนเหนื่อยจัง นอนดีกว่า",
+        "options": [{
+            "id": "04A",
+            "message": "หลับไป",
+            "score": 2,
+            "next": 0,
+            "characterMood": "sad.jpg"
+        },
+        {
+            "id": "04B",
+            "message": "เล่นโทรศัพท์",
+            "score": 2,
+            "next": 8,
+            "characterMood": "smile.jpg"
+        }
+    ],
+        "background": "room-11.jpg"
     }
 ]

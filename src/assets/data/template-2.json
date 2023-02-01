@@ -1,7 +1,7 @@
 [
     {
         "no": "1",
-        "dialog": "//เดินออกจากห้องเรียน",
+        "dialog": "$NAME //เดินออกจากห้องเรียน",
         "options": [],
         "background": "room-11.jpg"
     },

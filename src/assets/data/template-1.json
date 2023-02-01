@@ -1,0 +1,35 @@
+[
+    {
+        "no": "1",
+        "dialogs": [
+            "//เดินออกจากห้องเรียน",
+            "“ป้ะ ไปกินข้าวกัน นี่เพื่อน ๆ ของเค้าเอง”",
+            "“เพื่อน ๆ นี่ $NAME นะ”"
+        ],
+        "options": [
+            {
+                "id": "01A",
+                "message": "ไง เรา $NAME นะ ยินดีที่ได้รู้จัก",
+                "score": 2,
+                "next": 2,
+                "characterMood": "smile.jpg"
+            },
+            {
+                "id": "01B",
+                "message": "สวัสดีครับทุกคน ฝากเนื้อฝากตัวด้วยนะครับ",
+                "score": 2,
+                "next": 2,
+                "characterMood": "smile.jpg"
+            },
+            {
+                "id": "01C",
+                "message": "โบกมือ ส่งยิ้มให้ทุกคน",
+                "score": 1,
+                "next": 4,
+                "characterMood": "sad.jpg"
+            }
+        ],
+        "background": "room-11.jpg"
+    },
+    {}
+]

@@ -81,7 +81,7 @@ function selectOption(event) {
     [{{ choice.id }}] {{ choice.message }}
   </button>
 
-  <button @click="nextDialog()" class="btn bg-gray-700 p-2 rounded-xl text-pink-500 font-extrabold" >Next</button>
+  <button @click="nextDialog()" v-show="showNextDialogBtn" class="btn bg-gray-700 p-2 rounded-xl text-pink-500 font-extrabold" >Next</button>
   
 
 

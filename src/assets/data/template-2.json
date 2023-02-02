@@ -2,7 +2,7 @@
     {
         "no": "1",
         "who" : "user",
-        "themesong":,
+        "themesong":null,
         "dialog": "$NAME //เดินออกจากห้องเรียน",
         "options": [],
         "background": "room-11.jpg"
@@ -10,7 +10,7 @@
     {
         "no": "2",
         "who" : "system",
-        "themesong":,
+        "themesong":null,
         "dialog": "“ป้ะ ไปกินข้าวกัน นี่เพื่อน ๆ ของเค้าเอง”",
         "options": [],
         "background": "room-11.jpg"
@@ -18,7 +18,7 @@
     {
         "no": "3",
         "who" : "system",
-        "themesong":,
+        "themesong":null,
         "dialog": "“เพื่อน ๆ นี่ $NAME นะ”",
         "options": [
             {

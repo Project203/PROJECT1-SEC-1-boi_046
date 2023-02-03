@@ -1,0 +1,107 @@
+[
+    {
+        "no": "1",
+        "who" : "user",
+        "themesong":null,
+        "dialog": "$NAME //เดินออกจากห้องเรียน",
+        "options": [
+            {
+            "id": "01A",
+            "message": "//กลับบ้าน",
+            "score": -2,
+            "next": 7,
+            "characterMood": "sad.jpg",
+            "effect":null
+        },
+        {
+            "id": "01B",
+            "message": "ไปกินข้าว",
+            "score": 2,
+            "next": 2,
+            "characterMood": "smile.jpg",
+            "effect":null
+        }],
+        "background": "room-11.jpg"
+    },
+    {
+        "no": "2",
+        "who" : "user",
+        "themesong":null,
+        "dialog": "“ป้ะ ไปกินข้าวกัน นี่เพื่อน ๆ ของเค้าเอง”",
+        "options": [],
+        "background": "elevator.jpg"
+    },
+    {
+        "no": "3",
+        "who" : "user",
+        "themesong":null,
+        "dialog": "“เพื่อน ๆ นี่ $NAME นะ”",
+        "options": [
+            {
+                "id": "03A",
+                "message": "ไง เรา $NAME นะ ยินดีที่ได้รู้จัก",
+                "score": 2,
+                "next": 8,
+                "characterMood": "smile.jpg",
+                "effect":null
+            },
+            {
+                "id": "03B",
+                "message": "สวัสดีครับทุกคน ฝากเนื้อฝากตัวด้วยนะครับ",
+                "score": 2,
+                "next": 0,
+                "characterMood": "smile.jpg",
+                "effect":null
+            },
+            {
+                "id": "03C",
+                "message": "โบกมือ ส่งยิ้มให้ทุกคน",
+                "score": 1,
+                "next": 0,
+                "characterMood": "sad.jpg",
+                "effect":null
+            }
+        ],
+        "background": "elevator.jpg"
+    },
+    {
+        "no": "7",
+        "who" : "user",
+        "themesong":null,
+        "dialog": "เรียนเหนื่อยจัง นอนดีกว่า",
+        "options": [{
+            "id": "04A",
+            "message": "หลับไป",
+            "score": 2,
+            "next": 0,
+            "characterMood": "sad.jpg",
+            "effect":null
+        },
+        {
+            "id": "04B",
+            "message": "เล่นโทรศัพท์",
+            "score": 2,
+            "next": 3,
+            "characterMood": "smile.jpg",
+            "effect":null
+        }
+    ],
+        "background": "room-11.jpg"
+    },
+    {
+        "no": "8",
+        "who" : "user",
+        "themesong":null,
+        "dialog": " //  ทำอะไรดี",
+        "options": [{
+            "id": "08A",
+            "message": "ชื่ออะไรกันบ้าง",
+            "score": 2,
+            "next": 0,
+            "characterMood": ".jpg" ,
+            "effect":null
+        }
+    ],
+        "background": "room-11.jpg"
+    }
+]

@@ -28,7 +28,14 @@
         "who" : "user",
         "themesong":null,
         "dialog": "“ป้ะ ไปกินข้าวกัน นี่เพื่อน ๆ ของเค้าเอง”",
-        "options": [],
+        "options": [{
+            "id": "02A",
+            "message": ">>",
+            "score": 0,
+            "next": 3,
+            "characterMood": "sad.png",
+            "effect": null
+        }],
         "background": "elevator.jpg"
     },
     {
@@ -86,7 +93,7 @@
             "effect":null
         }
     ],
-        "background": "room-11.jpg"
+        "background": "elevator.jpg"
     },
     {
         "no": "8",
@@ -94,14 +101,31 @@
         "themesong":null,
         "dialog": " //  ทำอะไรดี",
         "options": [{
-            "id": "08A",
-            "message": "ชื่ออะไรกันบ้าง",
-            "score": 2,
+            "id": "02A",
+            "message": ">>",
+            "score": 0,
             "next": 0,
-            "characterMood": "base.png" ,
-            "effect":null
+            "characterMood": "base.png",
+            "effect": null
         }
     ],
-        "background": "room-11.jpg"
+        "background": "elevator.jpg"
+    },
+    {
+        "no": "9",
+        "who" : "user",
+        "themesong":null,
+        "dialog": " //  ทำอะไรดี",
+        "options": [{
+            "id": "02A",
+            "message": ">>",
+            "score": 0,
+            "next": 0,
+            "characterMood": "base.png",
+            "effect": null
+        }
+    ],
+        "background": "elevator.jpg"
     }
+
 ]

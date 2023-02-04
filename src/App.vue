@@ -1,17 +1,16 @@
 <script setup>
 import { ref } from "vue";
 import data from "./assets/data/data-mockup.json";
-console.log(data)
 // user input data
 let playername = ref('Geist คุงงงงงง')
 //game function
 function game() {
   let user = { name: "", ages: 20 }
   let score = 0
-  let now = ref({})
+  let now = ref({ dialog: "ขออภัย คุณไม่มีสิทธิในการเข้าถึงหน้านี้ หากคิดว่าการแจ้งเตือนนี้ผิดพลาดขอให้ refresh page อีกครั้ง" })
   let nextDialogBtn = false
   let state = ref(1);
-  let characterName = {th:"ไข่ตุ๋น",en:"kaitoon"}
+  let characterName = { th: "ไข่ตุ๋น", en: "kaitoon" }
   let characterMood = ""
   let imageBackground = "error.png"
 
@@ -62,55 +61,58 @@ function game() {
     if (no === 0) endScene()
     const newScene = data.find(e => e.no == no)
     if (newScene === undefined) {
-      now.value = {}
+      now.value = { dialog: "Error" }
+      imageBackground = "error.png"
+
     } else {
       now.value = newScene
       imageBackground = newScene.background
-      nextDialogBtn = now.value.options.length === 0 ? true : false
     }
   }
-  
+
   function getCurrentState() {
-    console.log(state.value)
     return state.value
   }
-  function nextDialog() {
-    setScene(parseInt(now.value.no) + 1)
-  }
+
   function showNextDialog() {
+    nextDialogBtn = getOption().length == 1 ? true : false
     return nextDialogBtn
   }
-  function selectOption(event) {
-    const selected = now.value?.options.find(e => e.id == event.target.id)
+
+  function selectOption(id) {
+    const selected = now.value?.options.find(e => e.id == id)
     score += selected?.score ?? 0
     setScene(selected.next)
     characterMood = selected?.characterMood
   }
-  function getName(){
-    return now.value?.who=="user" ? user.name: characterName.th
+
+  function getName() {
+    return now.value?.who == "user" ? user.name : characterName.th
   }
-  function getCharecterMood(){
+
+  function getCharecterMood() {
     return new URL(`/src/assets/images/character/${characterName.en}/${characterMood}`, import.meta.url)
   }
-  function getBackground(){
+
+  function getBackground() {
     return new URL(`/src/assets/images/background/${imageBackground}`, import.meta.url)
   }
 
-  function goHomePage(){
+  function goHomePage() {
     state.value = 1
   }
-  
-  return {gameStart, getDialog, getOption, selectOption, nextDialog, showNextDialog, getCurrentState, getEndScene, getName, goHomePage, getCharecterMood, getBackground }
+
+  return { gameStart, getDialog, getOption, selectOption, showNextDialog, getCurrentState, getEndScene, getName, goHomePage, getCharecterMood, getBackground }
 }
-const { gameStart, getDialog, getOption, selectOption, nextDialog, showNextDialog, getCurrentState, getEndScene, getName, goHomePage , getCharecterMood, getBackground} = game()
+const { gameStart, getDialog, getOption, selectOption, showNextDialog, getCurrentState, getEndScene, getName, goHomePage, getCharecterMood, getBackground } = game()
 </script>
 
 <template>
   <div class="shadow-4xl bg-white pb-4 pr-2 rounded-br-[30px] absolute z-10 w-24 rounded-bl-[10px] rounded-tr-[10px]">
-    <img src="./assets/images/element/Logo.png"  class="scale-100"/>
+    <img src="./assets/images/element/Logo.png" class="scale-100" />
   </div>
-  
-<!-- firstpage------------------------------------------------------------------------------------------------------------------------------->
+
+  <!-- firstpage------------------------------------------------------------------------------------------------------------------------------->
   <div class="w-screen h-screen " v-if="getCurrentState() == 1">
     <img src="./assets/images/background/backGroudGame.jpg" class="absolute z-0 w-full h-full justify-center flex" />
     <div class="w-full h-full relative">
@@ -123,7 +125,7 @@ const { gameStart, getDialog, getOption, selectOption, nextDialog, showNextDialo
       <div class="w-1/2 h-2/3 absolute right-0 bottom-12">
         <div class="w-full h-full flex flex-col">
           <div
-            class="h-1/6 w-1/2 mt-52 ml-52 rounded-full flex justify-center items-center text-4xl mali mt-36 text-[#9B4F5E] font-bold">
+            class="h-1/6 w-1/2 ml-52 rounded-full flex justify-center items-center text-4xl mali mt-36 text-[#9B4F5E] font-bold">
             <input placeholder="Enter Your Name" v-model="playername" maxlength="18"
               class="text-center boi-input focus:border-[#9B4F5E] rounded-tl-3xl rounded-br-3xl h-24" />
           </div>
@@ -135,14 +137,14 @@ const { gameStart, getDialog, getOption, selectOption, nextDialog, showNextDialo
       </div>
       <div class="w-full h-8 pr-4 bottom-0 absolute flex place-items-center justify-end">
         <p class="copyright">
-          © Created By KMUTT Student For Subject INT203-Client Side
+          © Created By KMUTT Student For Subject INT203 Client-Side
           Programming II
         </p>
       </div>
     </div>
   </div>
 
-<!-- gameplaypage------------------------------------------------------------------------------------------------------------------------------->
+  <!-- gameplaypage------------------------------------------------------------------------------------------------------------------------------->
   <div class="w-screen h-screen" v-if="getCurrentState() == 2">
     <!-- background image -->
     <img :src="getBackground()" class="absolute -z-50 w-full h-full justify-center flex" />
@@ -167,11 +169,11 @@ const { gameStart, getDialog, getOption, selectOption, nextDialog, showNextDialo
           <img :src="getCharecterMood()" class="scale-150 -z-50" />
         </div>
         <!-- right -->
-        <div 
+        <div
           class="border-red-300 border-2 border-solid w-8/12 m-1 grid text-rose-500 font-semibold text-2xl mali pt-16 pb-16"
           v-if="!showNextDialog()">
           <!-- choice -->
-          <div v-for="(choice, index) in getOption()" :key="index" @click="selectOption" :id="choice.id"
+          <div v-for="(choice, index) in getOption()" :key="index" @click="selectOption(choice.id)"
             class="mr-12 break-all w-fit hover:bg-rose-600 hover:text-white cursor-pointer border-rose-500 border-y-4 border-solid place-self-center flex place-items-center rounded-full py-3 pl-12 pr-12 bg-fuchsia-50">
             {{ choice.message }}
           </div>
@@ -190,7 +192,7 @@ const { gameStart, getDialog, getOption, selectOption, nextDialog, showNextDialo
             <p class="flex text-center"> {{ getName() }} </p>
           </div>
           <!-- next dialog btn -->
-          <div @click="nextDialog()" v-show="showNextDialog()"
+          <div v-show="showNextDialog()" @click="selectOption(getOption()[0].id)"
             class="cursor-pointer text-2xl border-red-300 border-2 border-solid w-24 h-24 m-1 absolute bottom-0 right-0 mali flex place-items-center justify-center text-white">
             <img src="./assets/images/element/skipwhite.png">
           </div>
@@ -199,12 +201,12 @@ const { gameStart, getDialog, getOption, selectOption, nextDialog, showNextDialo
     </div>
   </div>
 
-<!-- endingpage------------------------------------------------------------------------------------------------------------------------------->
-  <div class="w-screen h-screen" v-if="getCurrentState()==3">
+  <!-- endingpage------------------------------------------------------------------------------------------------------------------------------->
+  <div class="w-screen h-screen" v-if="getCurrentState() == 3">
     <div v-on:click="goHomePage()"
       class="cursor-pointer border-red-300 border-2 border-solid top-11 h-16 absolute ml-28 flex place-items-center p-24 text-3xl bg-rose-300 rounded-3xl drop-shadow-3xl">
-      {{getEndScene().message}}
-      <span class="m-5 p-3 rounded bg-red-500 text-white"> SCORE :{{   getEndScene().score }}</span>
+      {{ getEndScene().message }}
+      <span class="m-5 p-3 rounded bg-red-500 text-white"> SCORE :{{ getEndScene().score }}</span>
     </div>
   </div>
 </template>

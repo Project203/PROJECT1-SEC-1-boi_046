@@ -25,7 +25,7 @@
     },
     {
         "no": "2",
-        "who" : "user",
+        "who" : "system",
         "themesong":null,
         "dialog": "“ป้ะ ไปกินข้าวกัน นี่เพื่อน ๆ ของเค้าเอง”",
         "options": [{
@@ -33,14 +33,14 @@
             "message": ">>",
             "score": 0,
             "next": 3,
-            "characterMood": "sad.png",
+            "characterMood": null,
             "effect": null
         }],
         "background": "elevator.jpg"
     },
     {
         "no": "3",
-        "who" : "user",
+        "who" : "system",
         "themesong":null,
         "dialog": "“เพื่อน ๆ นี่ $NAME นะ”",
         "options": [
@@ -99,12 +99,12 @@
         "no": "8",
         "who" : "user",
         "themesong":null,
-        "dialog": " //  ทำอะไรดี",
+        "dialog": " //  ทำอะไรดี ",
         "options": [{
             "id": "02A",
             "message": ">>",
             "score": 0,
-            "next": 0,
+            "next": 9,
             "characterMood": "base.png",
             "effect": null
         }
@@ -115,13 +115,59 @@
         "no": "9",
         "who" : "user",
         "themesong":null,
-        "dialog": " //  ทำอะไรดี",
+        "dialog": " //  เช็คคะแนนเพื่อไปต่อ",
         "options": [{
-            "id": "02A",
+            "id": "A",
+            "message": "score +100",
+            "score": 100,
+            "next": 10,
+            "characterMood": "smile.png",
+            "effect": null
+        },{
+            "id": "B",
+            "message": "score +1",
+            "score": 10,
+            "next": 10,
+            "characterMood": "base.png",
+            "effect": null
+        }
+    ],
+        "background": "elevator.jpg"
+    },
+    {
+        "no": "10",
+        "who" : "system",
+        "themesong":null,
+        "dialog": " //  แย่หน่อยนะ คะแนนยังไม่ถึง",
+        "options": [{
+            "id": "A",
+            "message": "โอเคไม่เป็นไร",
+            "score": 2,
+            "next": 11,
+            "characterMood": "sad.png",
+            "effect": null
+        },{
+            "id": "B",
+            "message": "ขอใหม่ได้ปะ",
+            "score": 10,
+            "next": 9,
+            "characterMood": null,
+            "effect": null
+        }
+    ],
+        "background": "pathway.jpg"
+    },
+    {
+        "no": "11",
+        "who" : "user",
+        "themesong":null,
+        "dialog": " //ไปกันต่อ >>>>>>>>>>>>>",
+        "options": [{
+            "id": "A",
             "message": ">>",
             "score": 0,
             "next": 0,
-            "characterMood": "base.png",
+            "characterMood": "sad.png",
             "effect": null
         }
     ],

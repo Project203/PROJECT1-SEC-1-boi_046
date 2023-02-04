@@ -25,9 +25,6 @@ function game() {
     state.value = 2
     score = 0
   }
-  function getCurrentScene() {
-    return now.value
-  }
   function interactiveDialogs(dialog) {
     let replaceDialog = dialog
     if (dialog == undefined) return undefined
@@ -38,7 +35,7 @@ function game() {
     return replaceDialog
   }
   function getDialog() {
-    return interactiveDialogs(getCurrentScene()?.dialog)
+    return interactiveDialogs(now.value?.dialog)
   }
   function endScene() {
     state.value = 3
@@ -59,6 +56,8 @@ function game() {
 
   function setScene(no) {
     if (no === 0) endScene()
+    // check score halfway to endScene or continous
+    if(now.value.no == 9 && score > 100) endScene()
     const newScene = data.find(e => e.no == no)
     if (newScene === undefined) {
       now.value = { dialog: "Error" }
@@ -81,9 +80,10 @@ function game() {
 
   function selectOption(id) {
     const selected = now.value?.options.find(e => e.id == id)
+    console.log(selected.message)
     score += selected?.score ?? 0
     setScene(selected.next)
-    characterMood = selected?.characterMood
+    if(selected?.characterMood!==null) characterMood = selected?.characterMood
   }
 
   function getName() {

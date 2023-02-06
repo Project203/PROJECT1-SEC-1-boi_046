@@ -26,3 +26,8 @@ coverage
 *.njsproj
 *.sln
 *.sw?
+
+# Boi-046 Teams ignore 
+/docs/anime-theme-background/
+dev.vue
+

@@ -2,7 +2,7 @@
 import { ref } from "vue";
 import data from "./assets/data/data-mockup.json";
 // user input data
-let playername = ref('Geist คุงงงงงงง')
+let playername = ref('Geist คุงงง')
 //game function
 function game() {
   let user = { name: "", ages: 20 }
@@ -14,27 +14,36 @@ function game() {
   let characterMood = ""
   let imageBackground = "error.png"
 
+  function setPlayer(name) {
+    user.name = name
+  }
   function gameStart() {
-    user.name = playername.value
+    setPlayer(playername.value)
     characterMood = "base.png"
+    imageBackground = "pavilion.png"
     setScene(1)
     state.value = 2
     score = 0
   }
+  function interactiveDialogs(dialog) {
+    let replaceDialog = dialog
+    if (dialog == undefined) return undefined
 
+    if (replaceDialog?.includes("$NAME")) {
+      replaceDialog = replaceDialog.replace("$NAME", user.name)
+    }
+    return replaceDialog
+  }
+  function getDialog() {
+    return interactiveDialogs(now.value?.dialog)
+  }
   function endScene() {
     state.value = 3
     return getEndScene()
   }
-
   function getEndScene() {
     return { score: score, message: "==========END===========" }
   }
-
-  function getDialog() {
-    return interactiveDialogs(now.value?.dialog)
-  }
-
   function getOption() {
     let options = []
     if (now.value?.options == undefined) return []
@@ -45,23 +54,15 @@ function game() {
     return options
   }
 
-  function interactiveDialogs(dialog) {
-    let replaceDialog = dialog
-    if (dialog == undefined) return undefined
-    if (replaceDialog?.includes("$NAME")) {
-      replaceDialog = replaceDialog.replace("$NAME", user.name)
-    }
-    return replaceDialog
-  }
-
   function setScene(no) {
     if (no === 0) endScene()
     // check score halfway to endScene or continous
     if (now.value.no == 9 && score > 100) endScene()
     const newScene = data.find(e => e.no == no)
     if (newScene === undefined) {
-      now.value = { dialog: "Error นะ" }
+      now.value = { dialog: "Error" }
       imageBackground = "error.png"
+
     } else {
       now.value = newScene
       imageBackground = newScene.background
@@ -79,6 +80,7 @@ function game() {
 
   function selectOption(id) {
     const selected = now.value?.options.find(e => e.id == id)
+    console.log(selected.message)
     score += selected?.score ?? 0
     setScene(selected.next)
     if (selected?.characterMood !== null) characterMood = selected?.characterMood
@@ -112,6 +114,16 @@ const { gameStart, getDialog, getOption, selectOption, showNextDialog, getCurren
 
   <!-- firstpage------------------------------------------------------------------------------------------------------------------------------->
   <div class="w-screen h-screen " v-if="getCurrentState() == 1">
+    <!-- snow animation -->
+    <div class="snow-container">
+      <div class="snow foreground"></div>
+      <div class="snow foreground layered"></div>
+      <div class="snow middleground"></div>
+      <div class="snow middleground layered"></div>
+      <div class="snow background"></div>
+      <div class="snow background layered"></div>
+    </div>
+
     <img src="./assets/images/background/backGroudGame.jpg" class="absolute z-0 w-full h-full justify-center flex" />
     <div class="w-full h-full relative">
       <!-- content right -->
@@ -144,7 +156,7 @@ const { gameStart, getDialog, getOption, selectOption, showNextDialog, getCurren
   <!-- gameplaypage------------------------------------------------------------------------------------------------------------------------------->
   <div class="w-screen h-screen" v-if="getCurrentState() == 2">
     <!-- background image -->
-    <img :src="getBackground()" class="absolute -z-50 w-full h-full justify-center flex" />
+    <img :src="getBackground()" class="absolute -z-50 w-full h-full justify-center flex duration-500 ease-in-out " />
     <!-- header bar -->
     <div class="w-full h-full border-red-300 border-2 border-solid">
       <div class="w-full border-red-300 border-2 border-solid h-24 mb-1 flex flex-row">
@@ -171,14 +183,14 @@ const { gameStart, getDialog, getOption, selectOption, showNextDialog, getCurren
           v-if="!showNextDialog()">
           <!-- choice -->
           <div v-for="(choice, index) in getOption()" :key="index" @click="selectOption(choice.id)"
-            class="mr-12 break-all w-fit hover:bg-rose-600 hover:text-white cursor-pointer border-rose-500 border-y-4 border-solid place-self-center flex place-items-center rounded-full py-3 pl-12 pr-12 bg-fuchsia-50">
+            class="mr-12 break-all w-fit hover:bg-rose-600 hover:text-white cursor-pointer border-rose-500 border-y-4 border-solid place-self-center flex place-items-center rounded-full py-3 pl-12 pr-12 bg-fuchsia-50 active:animate-bounce hover:scale-110 ease-in-out duration-200	">
             {{ choice.message }}
           </div>
         </div>
       </div>
       <!-- footer -->
       <div
-        class="border-red-300 border-2 border-solid w-full h-52 flex justify-center text-white mali text-2xl font-semibold bg-white-blur bg-rose-400">
+        class="border-red-300 border-2 border-solid w-full h-56 flex justify-center text-white mali text-2xl font-semibold bg-white-blur bg-rose-400">
         <div class="border-red-300 border-2 border-solid w-10/12 m-1 relative">
           <!-- dialog -->
           <p class="ml-20 mt-12 mr-28"> {{ getDialog() }}
@@ -190,7 +202,7 @@ const { gameStart, getDialog, getOption, selectOption, showNextDialog, getCurren
           </div>
           <!-- next dialog btn -->
           <div v-show="showNextDialog()" @click="selectOption(getOption()[0].id)"
-            class="cursor-pointer text-2xl border-red-300 border-2 border-solid w-24 h-24 m-1 absolute bottom-0 right-0 mali flex place-items-center justify-center text-white">
+            class="cursor-pointer text-2xl border-red-300 border-2 border-solid w-24 h-24 m-1 absolute bottom-0 right-0 mali flex place-items-center justify-center text-white hover:scale-125 hover:animate-pulse ease-in-out duration-300">
             <img src="./assets/images/element/skipwhite.png">
           </div>
         </div>
@@ -241,5 +253,71 @@ const { gameStart, getDialog, getOption, selectOption, showNextDialog, getCurren
 
 .boi-border {
   border-color: #f82b74;
+}
+
+
+/* snow homepage */
+.snow-container {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  max-width: 100%;
+  top: 0;
+  overflow: hidden;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.snow {
+  display: block;
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  pointer-events: none;
+  opacity: 0.5;
+  transform: translate3d(0, -100%, 0);
+  -webkit-animation: snow linear infinite;
+  animation: snow linear infinite;
+}
+
+.snow.foreground {
+  background-image: url("https://dl6rt3mwcjzxg.cloudfront.net/assets/snow/snow-large-075d267ecbc42e3564c8ed43516dd557.png");
+  -webkit-animation-duration: 15s;
+  animation-duration: 15s;
+}
+
+.snow.foreground.layered {
+  -webkit-animation-delay: 7.5s;
+  animation-delay: 7.5s;
+}
+
+.snow.middleground {
+  background-image: image-url("https://dl6rt3mwcjzxg.cloudfront.net/assets/snow/snow-medium-0b8a5e0732315b68e1f54185be7a1ad9.png");
+  -webkit-animation-duration: 20s;
+  animation-duration: 20s;
+}
+
+.snow.middleground.layered {
+  -webkit-animation-delay: 10s;
+  animation-delay: 10s;
+}
+
+.snow.background.layered {
+  -webkit-animation-delay: 15s;
+  animation-delay: 15s;
+}
+
+
+@keyframes snow {
+  0% {
+    transform: translate3d(0, -100%, 0);
+  }
+
+  100% {
+    transform: translate3d(15%, 100%, 0);
+  }
 }
 </style>

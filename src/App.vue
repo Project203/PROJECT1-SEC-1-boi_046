@@ -18,20 +18,13 @@ function game() {
   let endData = {}
   let directorScene = false
 
-  function setPlayer(name) {
-    user.name = name
-  }
   function gameStart() {
-    setPlayer(playername.value)
+    user.name = playername.value
     characterMood = "base.png"
-    imageBackground = "pavilion.png"
     setScene(1)
     state.value = 2
     score = 0
   }
-  function interactiveDialogs(dialog) {
-    let replaceDialog = dialog
-    if (dialog == undefined) return undefined
 
     if (replaceDialog?.includes("$NAME")) {
       replaceDialog = replaceDialog.replace("$NAME", user.name)
@@ -69,9 +62,15 @@ function game() {
     endData.score = score
     return getEndScene()
   }
+
   function getEndScene() {
     return endData
   }
+
+  function getDialog() {
+    return interactiveDialogs(now.value?.dialog)
+  }
+
   function getOption() {
     let options = []
     if (now.value?.options == undefined) return []
@@ -82,13 +81,22 @@ function game() {
     return options
   }
 
+  function interactiveDialogs(dialog) {
+    let replaceDialog = dialog
+    if (dialog == undefined) return undefined
+    if (replaceDialog?.includes("$NAME")) {
+      replaceDialog = replaceDialog.replace("$NAME", user.name)
+    }
+    return replaceDialog
+  }
+
   function setScene(no) {
     if (no === 0) endScene(0)
     // check score halfway to endScene or continous
     if (now.value.no == 9 && score > 100) endScene(9)
     const newScene = data.find(e => e.no == no)
     if (newScene === undefined) {
-      now.value = { dialog: "Error" }
+      now.value = { dialog: "Error นะ" }
       imageBackground = "error.png"
     } else {
       now.value = newScene
@@ -113,7 +121,6 @@ function game() {
 
   function selectOption(id) {
     const selected = now.value?.options.find(e => e.id == id)
-    console.log(selected.message)
     score += selected?.score ?? 0
     setScene(selected.next)
     if (selected?.characterMood !== null) characterMood = selected?.characterMood
@@ -170,8 +177,7 @@ const { gameStart, getDialog, getOption, selectOption, showNextDialog, getCurren
       </div>
       <div class="w-full h-8 pr-4 bottom-0 absolute flex place-items-center justify-end">
         <p class="copyright">
-          © Created By KMUTT Student For Subject INT203 Client-Side
-          Programming II
+          © Created By KMUTT Student For Subject INT203 Client-Side Programming II
         </p>
       </div>
     </div>

@@ -3,7 +3,7 @@
         "no": "1",
         "who" : "user",
         "themesong":null,
-        "dialog": "$NAME //เดินออกจากห้องเรียน",
+        "dialog": "//เดินออกจากห้องเรียน",
         "options": [
             {
             "id": "01A",
@@ -101,7 +101,7 @@
         "themesong":null,
         "dialog": " //  ทำอะไรดี ",
         "options": [{
-            "id": "02A",
+            "id": "08A",
             "message": ">>",
             "score": 0,
             "next": 9,

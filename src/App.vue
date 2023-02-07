@@ -89,11 +89,11 @@ function game() {
   }
 
   function getCharecterMood() {
-    return new URL(`/src/assets/images/character/${characterName.en}/${characterMood}`, import.meta.url)
+    return `images/character/${characterName.en}/${characterMood}`
   }
 
   function getBackground() {
-    return new URL(`/src/assets/images/background/${imageBackground}`, import.meta.url)
+    return `images/background/${imageBackground}`
   }
 
   function goHomePage() {
@@ -112,7 +112,7 @@ const { gameStart, getDialog, getOption, selectOption, showNextDialog, getCurren
 
   <!-- firstpage------------------------------------------------------------------------------------------------------------------------------->
   <div class="w-screen h-screen " v-if="getCurrentState() == 1">
-    <img src="./assets/images/background/backGroudGame.jpg" class="absolute z-0 w-full h-full justify-center flex" />
+    <img src="./assets/images/element/backGroudGame.jpg" class="absolute z-0 w-full h-full justify-center flex" />
     <div class="w-full h-full relative">
       <!-- content right -->
       <div class="w-30  w-1/12 ">

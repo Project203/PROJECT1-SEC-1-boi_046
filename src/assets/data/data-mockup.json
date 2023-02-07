@@ -7,7 +7,7 @@
         "options": [
             {
             "id": "01A",
-            "message": "//กลับบ้าน",
+            "message": "กลับบ้าน",
             "score": -2,
             "next": 7,
             "characterMood": "base.png",
@@ -25,7 +25,7 @@
     },
     {
         "no": "2",
-        "who" : "system",
+        "who" : "director",
         "themesong":null,
         "dialog": "“ป้ะ ไปกินข้าวกัน นี่เพื่อน ๆ ของเค้าเอง”",
         "options": [{
@@ -69,7 +69,7 @@
                 "effect":null
             }
         ],
-        "background": "duckNoodle.jpg"
+        "background": "kfc-table.jpg"
     },
     {
         "no": "7",
@@ -93,7 +93,7 @@
             "effect":null
         }
     ],
-        "background": "elevator.jpg"
+        "background": "bed.jpg"
     },
     {
         "no": "8",
@@ -109,7 +109,7 @@
             "effect": null
         }
     ],
-        "background": "elevator.jpg"
+        "background": "bed.jpg"
     },
     {
         "no": "9",
@@ -132,7 +132,7 @@
             "effect": null
         }
     ],
-        "background": "elevator.jpg"
+        "background": "sit.jpg"
     },
     {
         "no": "10",
@@ -155,7 +155,7 @@
             "effect": null
         }
     ],
-        "background": "pathway.jpg"
+        "background": "sit.jpg"
     },
     {
         "no": "11",
@@ -171,7 +171,7 @@
             "effect": null
         }
     ],
-        "background": "elevator.jpg"
+        "background": "sit.jpg"
     }
 
 ]

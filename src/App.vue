@@ -17,15 +17,20 @@ function game() {
   let imageBackground = "error.png"
   let endData = {}
   let directorScene = false
-
+  function setPlayer(name) {
+    user.name = name
+  }
   function gameStart() {
-    user.name = playername.value
+    setPlayer(playername.value)
     characterMood = "base.png"
+    imageBackground = "pavilion.png"
     setScene(1)
     state.value = 2
     score = 0
   }
-
+  function interactiveDialogs(dialog) {
+    let replaceDialog = dialog
+    if (dialog == undefined) return undefined
     if (replaceDialog?.includes("$NAME")) {
       replaceDialog = replaceDialog.replace("$NAME", user.name)
     }
@@ -62,15 +67,9 @@ function game() {
     endData.score = score
     return getEndScene()
   }
-
   function getEndScene() {
     return endData
   }
-
-  function getDialog() {
-    return interactiveDialogs(now.value?.dialog)
-  }
-
   function getOption() {
     let options = []
     if (now.value?.options == undefined) return []
@@ -80,23 +79,13 @@ function game() {
     })
     return options
   }
-
-  function interactiveDialogs(dialog) {
-    let replaceDialog = dialog
-    if (dialog == undefined) return undefined
-    if (replaceDialog?.includes("$NAME")) {
-      replaceDialog = replaceDialog.replace("$NAME", user.name)
-    }
-    return replaceDialog
-  }
-
   function setScene(no) {
     if (no === 0) endScene(0)
     // check score halfway to endScene or continous
     if (now.value.no == 9 && score > 100) endScene(9)
     const newScene = data.find(e => e.no == no)
     if (newScene === undefined) {
-      now.value = { dialog: "Error นะ" }
+      now.value = { dialog: "Error" }
       imageBackground = "error.png"
     } else {
       now.value = newScene
@@ -105,60 +94,49 @@ function game() {
       console.log(directorScene)
     }
   }
-
   function showDirectorScene() {
     return directorScene
   }
-
   function getCurrentState() {
     return state.value
   }
-
   function showNextDialog() {
     nextDialogBtn = getOption().length == 1 ? true : false
     return nextDialogBtn
   }
-
   function selectOption(id) {
     const selected = now.value?.options.find(e => e.id == id)
+    console.log(selected.message)
     score += selected?.score ?? 0
     setScene(selected.next)
     if (selected?.characterMood !== null) characterMood = selected?.characterMood
   }
-
   function getName() {
     return now.value?.who == "user" ? user.name : characterName.th
   }
-
   function getCharecterMood() {
     return `images/character/${characterName.en}/${characterMood}`
   }
-
   function getBackground() {
     return `images/background/${imageBackground}`
   }
-
   function goHomePage() {
     state.value = 1
   }
-
   return { gameStart, getDialog, getOption, selectOption, showNextDialog, getCurrentState, getEndScene, getName, goHomePage, getCharecterMood, getBackground, showDirectorScene }
 }
 const { gameStart, getDialog, getOption, selectOption, showNextDialog, getCurrentState, getEndScene, getName, goHomePage, getCharecterMood, getBackground, showDirectorScene } = game()
 </script>
-
 <template>
   <div class="shadow-4xl bg-white pb-4 pr-2 rounded-br-[30px] absolute z-10 w-24 rounded-bl-[10px] rounded-tr-[10px]">
     <img src="./assets/images/element/Logo.png" class="scale-100" />
   </div>
-
   <!-- firstpage------------------------------------------------------------------------------------------------------------------------------->
   <div class="w-screen h-screen " v-if="getCurrentState() == 1">
     <img src="./assets/images/element/backGroudGame.jpg" class="absolute z-0 w-full h-full justify-center flex" />
     <div class="w-full h-full relative">
       <!-- content right -->
       <div class="w-30  w-1/12 ">
-
       </div>
       <!-- <img src="./assets/images/element/jingjung.png"
         class="scale-150 -top-8 absolute right-48 cursor-pointer" /> -->
@@ -177,12 +155,12 @@ const { gameStart, getDialog, getOption, selectOption, showNextDialog, getCurren
       </div>
       <div class="w-full h-8 pr-4 bottom-0 absolute flex place-items-center justify-end">
         <p class="copyright">
-          © Created By KMUTT Student For Subject INT203 Client-Side Programming II
+          © Created By KMUTT Student For Subject INT203 Client-Side
+          Programming II
         </p>
       </div>
     </div>
   </div>
-
   <!-- subtitles------------------------------------------------------------------------------------------------------------------------------->
   <div class="w-screen h-screen" v-show="getCurrentState() == 2">
     <div v-show="showDirectorScene()" class="w-full h-full">
@@ -213,7 +191,6 @@ const { gameStart, getDialog, getOption, selectOption, showNextDialog, getCurren
               class="z-50 text-3xl mali font-semibold text-[#f82b74] mt-4 mr-12 hover:bg-rose-600 hover:text-white cursor-pointer border-[#f82b74] border-2 border-solid place-self-center flex place-items-center rounded-[15px] py-3 pl-8 pr-8 bg-white">
               ไออ่อนย้อนเวลา
             </div>
-
           </div>
         </div>
         <!-- game content -->
@@ -296,12 +273,10 @@ const { gameStart, getDialog, getOption, selectOption, showNextDialog, getCurren
     </div>
   </div>
 </template>
-
 <style scoped>
 .mali {
   font-family: "Mali", cursive;
 }
-
 .boi-input {
   padding: 12px 20px;
   margin: 8px 0;

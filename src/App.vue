@@ -4,7 +4,7 @@ import data from "./assets/data/data-mockup.json";
 import summalize from "./assets/data/summalize.json";
 // user input data
 console.log(summalize)
-let playername = ref('บะแบงค์คึ')
+let playername = ref('กะไกซ์ซึ')
 //game function
 function game() {
   let user = { name: "", ages: 20 }
@@ -22,7 +22,7 @@ function game() {
   }
   function gameStart() {
     setPlayer(playername.value)
-    characterMood = "base.png"
+    characterMood = "no.png"
     imageBackground = "pavilion.png"
     setScene(1)
     state.value = 2
@@ -112,7 +112,7 @@ function game() {
     if (selected?.characterMood !== null) characterMood = selected?.characterMood
   }
   function getName() {
-    return now.value?.who == "user" ? user.name : characterName.th
+    return now.value?.who == "user" ? user.name : now.value?.who == "system" ?  characterName.th : now.value?.who
   }
   function getCharecterMood() {
     return `images/character/${characterName.en}/${characterMood}`
@@ -125,6 +125,7 @@ function game() {
   }
   return { gameStart, getDialog, getOption, selectOption, showNextDialog, getCurrentState, getEndScene, getName, goHomePage, getCharecterMood, getBackground, showDirectorScene }
 }
+
 const { gameStart, getDialog, getOption, selectOption, showNextDialog, getCurrentState, getEndScene, getName, goHomePage, getCharecterMood, getBackground, showDirectorScene } = game()
 </script>
 <template>
@@ -132,8 +133,25 @@ const { gameStart, getDialog, getOption, selectOption, showNextDialog, getCurren
     <img src="./assets/images/element/Logo.png" class="scale-100" />
   </div>
   <!-- firstpage------------------------------------------------------------------------------------------------------------------------------->
-  <div class="w-screen h-screen " v-if="getCurrentState() == 1">
-    <img src="./assets/images/element/backGroudGame.jpg" class="absolute z-0 w-full h-full justify-center flex" />
+  <div class="w-screen h-screen" v-if="getCurrentState() == 1">
+    <img src="images/character/other/Enerd.png" class="absolute -z-20 h-[90%] left-[-10%] scale-[90%] -bottom-16 contrast-150 hover:scale-[110%]" />
+    <img src="images/character/other/EyenCha.png" class="absolute -z-40 h-[70%] left-[7%] -top-[52px] scale-[115%] contrast-150"/>
+    <img src="images/character/other/Enu.png"  class="absolute -z-20 h-[90%] left-[15%] bottom-14 contrast-[125%]" />
+    <img src="images/character/other/Edu.png" class="absolute z-0 h-[90%] -bottom-32 -left-[-17%] contrast-[125%] left" />
+    <img src="images/character/other/Ejaidee.png" class="absolute -z-30 h-[80%] bottom-52 -left-[12%] contrast-100 left" />
+    <img src="images/character/other/Ekaitoon.png" class="absolute w-fit h- z-20 h-[120%] -bottom-52 left-[-5%] contrast-[100%] left" />
+    <img src="./assets/images/element/gameName.png" class="w-full h-full absolute -z-50" />
+    <!-- snow animation -->
+    <div class="snow-container">
+      <div class="snow foreground"></div>
+      <div class="snow foreground layered"></div>
+      <div class="snow middleground"></div>
+      <div class="snow middleground layered"></div>
+      <div class="snow background"></div>
+      <div class="snow background layered"></div>
+    </div>
+  
+   
     <div class="w-full h-full relative">
       <!-- content right -->
       <div class="w-30  w-1/12 ">
@@ -144,8 +162,8 @@ const { gameStart, getDialog, getOption, selectOption, showNextDialog, getCurren
         <div class="w-full h-full flex flex-col">
           <div
             class="h-1/6 w-1/2 ml-52 rounded-full flex justify-center items-center text-4xl mali mt-52 text-[#9B4F5E] font-bold">
-            <input placeholder="Enter Your Name" v-model="playername" maxlength="18"
-              class="text-center boi-input focus:border-[#9B4F5E] rounded-tl-3xl rounded-br-3xl h-24" />
+            <input placeholder="Enter Your Name" v-model="playername" maxlength="18" 
+              class="text-center boi-input focus:border-[#9B4F5E] rounded-tl-3xl rounded-br-3xl h-24">
           </div>
           <div @click="gameStart()"
             class="mali hover:scale-[115%] duration-300 each-in-out text-[#f82b74] font-bold hover:bg-[#f82b74] hover:text-white transition delay-100 hover:border-white cursor-pointer m-16 border-[#f82b74] border-8 border-solid h-1/5 w-96 ml-64 rounded-full flex justify-center items-center text-5xl bg-white">
@@ -162,26 +180,28 @@ const { gameStart, getDialog, getOption, selectOption, showNextDialog, getCurren
     </div>
   </div>
   <!-- subtitles------------------------------------------------------------------------------------------------------------------------------->
-  <div class="w-screen h-screen" v-show="getCurrentState() == 2">
+  <div class="w-screen h-screen" v-show="getCurrentState() == 2"> @keyup.
+    
     <div v-show="showDirectorScene()" class="w-full h-full">
+
       <!-- cutScene -->
       <img :src="getBackground()" class=" absolute w-full h-full -z-50 " />
-      <div class="w-full h-full flex justify-center text-xl font-semibold mali">
+      <div class="w-full h-full flex justify-center text-xl font-semibold mali items-center">
         <div
-          class="relative w-[50%] h-full border-[#f82b74] border-2 flex mr-auto ml-auto indent-10 p-20 items-center bg-white bg-opacity-75 rounded-bl-[100px] rounded-tr-[100px]">
-          <p class="pb-32 leading-10 text-[#f82b74]">{{   getDialog() }}</p>
+          class="relative w-[50%] h-[95%] border-[#f82b74] border-4 flex mr-auto ml-auto indent-10 p-20 items-center bg-white bg-opacity-70 rounded-bl-[100px] rounded-tr-[100px]">
+          <p class="pb-32 leading-10 text-[#f82b74] typing break-all">{{ getDialog() }}</p>
           <div v-show="true" @click="selectOption(getOption()[0].id)"
-            class="z-50 absolute duration-300 each-in-out hover:scale-125 cursor-pointer text-2xl w-20 h-20 bottom-4 right-8">
+            class="z-50 bounce absolute cursor-pointer text-2xl w-20 h-20 bottom-4 right-8">
             <img src="./assets/images/element/skipwhite.png">
           </div>
         </div>
       </div>
     </div>
+
     <!-- gameplaypage------------------------------------------------------------------------------------------------------------------------------->
     <div class="w-screen h-screen " v-show="!showDirectorScene()">
       <!-- background image -->
-      <img :src="getBackground()"
-        class="absolute -z-50 w-full h-full justify-center" />
+      <img :src="getBackground()" class="absolute -z-50 w-full h-full justify-center" />
       <!-- header bar -->
       <div class="w-full h-full">
         <div class="w-full h-24 flex flex-row">
@@ -200,34 +220,32 @@ const { gameStart, getDialog, getOption, selectOption, showNextDialog, getCurren
             <!-- image -->
             <div class="w-full -top-20 flex justify-center absolute ">
             </div>
-            <img :src="getCharecterMood()" class="scale-[175%] -z-50 pr-28"/>
+            <img :src="getCharecterMood()" class="scale-[175%] -z-50 pr-28" />
           </div>
           <!-- right -->
-          <div
-            class="w-8/12 grid text-[#f82b74] font-semibold text-3xl mali pt-20 pb-20 "
-            v-if="!showNextDialog()">
+          <div class="w-8/12 grid text-[#f82b74] font-semibold text-3xl mali pt-20 pb-20 " v-if="!showNextDialog()">
             <!-- choice -->
             <div v-for="(choice, index) in getOption()" :key="index" @click="selectOption(choice.id)"
-              class="mr-12 break-all w-fit hover:bg-[#f82b74] hover:border-white hover:scale-[115%] duration-300 each-in-out hover:text-white cursor-pointer border-[#f82b74] border-y-4 border-solid place-self-center flex place-items-center rounded-full py-3 pl-12 pr-12 bg-fuchsia-50">
+              class="opacity-80 hover:opacity-100 mr-12 break-all w-fit hover:bg-[#f82b74] hover:border-white hover:scale-[105%] duration-300 each-in-out hover:text-white cursor-pointer border-[#f82b74] border-y-4 border-solid place-self-center flex place-items-center rounded-full py-3 pl-12 pr-12 bg-fuchsia-50">
               {{ choice.message }}
             </div>
           </div>
         </div>
         <!-- footer -->
         <div
-          class="border-red-300 border-2 border-solid w-full h-56 flex justify-center text-white mali text-2xl font-semibold bg-rose-400 bg-opacity-50">
-          <div class="border-red-300 border-2 border-solid w-10/12 m-1 relative ">
+          class="w-full h-56 flex justify-center text-white mali text-2xl font-semibold bg-rose-400 bg-opacity-80 border-t-4 border-white rounded-tl-[20px]">
+          <div class="w-10/12 relative ">
             <!-- dialog -->
-            <p class="ml-20 mt-12 mr-28"> {{ getDialog() }}
+            <p class="ml-20 mt-12 mr-28  pt-5" :class="getDialog().length > 0? 'typing': '' "> {{ getDialog() }}
             </p>
             <!-- name -->
             <div
-              class="cursor-pointer border-red-300 border-2 -top-11 h-16 absolute ml-28 flex justify-center place-items-center pl-6 pr-6 text-3xl bg-rose-300 rounded-3xl drop-shadow-3xl">
+              class="cursor-pointer border-white border-4 -top-9 h-16 absolute ml-28 flex justify-center place-items-center pl-6 pr-6 text-3xl bg-rose-500 rounded-3xl drop-shadow-3xl">
               <p class="flex text-center"> {{ getName() }} </p>
             </div>
             <!-- next dialog btn -->
-            <div v-show="showNextDialog()" @click="selectOption(getOption()[0].id)"
-              class="duration-300 each-in-out hover:scale-125 cursor-pointer text-2xl border-red-300 border-2 border-solid w-20 h-20 m-1 absolute bottom-0 right-0 mali flex place-items-center justify-center text-white">
+            <div v-show="showNextDialog()" @click="selectOption(getOption()[0].id)" 
+              class="bounce cursor-pointer text-2xl  w-20 h-20 m-1 absolute bottom-0 right-16 mali flex place-items-center justify-center text-white">
               <img src="./assets/images/element/skipwhite.png">
             </div>
           </div>
@@ -242,7 +260,7 @@ const { gameStart, getDialog, getOption, selectOption, showNextDialog, getCurren
       <div class="w-1/2 border-red-300 border-2 h-[90%] ">
         <div class="w-5/6 h-1/2 border-red-300 border-2 mt-24 ml-auto mr-auto m-1">
           <!-- Ending Image Character -->
-          <img src="">
+          <img :src="getEndScene().image">
         </div>
         <div class="w-5/6 h-1/3 border-red-300 border-2 mt-4 ml-auto mr-auto m-1">
           <!-- Ending -->
@@ -277,6 +295,7 @@ const { gameStart, getDialog, getOption, selectOption, showNextDialog, getCurren
 .mali {
   font-family: "Mali", cursive;
 }
+
 .boi-input {
   padding: 12px 20px;
   margin: 8px 0;
@@ -286,7 +305,103 @@ const { gameStart, getDialog, getOption, selectOption, showNextDialog, getCurren
   transition: 0.5s;
   outline: none;
 }
-.left{
+
+.left {
   transform: scaleX(-1);
+}
+
+.bounce {
+  animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+
+  0%,
+  100% {
+    transform: translateX(-20%);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+
+  50% {
+    transform: translateX(0);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+
+.typing {
+  overflow: hidden; /* Ensures the content is not revealed until the animation */
+  white-space: nowrap; /* Keeps the content on a single line */ /* Gives that scrolling effect as the typing happens */
+  letter-spacing: .05em; /* Adjust as needed */
+  animation: 
+    typing 4s steps(15000,end) ,
+    blink-caret .75s step-end infinite;
+}
+
+/* The typing effect */
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: rgb(255, 255, 255); }
+}
+
+/* snow homepage */
+.snow-container {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  max-width: 100%;
+  top: 0;
+  overflow: hidden;
+  z-index: 2;
+  pointer-events: none;
+}
+.snow {
+  display: block;
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  pointer-events: none;
+  opacity: 0.5;
+  transform: translate3d(0, -100%, 0);
+  -webkit-animation: snow linear infinite;
+  animation: snow linear infinite;
+}
+.snow.foreground {
+  background-image: url("https://dl6rt3mwcjzxg.cloudfront.net/assets/snow/snow-large-075d267ecbc42e3564c8ed43516dd557.png");
+  -webkit-animation-duration: 15s;
+  animation-duration: 15s;
+}
+.snow.foreground.layered {
+  -webkit-animation-delay: 7.5s;
+  animation-delay: 7.5s;
+}
+.snow.middleground {
+  background-image: image-url("https://dl6rt3mwcjzxg.cloudfront.net/assets/snow/snow-medium-0b8a5e0732315b68e1f54185be7a1ad9.png");
+  -webkit-animation-duration: 20s;
+  animation-duration: 20s;
+}
+.snow.middleground.layered {
+  -webkit-animation-delay: 10s;
+  animation-delay: 10s;
+}
+.snow.background.layered {
+  -webkit-animation-delay: 15s;
+  animation-delay: 15s;
+}
+@keyframes snow {
+  0% {
+    transform: translate3d(0, -100%, 0);
+  }
+  100% {
+    transform: translate3d(15%, 100%, 0);
+  }
 }
 </style>

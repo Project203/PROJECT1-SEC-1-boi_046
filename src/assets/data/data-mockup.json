@@ -3,76 +3,459 @@
         "no": "1",
         "who" : "user",
         "themesong":null,
-        "dialog": "//เดินออกจากห้องเรียน",
+        "dialog": "กริ๊งง—งงงงงง เสียงนาฬิกาปลุกในยามเช้า ",
         "options": [
             {
             "id": "01A",
-            "message": "กลับบ้าน",
-            "score": -2,
-            "next": 7,
-            "characterMood": "base.png",
+            "message": "ปิดเสียงนาฬิกาปลุก แล้วนอนต่อ",
+            "score": 0,
+            "next": 2,
+            "characterMood": "no.png",
             "effect":null
         },
         {
             "id": "01B",
-            "message": "ไปกินข้าว",
-            "score": 2,
+            "message": "นอนต่อ ไม่สนใจ ปล่อยให้มันดังไป",
+            "score": 0,
             "next": 2,
-            "characterMood": "smile.png",
+            "characterMood": "no.png",
             "effect":null
         }],
-        "background": "pathway.jpg"
+        "background": "blackcolor.jpg"
     },
+
+
+
     {
         "no": "2",
-        "who" : "director",
+        "who" : "user",
         "themesong":null,
-        "dialog": "“ป้ะ ไปกินข้าวกัน นี่เพื่อน ๆ ของเค้าเอง”",
+        "dialog": "( ฉันฝันว่าตกจากที่สูง แล้วก็สะดุ้งตื่น.. )",
         "options": [{
             "id": "02A",
             "message": ">>",
             "score": 0,
             "next": 3,
+            "characterMood": "ืno.png",
+            "effect": null
+        }
+    ],
+        "background": "bed.jpg"
+    },
+
+
+    {
+        "no": "3",
+        "who" : "user",
+        "themesong":null,
+        "dialog": "“แย่แล้วววว สายยยแล้วววว” วันนี้เปิดเรียนวันแรกซะด้วยยย ดันเผลอนอนต่อไปซะได้”",
+        "options": [{
+            "id": "02A",
+            "message": ">>",
+            "score": 0,
+            "next": 4,
+            "characterMood": "ืno.png",
+            "effect": null
+        }
+    ],
+        "background": "bed.jpg"
+    },
+
+    {
+        "no": "4",
+        "who" : "user",
+        "themesong":null,
+        "dialog":  "( ฉันลุกจากเตียงทันที และรีบเร่งฝีเท้าเดินไปที่ห้องน้ำอย่างรวดเร็ว! )" ,
+        "options": [{
+            "id": "02A",
+            "message": ">>",
+            "score": 0,
+            "next": 5,
+            "characterMood": "ืno.png",
+            "effect": null
+        }
+    ],
+        "background": "bed.jpg"
+    },
+
+    {
+        "no": "5",
+        "who" : "user",
+        "themesong":null,
+        "dialog":  "( ฉันอาบน้ำ.. ล้างหน้า.. แปรงฟัน.. ใส่ชุดนักศึกษา.. และรีบเดินทางไปมหาวิทยาลัยโดยทันที )" ,
+        "options": [{
+            "id": "02A",
+            "message": ">>",
+            "score": 0,
+            "next": 6,
+            "characterMood": "ืno.png",
+            "effect": null
+        }
+    ],
+        "background": "bed.jpg"
+    },
+
+
+    {
+        "no": "6",
+        "who" : "user",
+        "themesong":null,
+        "dialog": "“แฮ่กๆ  ถึงสักที ว่าแต่..เราเรียนชั้นไหนละเนี่ย”",
+        "options": [{
+            "id": "02A",
+            "message": ">>",
+            "score": 0,
+            "next": 7,
             "characterMood": null,
             "effect": null
         }],
         "background": "elevator.jpg"
     },
+
+
     {
-        "no": "3",
-        "who" : "system",
+        "no": "7",
+        "who" : "user",
         "themesong":null,
-        "dialog": "“เพื่อน ๆ นี่ $NAME นะ”",
+        "dialog": "( ฉันหยิบโทรศัพท์ขึ้นมา.. ก้มหน้าดูตารางสอน.. พร้อมเดินเร่งฝีเท้าให้เร็วขึ้น )",
+        "options": [{
+            "id": "02A",
+            "message": ">>",
+            "score": 0,
+            "next": 8,
+            "characterMood": null,
+            "effect": null
+        }],
+        "background": "elevator.jpg"
+    },
+
+
+    {
+        "no": "8",
+        "who" : "director",
+        "themesong":null,
+        "dialog": "ตุบ..บบ",
+        "options": [{
+            "id": "02A",
+            "message": ">>",
+            "score": 0,
+            "next": 9,
+            "characterMood": null,
+            "effect": null
+        }],
+        "background": "elevator.jpg"
+    },
+
+
+    {
+        "no": "9",
+        "who" : "หญิงสาวปริศนา",
+        "themesong":null,
+        "dialog": "“ขอโทษค่ะ”",
+        "options": [{
+            "id": "02A",
+            "message": ">>",
+            "score": 0,
+            "next": 10,
+            "characterMood": null,
+            "effect": null
+        }],
+        "background": "elevator.jpg"
+    },
+
+
+    {
+        "no": "10",
+        "who" : "user",
+        "themesong":null,
+        "dialog": "“โอ๊ะ ขอโทษนะ พอดีเรารีบก็เลย ไม่ได้มองทาง”",
+        "options": [{
+            "id": "02A",
+            "message": ">>",
+            "score": 0,
+            "next": 11,
+            "characterMood": null,
+            "effect": null
+        }],
+        "background": "elevator.jpg"
+    },
+
+
+    {
+        "no": "11",
+        "who" : "director",
+        "themesong":null,
+        "dialog": "ฉันเผลอสบตากับหญิงสาวคนหนึ่ง ดวงตาเป็นประกายราวกับดวงดาวที่โปรยปรายอยู่บนท้องฟ้า น้ำเสียงหวานใสไพเราะฟังแล้วเสนาะหู",
+        "options": [{
+            "id": "02A",
+            "message": ">>",
+            "score": 0,
+            "next": 12,
+            "characterMood": null,
+            "effect": null
+        }],
+        "background": "elevator.jpg"
+    },
+
+
+    {
+        "no": "12",
+        "who" : "user",
+        "themesong":null,
+        "dialog": "“เอ่อ..งั้นเดี๋ยวเราไปก่อนนะ ”",
+        "options": [{
+            "id": "02A",
+            "message": ">>",
+            "score": 0,
+            "next": 13,
+            "characterMood": null,
+            "effect": null
+        }],
+        "background": "elevator.jpg"
+    },
+
+    {
+        "no": "13",
+        "who" : "หญิงสาวปริศนา",
+        "themesong":null,
+        "dialog": "“อื้อๆ โอเคจ้า”",
+        "options": [{
+            "id": "02A",
+            "message": ">>",
+            "score": 0,
+            "next": 14,
+            "characterMood": null,
+            "effect": null
+        }],
+        "background": "elevator.jpg"
+    },
+
+
+    {
+        "no": "14",
+        "who" : "director",
+        "themesong":null,
+        "dialog": "ณ ตึก LX ชั้น 11 ห้อง 3",
+        "options": [{
+            "id": "02A",
+            "message": ">>",
+            "score": 0,
+            "next": 15,
+            "characterMood": null,
+            "effect": null
+        }],
+        "background": "elevator.jpg"
+    },
+
+
+    {
+        "no": "15",
+        "who" : "อาจารย์",
+        "themesong":null,
+        "dialog": "“เห็นสไลด์ของอาจารย์กันใช่มั้ยคะ... โอเคงั้นเริ่มเลยนะ เดี๋ยวอาจารย์จะแนะนำ outline วิชาให้นะคะ วิชานี้เกรด 2 หน่วยกิตนะคะ ทฤษฎี 1 ชั่วโมง/สัปดาห์ ปฏิบัติ 2 ชั่วโมง/สัปดาห์, เรียนรู้ด้วยตัวเอง 4 ชั่วโมง/สัปดาห์...”",
+        "options": [{
+            "id": "02A",
+            "message": ">>",
+            "score": 0,
+            "next": 16,
+            "characterMood": null,
+            "effect": null
+        }],
+        "background": "elevator.jpg"
+    },
+
+    {
+        "no": "16",
+        "who" : "director",
+        "themesong":null,
+        "dialog": "1 ชั่วโมง ผ่านไป... ",
+        "options": [{
+            "id": "02A",
+            "message": ">>",
+            "score": 0,
+            "next": 17,
+            "characterMood": null,
+            "effect": null
+        }],
+        "background": "elevator.jpg"
+    },
+
+
+    {
+        "no": "17",
+        "who" : "อาจารย์",
+        "themesong":null,
+        "dialog": "“เดี๋ยวอาจารย์ให้เบรก 10 นาทีนะคะ”",
+        "options": [{
+            "id": "02A",
+            "message": ">>",
+            "score": 0,
+            "next": 18,
+            "characterMood": null,
+            "effect": null
+        }],
+        "background": "elevator.jpg"
+    },
+
+    {
+        "no": "18",
+        "who" : "director",
+        "themesong":null,
+        "dialog": "( ฉันเหลือบไปเห็นหญิงสาวที่เดินชนเมื่อเช้า )",
+        "options": [{
+            "id": "02A",
+            "message": ">>",
+            "score": 0,
+            "next": 19,
+            "characterMood": null,
+            "effect": null
+        }],
+        "background": "elevator.jpg"
+    },
+
+    {
+        "no": "19",
+        "who" : "user",
+        "themesong":null,
+        "dialog": "ตึกๆตักๆ.. ( ธะ..เธอคนนั้นนี่หน่า เขาเรียน sec เดียวกับเราหรอเนี่ย )",
+        "options": [{
+            "id": "02A",
+            "message": ">>",
+            "score": 0,
+            "next": 20,
+            "characterMood": null,
+            "effect": null
+        }],
+        "background": "elevator.jpg"
+    },
+
+ 
+    {
+        "no": "20",
+        "who" : "หญิงสาวปริศนา",
+        "themesong":null,
+        "dialog": ".เธอหันมาสบตาคุณ",
         "options": [
             {
                 "id": "03A",
-                "message": "ไง เรา $NAME นะ ยินดีที่ได้รู้จัก",
+                "message": "โบกมือทักทาย ",
                 "score": 2,
-                "next": 8,
+                "next": 21,
                 "characterMood": "smile.png",
                 "effect":null
             },
             {
                 "id": "03B",
-                "message": "สวัสดีครับทุกคน ฝากเนื้อฝากตัวด้วยนะครับ",
-                "score": 2,
-                "next": 7,
+                "message": "ตีเนียน ทำเป็นมองไม่เห็น",
+                "score": 0,
+                "next": 21,
                 "characterMood": "base.png",
                 "effect":null
             },
             {
                 "id": "03C",
-                "message": "โบกมือ ส่งยิ้มให้ทุกคน",
+                "message": "ส่งยิ้มให้",
                 "score": 1,
-                "next": 8,
+                "next": 21,
                 "characterMood": "sad.png",
                 "effect":null
             }
         ],
         "background": "kfc-table.jpg"
     },
+
     {
-        "no": "7",
+        "no": "21",
+        "who" : "director",
+        "themesong":null,
+        "dialog": ".หญิงสาวคนนั้นโบกมือทักทายคุณ และเดินเข้ามาหาคุณ",
+        "options": [{
+            "id": "02A",
+            "message": ">>",
+            "score": 0,
+            "next": 22,
+            "characterMood": null,
+            "effect": null
+        }],
+        "background": "elevator.jpg"
+    },
+
+    {
+        "no": "22",
+        "who" : "หญิงสาวปริศนา",
+        "themesong":null,
+        "dialog": "“อ้าวว พวกเราเรียน sec เดียวกันหรอเนี่ย ดีจังเลย” ",
+        "options": [{
+            "id": "02A",
+            "message": ">>",
+            "score": 0,
+            "next": 23,
+            "characterMood": null,
+            "effect": null
+        }],
+        "background": "elevator.jpg"
+    },
+
+    {
+        "no": "23",
+        "who" : "director",
+        "themesong":null,
+        "dialog": ".หญิงสาวหันมาสบตาด้วยรอยยิ้มที่สดใสมาก",
+        "options": [{
+            "id": "02A",
+            "message": ">>",
+            "score": 0,
+            "next": 24,
+            "characterMood": null,
+            "effect": null
+        }],
+        "background": "elevator.jpg"
+    },
+
+
+    {
+        "no": "24",
+        "who" : "user",
+        "themesong":null,
+        "dialog": "(.ตึกตัก ๆ เสียงหัวใจของฉันกำลังเต้นเร็วขึ้น)",
+        "options": [{
+            "id": "02A",
+            "message": ">>",
+            "score": 0,
+            "next": 25,
+            "characterMood": null,
+            "effect": null
+        }],
+        "background": "elevator.jpg"
+    },
+
+    {
+        "no": "25",
+        "who" : "หญิงสาวปริศนา",
+        "themesong":null,
+        "dialog": "เราชื่อ ไข่ตุ๋นนะ นายชื่ออะไรหรอ",
+        "options": [{
+            "id": "A",
+            "message": "เราชื่อ ${user}",
+            "score": 100,
+            "next": 10,
+            "characterMood": "smile.png",
+            "effect": null
+        },{
+            "id": "B",
+            "message": "เราชื่อ",
+            "score": 10,
+            "next": 10,
+            "characterMood": "base.png",
+            "effect": null
+        }
+    ],
+        "background": "sit.jpg"
+    },
+
+
+    {
+        "no": "25",
         "who" : "user",
         "themesong":null,
         "dialog": "เรียนเหนื่อยจัง นอนดีกว่า",
@@ -101,7 +484,7 @@
         "themesong":null,
         "dialog": " //  ทำอะไรดี ",
         "options": [{
-            "id": "08A",
+            "id": "02A",
             "message": ">>",
             "score": 0,
             "next": 9,
@@ -111,6 +494,7 @@
     ],
         "background": "bed.jpg"
     },
+
     {
         "no": "9",
         "who" : "user",
@@ -134,6 +518,7 @@
     ],
         "background": "sit.jpg"
     },
+
     {
         "no": "10",
         "who" : "system",

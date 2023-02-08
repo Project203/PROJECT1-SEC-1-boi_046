@@ -174,7 +174,7 @@
             "message": ">>",
             "score": 0,
             "next": 11,
-            "characterMood": null,
+            "characterMood": "sad.png",
             "effect": null
         }],
         "background": "elevator.jpg"
@@ -191,7 +191,7 @@
             "message": ">>",
             "score": 0,
             "next": 12,
-            "characterMood": null,
+            "characterMood": "no.png",
             "effect": null
         }],
         "background": "elevator.jpg"
@@ -208,7 +208,7 @@
             "message": ">>",
             "score": 0,
             "next": 13,
-            "characterMood": null,
+            "characterMood": "smile.png",
             "effect": null
         }],
         "background": "elevator.jpg"
@@ -224,7 +224,7 @@
             "message": ">>",
             "score": 0,
             "next": 14,
-            "characterMood": null,
+            "characterMood": "no.png",
             "effect": null
         }],
         "background": "elevator.jpg"
@@ -244,7 +244,7 @@
             "characterMood": null,
             "effect": null
         }],
-        "background": "elevator.jpg"
+        "background": "lx11.jpg"
     },
 
 
@@ -261,7 +261,7 @@
             "characterMood": null,
             "effect": null
         }],
-        "background": "elevator.jpg"
+        "background": "lx11-classroom1.jpg"
     },
 
     {
@@ -277,7 +277,7 @@
             "characterMood": null,
             "effect": null
         }],
-        "background": "elevator.jpg"
+        "background": "lx11-classroom1.jpg"
     },
 
 
@@ -294,7 +294,7 @@
             "characterMood": null,
             "effect": null
         }],
-        "background": "elevator.jpg"
+        "background": "lx11-classroom1.jpg"
     },
 
     {
@@ -307,10 +307,10 @@
             "message": ">>",
             "score": 0,
             "next": 19,
-            "characterMood": null,
+            "characterMood": "no.png",
             "effect": null
         }],
-        "background": "elevator.jpg"
+        "background": "lx11-classroom2.jpg"
     },
 
     {
@@ -323,10 +323,10 @@
             "message": ">>",
             "score": 0,
             "next": 20,
-            "characterMood": null,
+            "characterMood": "no.png",
             "effect": null
         }],
-        "background": "elevator.jpg"
+        "background": "lx11-classroom2.jpg"
     },
 
  
@@ -361,7 +361,7 @@
                 "effect":null
             }
         ],
-        "background": "kfc-table.jpg"
+        "background": "lx11-classroom2.jpg"
     },
 
     {
@@ -374,10 +374,10 @@
             "message": ">>",
             "score": 0,
             "next": 22,
-            "characterMood": null,
+            "characterMood": "base.png",
             "effect": null
         }],
-        "background": "elevator.jpg"
+        "background": "lx11-classroom1.jpg"
     },
 
     {
@@ -390,17 +390,17 @@
             "message": ">>",
             "score": 0,
             "next": 23,
-            "characterMood": null,
+            "characterMood": "smile.png",
             "effect": null
         }],
-        "background": "elevator.jpg"
+        "background": "lx11-classroom1.jpg"
     },
 
     {
         "no": "23",
         "who" : "director",
         "themesong":null,
-        "dialog": ".หญิงสาวหันมาสบตาด้วยรอยยิ้มที่สดใสมาก",
+        "dialog": ".หญิงสาวเปี่ยมไปด้วยรอยยิ้มที่สดใสมาก",
         "options": [{
             "id": "02A",
             "message": ">>",
@@ -409,7 +409,7 @@
             "characterMood": null,
             "effect": null
         }],
-        "background": "elevator.jpg"
+        "background": "lx11-classroom1.jpg"
     },
 
 
@@ -417,23 +417,23 @@
         "no": "24",
         "who" : "user",
         "themesong":null,
-        "dialog": "(.ตึกตัก ๆ เสียงหัวใจของฉันกำลังเต้นเร็วขึ้น)",
+        "dialog": "( .ตึกตัก ๆ เสียงหัวใจของฉันกำลังเต้นเร็วขึ้น )",
         "options": [{
             "id": "02A",
             "message": ">>",
             "score": 0,
             "next": 25,
-            "characterMood": null,
+            "characterMood": "base.png",
             "effect": null
         }],
-        "background": "elevator.jpg"
+        "background": "lx11-classroom1.jpg"
     },
 
     {
         "no": "25",
         "who" : "หญิงสาวปริศนา",
         "themesong":null,
-        "dialog": "เราชื่อ ไข่ตุ๋นนะ นายชื่ออะไรหรอ",
+        "dialog": "เราชื่อ ไข่ตุ๋นนะ แกชื่ออะไรหรอ",
         "options": [{
             "id": "A",
             "message": "$NAME",
@@ -446,19 +446,19 @@
             "message": "เราชื่อ $NAME",
             "score": 1,
             "next": 26,
-            "characterMood": "base.png",
+            "characterMood": "smile.png",
             "effect": null
         }
         ,{
             "id": "C",
-            "message": "เราชื่อ $NAME นะ",
-            "score": 2,
+            "message": "เราชื่อ $NAME นะ ^^",
+            "score": 3,
             "next": 26,
-            "characterMood": "base.png",
+            "characterMood": "smile.png",
             "effect": null
         }
     ],
-        "background": "sit.jpg"
+        "background": "lx11-classroom1.jpg"
     },
 
 
@@ -472,10 +472,10 @@
             "message": ">>",
             "score": 0,
             "next": 27,
-            "characterMood": null,
+            "characterMood": "base.png",
             "effect": null
         }],
-        "background": "elevator.jpg"
+        "background": "lx11-classroom1.jpg"
     },
 
 
@@ -489,36 +489,46 @@
             "message": "ได้สิ",
             "score": 1,
             "next": 28,
-            "characterMood": "sad.png",
+            "characterMood": "smile.png",
             "effect":null
         },
         {
             "id": "04B",
-            "message": "ได้ๆ จะไปกินที่ไหนละ",
+            "message": "ที่จริงก็แอบขี้เกียจนะ แต่ไปก็ได้",
+            "score": -1,
+            "next": 28,
+            "characterMood": "smile.png",
+            "effect":null
+        },
+        {
+            "id": "04B",
+            "message": "ได้เลยยยยย",
             "score": 2,
             "next": 28,
             "characterMood": "smile.png",
             "effect":null
         }
     ],
-        "background": "bed.jpg"
+        "background": "lx11-classroom1.jpg"
     },
+
+    
 
     {
         "no": "28",
-        "who" : "user",
+        "who" : "ไข่ตุ๋น",
         "themesong":null,
-        "dialog": "ด้ายยยเลยยยย จะไปกินที่ไหนหรอ ",
+        "dialog": "เย่!!!!",
         "options": [{
             "id": "02A",
             "message": ">>",
             "score": 0,
-            "next": 28,
-            "characterMood": "base.png",
+            "next": 29,
+            "characterMood": "smile.png",
             "effect": null
         }
     ],
-        "background": "bed.jpg"
+        "background": "lx11-classroom1.jpg"
     },
 
 
@@ -526,105 +536,181 @@
         "no": "29",
         "who" : "ไข่ตุ๋น",
         "themesong":null,
-        "dialog": " “พวกเค้าจะไปกินที่โรงอาหารใหญ่อ่ะ ตรง KFC” 030",
+        "dialog": " “เดี๋ยวพวกเค้าจะไปกินข้าวที่โรงอาหารใหญ่นะ ตรง KFC งะ”",
         "options": [{
             "id": "04A",
-            "message": "อ๋ออ..โอเครได้ๆ",
+            "message": "อ๋ออ..โอเครได้เลย",
             "score": 2,
             "next": 30,
-            "characterMood": "sad.png",
+            "characterMood": "smile.png",
             "effect":null
         },
         {
             "id": "04B",
-            "message": "โอเคๆ นำทางให้ด้วยนะ นี่ไม่รู้ทาง",
+            "message": "อ่าๆ",
             "score": 0,
             "next": 30,
-            "characterMood": "smile.png",
+            "characterMood": "base.png",
             "effect":null
         },
         {
             "id": "04B",
-            "message": "ได้ๆ ว่าแต่ KFC อยู่ไหนอะ",
-            "score": 1,
+            "message": "อืมๆๆ",
+            "score": -1,
             "next": 30,
-            "characterMood": "smile.png",
+            "characterMood": "base.png",
             "effect":null
         }
     ],
-        "background": "bed.jpg"
+        "background": "lx11-classroom1.jpg"
     },
-
-
-
-
-
-
-
-
-
     {
-        "no": "9",
+        "no": "30",
+        "who" : "ไข่ตุ๋น",
+        "themesong":null,
+        "dialog": "งั้นเดี๋ยวเค้าไปนั่งที่ก่อนนะ หมดเวลาพักเบรกแล้ว บ๊ายบาย ตอนกลางวันเค่อยคุยกันใหม่นะ",
+        "options": [{
+            "id": "02A",
+            "message": ">>",
+            "score": 0,
+            "next": 31,
+            "characterMood": "no.png",
+            "effect": null
+        }
+    ],
+        "background": "lx11-classroom1.jpg"
+    },
+    {
+        "no": "31",
+        "who" : "director",
+        "themesong":null,
+        "dialog": "เวลา 12.30",
+        "options": [{
+            "id": "02A",
+            "message": ">>",
+            "score": 0,
+            "next": 32,
+            "characterMood": null,
+            "effect": null
+        }],
+        "background": "lx11-classroom1.jpg"
+    },
+    {
+        "no": "32",
         "who" : "user",
         "themesong":null,
-        "dialog": " //  เช็คคะแนนเพื่อไปต่อ",
+        "dialog": "เลิกเรียนสักที หิวข้าวจะแย่อยู่แล้ว ( .ฉันรีบเดินออกจากประตูห้องเรียนอย่างรวดเร็วเนื่องจากหิวข้าวสุดๆ -w- )",
         "options": [{
-            "id": "A",
-            "message": "score +100",
-            "score": 100,
-            "next": 10,
-            "characterMood": "smile.png",
-            "effect": null
-        },{
-            "id": "B",
-            "message": "score +1",
-            "score": 10,
-            "next": 10,
+            "id": "02A",
+            "message": ">>",
+            "score": 0,
+            "next": 33,
             "characterMood": "base.png",
             "effect": null
         }
     ],
-        "background": "sit.jpg"
-    },
-
-    {
-        "no": "10",
-        "who" : "system",
-        "themesong":null,
-        "dialog": " //  แย่หน่อยนะ คะแนนยังไม่ถึง",
-        "options": [{
-            "id": "A",
-            "message": "โอเคไม่เป็นไร",
-            "score": 2,
-            "next": 11,
-            "characterMood": "sad.png",
-            "effect": null
-        },{
-            "id": "B",
-            "message": "ขอใหม่ได้ปะ",
-            "score": 10,
-            "next": 9,
-            "characterMood": null,
-            "effect": null
-        }
-    ],
-        "background": "sit.jpg"
+        "background": "lx11.jpg"
     },
     {
-        "no": "11",
-        "who" : "user",
+        "no": "33",
+        "who" : "ไข่ตุ๋น",
         "themesong":null,
-        "dialog": " //ไปกันต่อ >>>>>>>>>>>>>",
+        "dialog": " “ไปกันเถอะ $NAME ไปกินข้าวกัน นี่ ~ เพื่อนๆของเค้าเอง..”",
         "options": [{
-            "id": "A",
+            "id": "02A",
             "message": ">>",
             "score": 0,
-            "next": 0,
-            "characterMood": "sad.png",
+            "next": 34,
+            "characterMood": "base.png",
             "effect": null
         }
     ],
-        "background": "sit.jpg"
+        "background": "pathway.jpg"
+    },
+    {
+        "no": "34",
+        "who" : "user",
+        "themesong":null,
+        "dialog": " “เพื่อนๆ นี่ $NAME นะ”",
+        "options": [{
+            "id": "04A",
+            "message": "ไง เรา $NAME  นะ ยินดีที่ได้รู้จัก",
+            "score": 2,
+            "next": 35,
+            "characterMood": "base.png",
+            "effect":null
+        },
+        {
+            "id": "04B",
+            "message": "สวัสดีทุกคน เรา $NAME ฝากเนื้อฝากตัวด้วยนะ",
+            "score": 2,
+            "next": 35,
+            "characterMood": "smile.png",
+            "effect":null
+        },
+        {
+            "id": "04B",
+            "message": "โบกมือ ส่งยิ้มให้ทุกคน",
+            "score": 1,
+            "next": 35,
+            "characterMood": "base.png",
+            "effect":null
+        }
+    ],
+        "background": "pathway.jpg"
+    },
+    {
+        "no": "35",
+        "who" : "director",
+        "themesong":null,
+        "dialog": "..หลังจากนั้น ไข่ตุ๋นก็แนะนำเพื่อนๆ ให้ฉันได้รู้จัก",
+        "options": [{
+            "id": "02A",
+            "message": ">>",
+            "score": 0,
+            "next": 36,
+            "characterMood": "no.png",
+            "effect": null
+        }
+    ],
+        "background": "lx-in-elevator.jpg"
+    },
+    {
+        "no": "36",
+        "who" : "user",
+        "themesong":null,
+        "dialog": "( .ฉันเดินตามไข่ตุ๋นกับกลุ่มเพื่อนๆของเขา )",
+        "options": [{
+            "id": "02A",
+            "message": ">>",
+            "score": 0,
+            "next": 37,
+            "characterMood": "smile.png",
+            "effect": null
+        }
+    ],
+        "background": "kfc-walk-follow.jpg"
+    },
+    {
+        "no": "37",
+        "who" : "ไข่ตุ๋น",
+        "themesong":null,
+        "dialog": "นี่ๆ พวกเรา นั่งโต๊ะนี้กานนน",
+        "options": [{
+            "id": "02A",
+            "message": ">>",
+            "score": 0,
+            "next": 38,
+            "characterMood": "base.png",
+            "effect": null
+        }
+    ],
+        "background": "kfc-assemble2.jpg"
     }
+
+
+
+
+    
 
 ]

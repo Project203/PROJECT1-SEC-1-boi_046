@@ -436,16 +436,24 @@
         "dialog": "เราชื่อ ไข่ตุ๋นนะ นายชื่ออะไรหรอ",
         "options": [{
             "id": "A",
-            "message": "เราชื่อ ${user}",
-            "score": 100,
-            "next": 10,
+            "message": "$NAME",
+            "score": 0,
+            "next": 26,
             "characterMood": "smile.png",
             "effect": null
         },{
             "id": "B",
-            "message": "เราชื่อ",
-            "score": 10,
-            "next": 10,
+            "message": "เราชื่อ $NAME",
+            "score": 1,
+            "next": 26,
+            "characterMood": "base.png",
+            "effect": null
+        }
+        ,{
+            "id": "C",
+            "message": "เราชื่อ $NAME นะ",
+            "score": 2,
+            "next": 26,
             "characterMood": "base.png",
             "effect": null
         }
@@ -455,45 +463,105 @@
 
 
     {
-        "no": "25",
-        "who" : "user",
+        "no": "26",
+        "who" : "ไข่ตุ๋น",
         "themesong":null,
-        "dialog": "เรียนเหนื่อยจัง นอนดีกว่า",
+        "dialog": " “ยินดีที่ได้รู้จักน้าาา  $NAME” >w<",
+        "options": [{
+            "id": "02A",
+            "message": ">>",
+            "score": 0,
+            "next": 27,
+            "characterMood": null,
+            "effect": null
+        }],
+        "background": "elevator.jpg"
+    },
+
+
+    {
+        "no": "27",
+        "who" : "ไข่ตุ๋น",
+        "themesong":null,
+        "dialog": "“ตอนกลางวันไปกินข้าวด้วยกันมั้ย” 030",
         "options": [{
             "id": "04A",
-            "message": "หลับไป",
-            "score": 2,
-            "next": 0,
+            "message": "ได้สิ",
+            "score": 1,
+            "next": 28,
             "characterMood": "sad.png",
             "effect":null
         },
         {
             "id": "04B",
-            "message": "เล่นโทรศัพท์",
+            "message": "ได้ๆ จะไปกินที่ไหนละ",
             "score": 2,
-            "next": 3,
+            "next": 28,
             "characterMood": "smile.png",
             "effect":null
         }
     ],
         "background": "bed.jpg"
     },
+
     {
-        "no": "8",
+        "no": "28",
         "who" : "user",
         "themesong":null,
-        "dialog": " //  ทำอะไรดี ",
+        "dialog": "ด้ายยยเลยยยย จะไปกินที่ไหนหรอ ",
         "options": [{
             "id": "02A",
             "message": ">>",
             "score": 0,
-            "next": 9,
+            "next": 28,
             "characterMood": "base.png",
             "effect": null
         }
     ],
         "background": "bed.jpg"
     },
+
+
+    {
+        "no": "29",
+        "who" : "ไข่ตุ๋น",
+        "themesong":null,
+        "dialog": " “พวกเค้าจะไปกินที่โรงอาหารใหญ่อ่ะ ตรง KFC” 030",
+        "options": [{
+            "id": "04A",
+            "message": "อ๋ออ..โอเครได้ๆ",
+            "score": 2,
+            "next": 30,
+            "characterMood": "sad.png",
+            "effect":null
+        },
+        {
+            "id": "04B",
+            "message": "โอเคๆ นำทางให้ด้วยนะ นี่ไม่รู้ทาง",
+            "score": 0,
+            "next": 30,
+            "characterMood": "smile.png",
+            "effect":null
+        },
+        {
+            "id": "04B",
+            "message": "ได้ๆ ว่าแต่ KFC อยู่ไหนอะ",
+            "score": 1,
+            "next": 30,
+            "characterMood": "smile.png",
+            "effect":null
+        }
+    ],
+        "background": "bed.jpg"
+    },
+
+
+
+
+
+
+
+
 
     {
         "no": "9",

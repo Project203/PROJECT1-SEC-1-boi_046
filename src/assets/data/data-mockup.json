@@ -464,7 +464,7 @@
 
     {
         "no": "26",
-        "who" : "ไข่ตุ๋น",
+        "who" : "system",
         "themesong":null,
         "dialog": " “ยินดีที่ได้รู้จักน้าาา  $NAME” >w<",
         "options": [{
@@ -481,7 +481,7 @@
 
     {
         "no": "27",
-        "who" : "ไข่ตุ๋น",
+        "who" : "system",
         "themesong":null,
         "dialog": "“ตอนกลางวันไปกินข้าวด้วยกันมั้ย” 030",
         "options": [{
@@ -516,7 +516,7 @@
 
     {
         "no": "28",
-        "who" : "ไข่ตุ๋น",
+        "who" : "system",
         "themesong":null,
         "dialog": "เย่!!!!",
         "options": [{
@@ -534,7 +534,7 @@
 
     {
         "no": "29",
-        "who" : "ไข่ตุ๋น",
+        "who" : "system",
         "themesong":null,
         "dialog": " “เดี๋ยวพวกเค้าจะไปกินข้าวที่โรงอาหารใหญ่นะ ตรง KFC งะ”",
         "options": [{
@@ -542,7 +542,7 @@
             "message": "อ๋ออ..โอเครได้เลย",
             "score": 2,
             "next": 30,
-            "characterMood": "smile.png",
+            "characterMood": "base.png",
             "effect":null
         },
         {
@@ -566,7 +566,7 @@
     },
     {
         "no": "30",
-        "who" : "ไข่ตุ๋น",
+        "who" : "system",
         "themesong":null,
         "dialog": "งั้นเดี๋ยวเค้าไปนั่งที่ก่อนนะ หมดเวลาพักเบรกแล้ว บ๊ายบาย ตอนกลางวันเค่อยคุยกันใหม่นะ",
         "options": [{
@@ -605,7 +605,7 @@
             "message": ">>",
             "score": 0,
             "next": 33,
-            "characterMood": "base.png",
+            "characterMood": "no.png",
             "effect": null
         }
     ],
@@ -613,7 +613,7 @@
     },
     {
         "no": "33",
-        "who" : "ไข่ตุ๋น",
+        "who" : "system",
         "themesong":null,
         "dialog": " “ไปกันเถอะ $NAME ไปกินข้าวกัน นี่ ~ เพื่อนๆของเค้าเอง..”",
         "options": [{
@@ -637,12 +637,12 @@
             "message": "ไง เรา $NAME  นะ ยินดีที่ได้รู้จัก",
             "score": 2,
             "next": 35,
-            "characterMood": "base.png",
+            "characterMood": "smile.png",
             "effect":null
         },
         {
             "id": "04B",
-            "message": "สวัสดีทุกคน เรา $NAME ฝากเนื้อฝากตัวด้วยนะ",
+            "message": "สวัสดีเพื่อนๆเรา $NAME ฝากเนื้อฝากตัวด้วยนะ",
             "score": 2,
             "next": 35,
             "characterMood": "smile.png",
@@ -693,7 +693,7 @@
     },
     {
         "no": "37",
-        "who" : "ไข่ตุ๋น",
+        "who" : "system",
         "themesong":null,
         "dialog": "นี่ๆ พวกเรา นั่งโต๊ะนี้กานนน",
         "options": [{
@@ -706,11 +706,270 @@
         }
     ],
         "background": "kfc-assemble2.jpg"
+    },
+    {
+        "no": "38",
+        "who" : "user",
+        "themesong":null,
+        "dialog": "( .ฉันและเพื่อนๆของไข่ตุ๋น เดินไปวางของที่โต๊ะที่ไข่ตุ๋นเลือก )",
+        "options": [{
+            "id": "04A",
+            "message": "เดินไปถามไข่ตุ๋นว่า “กินอะไรดี“   ",
+            "score": 1,
+            "next": 39,
+            "characterMood": "base.png",
+            "effect":null
+        },
+        {
+            "id": "04B",
+            "message": "เดินไปถามไข่ตุ๋นว่า “ไข่ตุ๋นจะกินอะไรหรอ“ ",
+            "score": 2,
+            "next": 39,
+            "characterMood": "smile.png",
+            "effect":null
+        },
+        {
+            "id": "04B",
+            "message": "เดินไปถามไข่ตุ๋น “ที่นี่มีร้านไหนแนะนำบ้างมั้ย“",
+            "score": 0,
+            "next": 39,
+            "characterMood": "base.png",
+            "effect":null
+        }
+    ],
+        "background": "kfc-assemble1.jpg"
+    },
+    {
+        "no": "39",
+        "who" : "system",
+        "themesong":null,
+        "dialog": "“ เค้าก็ไม่เคยมากินที่นี่เหมือนกัน งั้นไปเดินดูกัน $NAME ”(.ไข่ตุ๋นดึงแขนเสื้อพาฉันเดินไปดูร้านข้าวในโรงอาหาร)",
+        "options": [{
+            "id": "02A",
+            "message": ">>",
+            "score": 0,
+            "next": 40,
+            "characterMood": "no.png",
+            "effect": null
+        }
+    ],
+        "background": "kfc-assemble2.jpg"
+    },
+    {
+        "no": "40",
+        "who" : "user",
+        "themesong":null,
+        "dialog": "( .ฉันเดินตามไข่ตุ๋นไป)",
+        "options": [{
+            "id": "02A",
+            "message": ">>",
+            "score": 0,
+            "next": 41,
+            "characterMood": "base.png",
+            "effect": null
+        }
+    ],
+        "background": "kfc-walk-follow.jpg"
+    },
+    {
+        "no": "41",
+        "who" : "system",
+        "themesong":null,
+        "dialog": "“หูยยร้านนี้ดูน่าอร่อยดีนะ กินข้าวร้านนี้กัน $NAME”",
+        "options": [{
+            "id": "04A",
+            "message": ">>",
+            "score": 0,
+            "next": 42,
+            "characterMood": "base.png",
+            "effect":null
+        }
+    ],
+        "background": "kfc-queue.jpg"
+    },
+    {
+        "no": "42",
+        "who" : "user",
+        "themesong":null,
+        "dialog": "“เลือกได้แจ่มแมวมากเลยไข่ตุ๋น หอมมมมากก น่ากินมากเลยยย สมแล้วที่เป็นเธอ”",
+        "options": [{
+            "id": "04A",
+            "message": ">>",
+            "score": 0,
+            "next": 43,
+            "characterMood": "smile.png",
+            "effect":null
+        }
+    ],
+        "background": "kfc-queue.jpg"
+    },
+    {
+        "no": "43",
+        "who" : "system",
+        "themesong":null,
+        "dialog": "“ $NAME ก็ชมเกินไปแล้วว ไม่ขนาดนั้นหรอก >w< ”",
+        "options": [{
+            "id": "02A",
+            "message": ">>",
+            "score": 0,
+            "next": 44,
+            "characterMood": "no.png",
+            "effect": null
+        }
+    ],
+        "background": "kfc-queue.jpg"
+    },
+    {
+        "no": "44",
+        "who" : "user",
+        "themesong":null,
+        "dialog": "หลังจากที่ซื้อข้าวเสร็จ... ( .ฉันกับไข่ตุ๋นและเพื่อนๆก็ได้นั่งกินข้าวและคุยเล่นกันอย่างสนุกสนาน )",
+        "options": [{
+            "id": "02A",
+            "message": ">>",
+            "score": 0,
+            "next": 45,
+            "characterMood": "no.png",
+            "effect": null
+        }
+    ],
+        "background": "kfc-table.jpg"
+    },
+    {
+        "no": "45",
+        "who" : "user",
+        "themesong":null,
+        "dialog": "( .ฉันมองดูเวลาจากนาฬิกาข้อมือของตัวเอง ) “โอ้วทุกคน เหลือเวลาอีก 10 นาที ก็จะเรียนวิชาต่อไปแล้วล่ะ”",
+        "options": [{
+            "id": "02A",
+            "message": "",
+            "score": 0,
+            "next": 46,
+            "characterMood": "no.png",
+            "effect": null
+        }
+    ],
+        "background": "kfc-table.jpg"
+    },
+    {
+        "no": "46",
+        "who" : "system",
+        "themesong":null,
+        "dialog": "“เพื่อน ๆ พวกเรารีบเก็บจานแล้วขึ้นห้องไปเรียนกันนน”",
+        "options": [{
+            "id": "02A",
+            "message": ">>",
+            "score": 0,
+            "next": 47,
+            "characterMood": "no.png",
+            "effect": null
+        }
+    ],
+        "background": "kfc-table.jpg"
+    },
+    {
+        "no": "47",
+        "who" : "user",
+        "themesong":null,
+        "dialog": "( .ฉันกับไข่ตุ๋นและเพื่อนๆ ก็รีบเดินไปเรียนวิชาต่อไป )",
+        "options": [{
+            "id": "02A",
+            "message": ">>",
+            "score": 0,
+            "next": 48,
+            "characterMood": "no.png",
+            "effect": null
+        }
+    ],
+        "background": "lx-late.jpg"
+    },
+    {
+        "no": "48",
+        "who" : "director",
+        "themesong":null,
+        "dialog": "ณ เวลา 16.30 น.",
+        "options": [{
+            "id": "02A",
+            "message": ">>",
+            "score": 0,
+            "next": 49,
+            "characterMood": "no.png",
+            "effect": null
+        }
+    ],
+        "background": "lx10-classroom-end.jpg"
+    },
+    {
+        "no": "49",
+        "who" : "อาจารย์",
+        "themesong":null,
+        "dialog": "“วันนี้ก็ config แค่นี้ละ กลับบ้านได้!! ใครอยากอยู่ทำแลปต่อก็อยู่ได้นะ”",
+        "options": [{
+            "id": "02A",
+            "message": ">>",
+            "score": 0,
+            "next": 50,
+            "characterMood": null,
+            "effect": null
+        }],
+        "background": "lx10-classroom-end.jpg"
+    },
+    {
+        "no": "50",
+        "who" : "director",
+        "themesong":null,
+        "dialog": "เพื่อนๆ ทุกคนในห้องรีบเก็บข้าวของทันทีหลังจากที่อาจารย์ปล่อย",
+        "options": [{
+            "id": "02A",
+            "message": ">>",
+            "score": 0,
+            "next": 51,
+            "characterMood": "no.png",
+            "effect": null
+        }
+    ],
+        "background": "lx10-classroom-start.jpg"
+    },
+    {
+        "no": "51",
+        "who" : "user",
+        "themesong":null,
+        "dialog": "( อยากกลับบ้านกับไข่ตุ๋นจัง ลองไปถามดูดีมั้ยนะว่าเขากลับบ้านยังไง )",
+        "options": [{
+            "id": "04A",
+            "message": "ไปถามไข่ตุ๋น",
+            "score": 2,
+            "next": 52,
+            "characterMood": "base.png",
+            "effect":null
+        },
+        {
+            "id": "04B",
+            "message": "ไม่ถามดีกว่า ขี้เกียจ",
+            "score": 0,
+            "next": 150,
+            "characterMood": "smile.png",
+            "effect":null
+        }
+
+    ],
+        "background": "lx10.jpg"
+    },
+    {
+        "no": "150",
+        "who" : "director",
+        "themesong":null,
+        "dialog": "สรุปจบพาทแรก",
+        "options": [{
+            "id": "02A",
+            "message": ">>",
+            "score": 0,
+            "next": 0,
+            "characterMood": "no.png",
+            "effect": null
+        }
+    ],
+        "background": "lx10.jpg"
     }
-
-
-
-
-    
 
 ]

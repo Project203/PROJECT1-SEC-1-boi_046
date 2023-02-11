@@ -238,7 +238,7 @@ const { gameStart, getDialog, getOption, selectOption, showNextDialog, getCurren
             <!-- choice -->
             <div v-for="(choice, index) in getOption()" :key="index" @click="selectOption(choice.id)"
               class="opacity-80 hover:opacity-100 mr-12 break-all w-fit hover:bg-[#f82b74] hover:border-white hover:scale-[105%] duration-300 each-in-out hover:text-white cursor-pointer border-[#f82b74] border-y-4 border-solid place-self-center flex place-items-center rounded-full py-3 pl-12 pr-12 bg-fuchsia-50">
-              {{ choice.message }}
+             <div v-show="choice.id!==null">{{ choice.message }}</div> 
             </div>
           </div>
         </div>

@@ -17,11 +17,11 @@
             "id": "01B",
             "message": "นอนต่อ ไม่สนใจ ปล่อยให้มันดังไป",
             "score": 0,
-            "next": 2,
+            "next": 70,
             "characterMood": "no.png",
             "effect":null
         }],
-        "background": "blackcolor.jpg"
+        "background": "Alarm.jpg"
     },
 
 
@@ -40,7 +40,7 @@
             "effect": null
         }
     ],
-        "background": "bed.jpg"
+        "background": "Bedroom.jpg"
     },
 
 
@@ -58,7 +58,7 @@
             "effect": null
         }
     ],
-        "background": "bed.jpg"
+        "background": "Bedroom.jpg"
     },
 
     {
@@ -75,7 +75,7 @@
             "effect": null
         }
     ],
-        "background": "bed.jpg"
+        "background": "Bathroom1.jpg"
     },
 
     {
@@ -92,7 +92,7 @@
             "effect": null
         }
     ],
-        "background": "bed.jpg"
+        "background": "Bathroom2.jpg"
     },
 
 
@@ -109,7 +109,7 @@
             "characterMood": null,
             "effect": null
         }],
-        "background": "elevator.jpg"
+        "background": "Under-lx.jpg"
     },
 
 
@@ -126,7 +126,7 @@
             "characterMood": null,
             "effect": null
         }],
-        "background": "elevator.jpg"
+        "background": "Under-lx.jpg"
     },
 
 
@@ -143,7 +143,7 @@
             "characterMood": null,
             "effect": null
         }],
-        "background": "elevator.jpg"
+        "background": "Under-lx.jpg"
     },
 
 
@@ -160,7 +160,7 @@
             "characterMood": null,
             "effect": null
         }],
-        "background": "elevator.jpg"
+        "background": "Under-lx.jpg"
     },
 
 
@@ -177,7 +177,7 @@
             "characterMood": "sad.png",
             "effect": null
         }],
-        "background": "elevator.jpg"
+        "background": "Under-lx.jpg"
     },
 
 
@@ -194,7 +194,7 @@
             "characterMood": "no.png",
             "effect": null
         }],
-        "background": "elevator.jpg"
+        "background": "Under-lx.jpg"
     },
 
 
@@ -211,7 +211,7 @@
             "characterMood": "smile.png",
             "effect": null
         }],
-        "background": "elevator.jpg"
+        "background": "Under-lx.jpg"
     },
 
     {
@@ -227,7 +227,7 @@
             "characterMood": "no.png",
             "effect": null
         }],
-        "background": "elevator.jpg"
+        "background": "Under-lx.jpg"
     },
 
 
@@ -244,7 +244,7 @@
             "characterMood": null,
             "effect": null
         }],
-        "background": "lx11.jpg"
+        "background": "Lx-11.jpg"
     },
 
 
@@ -261,7 +261,7 @@
             "characterMood": null,
             "effect": null
         }],
-        "background": "lx11-classroom1.jpg"
+        "background": "Lx-11-classroom1.jpg"
     },
 
     {
@@ -277,7 +277,7 @@
             "characterMood": null,
             "effect": null
         }],
-        "background": "lx11-classroom1.jpg"
+        "background": "Lx-11-classroom2.jpg"
     },
 
 
@@ -294,7 +294,7 @@
             "characterMood": null,
             "effect": null
         }],
-        "background": "lx11-classroom1.jpg"
+        "background": "Lx-11-classroom2.jpg"
     },
 
     {
@@ -310,7 +310,7 @@
             "characterMood": "no.png",
             "effect": null
         }],
-        "background": "lx11-classroom2.jpg"
+        "background": "Lx-11-classroom2.jpg"
     },
 
     {
@@ -326,7 +326,7 @@
             "characterMood": "no.png",
             "effect": null
         }],
-        "background": "lx11-classroom2.jpg"
+        "background": "Lx-11-classroom2.jpg"
     },
 
  
@@ -361,7 +361,7 @@
                 "effect":null
             }
         ],
-        "background": "lx11-classroom2.jpg"
+        "background": "Lx-11-classroom2.jpg"
     },
 
     {
@@ -377,7 +377,7 @@
             "characterMood": "base.png",
             "effect": null
         }],
-        "background": "lx11-classroom1.jpg"
+        "background": "Lx-11-classroom1.jpg"
     },
 
     {
@@ -393,7 +393,7 @@
             "characterMood": "smile.png",
             "effect": null
         }],
-        "background": "lx11-classroom1.jpg"
+        "background": "Lx-11-classroom1.jpg"
     },
 
     {
@@ -409,7 +409,7 @@
             "characterMood": null,
             "effect": null
         }],
-        "background": "lx11-classroom1.jpg"
+        "background": "Lx-11-classroom1.jpg"
     },
 
 
@@ -426,7 +426,7 @@
             "characterMood": "base.png",
             "effect": null
         }],
-        "background": "lx11-classroom1.jpg"
+        "background": "Lx-11-classroom1.jpg"
     },
 
     {
@@ -458,7 +458,7 @@
             "effect": null
         }
     ],
-        "background": "lx11-classroom1.jpg"
+        "background": "Lx-11-classroom1.jpg"
     },
 
 
@@ -475,7 +475,7 @@
             "characterMood": "base.png",
             "effect": null
         }],
-        "background": "lx11-classroom1.jpg"
+        "background": "Lx-11-classroom1.jpg"
     },
 
 
@@ -509,7 +509,7 @@
             "effect":null
         }
     ],
-        "background": "lx11-classroom1.jpg"
+        "background": "Lx-11-classroom1.jpg"
     },
 
     
@@ -528,7 +528,7 @@
             "effect": null
         }
     ],
-        "background": "lx11-classroom1.jpg"
+        "background": "Lx-11-classroom1.jpg"
     },
 
 
@@ -562,7 +562,7 @@
             "effect":null
         }
     ],
-        "background": "lx11-classroom1.jpg"
+        "background": "Lx-11-classroom1.jpg"
     },
     {
         "no": "30",
@@ -578,7 +578,7 @@
             "effect": null
         }
     ],
-        "background": "lx11-classroom1.jpg"
+        "background": "Lx-11-classroom1.jpg"
     },
     {
         "no": "31",
@@ -593,7 +593,7 @@
             "characterMood": null,
             "effect": null
         }],
-        "background": "lx11-classroom1.jpg"
+        "background": "Lx-11-classroom1.jpg"
     },
     {
         "no": "32",
@@ -609,7 +609,7 @@
             "effect": null
         }
     ],
-        "background": "lx11.jpg"
+        "background": "Pathway.jpg"
     },
     {
         "no": "33",
@@ -625,7 +625,7 @@
             "effect": null
         }
     ],
-        "background": "pathway.jpg"
+        "background": "Kfc1.jpg"
     },
     {
         "no": "34",
@@ -657,7 +657,7 @@
             "effect":null
         }
     ],
-        "background": "pathway.jpg"
+        "background": "Kfc1.jpg"
     },
     {
         "no": "35",
@@ -673,7 +673,7 @@
             "effect": null
         }
     ],
-        "background": "lx-in-elevator.jpg"
+        "background": "Kfc2.jpg"
     },
     {
         "no": "36",
@@ -689,7 +689,7 @@
             "effect": null
         }
     ],
-        "background": "kfc-walk-follow.jpg"
+        "background": "Kfc-table1.jpg"
     },
     {
         "no": "37",
@@ -705,7 +705,7 @@
             "effect": null
         }
     ],
-        "background": "kfc-assemble2.jpg"
+        "background": "Kfc-table2.jpg"
     },
     {
         "no": "38",
@@ -737,7 +737,7 @@
             "effect":null
         }
     ],
-        "background": "kfc-assemble1.jpg"
+        "background": "Kfc-table2.jpg"
     },
     {
         "no": "39",
@@ -753,7 +753,7 @@
             "effect": null
         }
     ],
-        "background": "kfc-assemble2.jpg"
+        "background": "Kfc-table2.jpg"
     },
     {
         "no": "40",
@@ -769,7 +769,7 @@
             "effect": null
         }
     ],
-        "background": "kfc-walk-follow.jpg"
+        "background": "Kfc-walk-follow.jpg"
     },
     {
         "no": "41",
@@ -785,7 +785,7 @@
             "effect":null
         }
     ],
-        "background": "kfc-queue.jpg"
+        "background": "Kfc-queue.jpg"
     },
     {
         "no": "42",
@@ -801,7 +801,7 @@
             "effect":null
         }
     ],
-        "background": "kfc-queue.jpg"
+        "background": "Kfc-queue.jpg"
     },
     {
         "no": "43",
@@ -817,7 +817,7 @@
             "effect": null
         }
     ],
-        "background": "kfc-queue.jpg"
+        "background": "Kfc-queue.jpg"
     },
     {
         "no": "44",
@@ -833,7 +833,7 @@
             "effect": null
         }
     ],
-        "background": "kfc-table.jpg"
+        "background": "Kfc-lunch.jpg"
     },
     {
         "no": "45",
@@ -849,7 +849,7 @@
             "effect": null
         }
     ],
-        "background": "kfc-table.jpg"
+        "background": "Kfc-lunch.jpg"
     },
     {
         "no": "46",
@@ -865,7 +865,7 @@
             "effect": null
         }
     ],
-        "background": "kfc-table.jpg"
+        "background": "Kfc-dish-storage.jpg"
     },
     {
         "no": "47",
@@ -881,7 +881,7 @@
             "effect": null
         }
     ],
-        "background": "lx-late.jpg"
+        "background": "Lx-10-classroom1.jpg"
     },
     {
         "no": "48",
@@ -897,7 +897,7 @@
             "effect": null
         }
     ],
-        "background": "lx10-classroom-end.jpg"
+        "background": "Lx-10-classroom2.jpg"
     },
     {
         "no": "49",
@@ -912,7 +912,7 @@
             "characterMood": null,
             "effect": null
         }],
-        "background": "lx10-classroom-end.jpg"
+        "background": "Lx-10-classroom2.jpg"
     },
     {
         "no": "50",
@@ -928,7 +928,7 @@
             "effect": null
         }
     ],
-        "background": "lx10-classroom-start.jpg"
+        "background": "Lx-10-classroom2.jpg"
     },
     {
         "no": "51",
@@ -953,7 +953,7 @@
         }
 
     ],
-        "background": "lx10.jpg"
+        "background": "Pathway.jpg"
     },
     {
         "no": "150",
@@ -969,7 +969,389 @@
             "effect": null
         }
     ],
-        "background": "lx10.jpg"
+        "background": "Pathway.jpg"
+    },
+    {
+        "no": "52",
+        "who": "user",
+        "themesong": null,
+        "dialog": "นี่ๆ ไข่ตุ๋นกลับบ้านยังไงหรอ",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 53,
+                "characterMood": "smile.png",
+                "effect": null
+            }
+        ],
+        "background": "Pathway.jpg"
+    },
+    {
+        "no": "53",
+        "who": "system",
+        "themesong": null,
+        "dialog": "เค้าก็นั่งรถตรงหน้ามอนี่ละ แล้ว$NAMEละ",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 54,
+                "characterMood": "smile.png",
+                "effect": null
+            }
+        ],
+        "background": "Pathway.jpg"
+    },
+    {
+        "no": "54",
+        "who": "user",
+        "themesong": null,
+        "dialog": "หึย กลับทางเดียวกันเลย",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 55,
+                "characterMood": "no.png",
+                "effect": null
+            }
+        ],
+        "background": "Pathway.jpg"
+    },
+    {
+        "no": "55",
+        "who": "director",
+        "themesong": null,
+        "dialog": "ระหว่างเดินกลับบ้านกับไข่ตุ๋น",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 56,
+                "characterMood": null,
+                "effect": null
+            }
+        ],
+        "background": "Footpath10.jpg"
+    },
+    {
+        "no": "56",
+        "who": "user",
+        "themesong": null,
+        "dialog": "$NAME คิดในใจ เยี่ยมเลย จะได้คุยกับไข่ตุ๋นก่อนกับบ้านยาวๆ",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 57,
+                "characterMood": null,
+                "effect": null
+            }
+        ],
+        "background": "Footpath8.jpg"
+    },
+    {
+        "no": "57",
+        "who": "director",
+        "themesong": null,
+        "dialog": "ระหว่างทางกลับบ้าน",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 58,
+                "characterMood": null,
+                "effect": null
+            }
+        ],
+        "background": "Footpath4.jpg"
+    },
+    {
+        "no": "58",
+        "who": "ห่าน",
+        "themesong": null,
+        "dialog": "แกว๊กกกกกก",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 59,
+                "characterMood": null,
+                "effect": null
+            }
+        ],
+        "background": "Goose1.jpg"
+    },
+    {
+        "no": "59",
+        "who": "system",
+        "themesong": null,
+        "dialog": "งุ้ยย น้อนน ไปดูห่านใกล้ๆกัน",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 60,
+                "characterMood": null,
+                "effect": null
+            }
+        ],
+        "background": "Goose1.jpg"
+    },
+    {
+        "no": "60",
+        "who": "user",
+        "themesong": null,
+        "dialog": "เดินตามปาล์มมี่ไป",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 61,
+                "characterMood": null,
+                "effect": null
+            }
+        ],
+        "background": "Goose2.jpg"
+    },
+    {
+        "no": "61",
+        "who": "ห่าน",
+        "themesong": null,
+        "dialog": "แกว๊กกกกกก",
+        "options": [
+            {
+                "id": "04A",
+                "message": "น้องน่ารักดีนะ ชอบห่านหรอ",
+                "score": 2,
+                "next": 62,
+                "characterMood": "base.png",
+                "effect": null
+            },{
+                "id": null
+            }
+        ],
+        "background": "Goose2.jpg"
+    },
+    {
+        "no": "62",
+        "who": "system",
+        "themesong": null,
+        "dialog": "ชอบนะ แต่ชอบไม่เท่าน้อนแมว แฮร่ๆ",
+        "options": [
+            {
+                "id": "04A",
+                "message": "หึยชอบแมวหรอ เราก็ชอบแมวเหมือนกัน",
+                "score": 10,
+                "next": 63,
+                "characterMood": "smile.png",
+                "effect": null
+            },{
+                "id": "04B",
+                "message": "แหมม เป็นทาสแมวหรอเนี่ยย",
+                "score": 5,
+                "next": 63,
+                "characterMood": "smile.png",
+                "effect": null
+            }
+        ],
+        "background": "Footpath2.jpg"
+    },
+    {
+        "no": "63",
+        "who": "system",
+        "themesong": null,
+        "dialog": "“คิคิ”",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 64,
+                "characterMood": null,
+                "effect": null
+            }
+        ],
+        "background": "Footpath2.jpg"
+    },
+    {
+        "no": "64",
+        "who": "system",
+        "themesong": null,
+        "dialog": "“ขอเฟสหน่อยสิจะ add เพื่อนไว้ติดต่อน่ะ”",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 65,
+                "characterMood": null,
+                "effect": null
+            }
+        ],
+        "background": "Footpath2.jpg"
+    },
+    {
+        "no": "65",
+        "who": "user",
+        "themesong": null,
+        "dialog": "ได้ๆ อะนี่",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 66,
+                "characterMood": "shy.png",
+                "effect": null
+            }
+        ],
+        "background": "Footpath2.jpg"
+    },
+    {
+        "no": "66",
+        "who": "system",
+        "themesong": null,
+        "dialog": "Add ไปแล้วนะ รับด้วย",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 67,
+                "characterMood": "smile.png",
+                "effect": null
+            }
+        ],
+        "background": "Footpath2.jpg"
+    },
+    {
+        "no": "67",
+        "who": "user",
+        "themesong": null,
+        "dialog": "โอเครๆ",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 68,
+                "characterMood": "no.png",
+                "effect": null
+            }
+        ],
+        "background": "Footpath2.jpg"
+    },
+    {
+        "no": "68",
+        "who": "system",
+        "themesong": null,
+        "dialog": "ส่งสติ๊กเกอร์",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 69,
+                "characterMood": null,
+                "effect": null
+            }
+        ],
+        "background": "Footpath2.jpg"
+    },
+    {
+        "no": "69",
+        "who": "user",
+        "themesong": null,
+        "dialog": "ส่งสติ๊กเกอร์กลับ",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 70,
+                "characterMood": null,
+                "effect": null
+            }
+        ],
+        "background": "Footpath2.jpg"
+    },
+    {
+        "no": "70",
+        "who": "system",
+        "themesong": null,
+        "dialog": "ป้ะ กลับบ้านกัน",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 71,
+                "characterMood": null,
+                "effect": null
+            }
+        ],
+        "background": "Footpath1.jpg"
+    },
+    {
+        "no": "71",
+        "who": "director",
+        "themesong": null,
+        "dialog": "ฉันกับปาล์มมี่ก็ได้แยกย้ายและเดินทางกลับบ้านกันไปคนละทาง หลังจากนั้นฉันกับปาล์มมี่ก็ได้ใช้ชีวิตแบบเดิมๆ ไปเรื่อยๆ จนถึงวันหยุดสุดสัปดาห์",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 72,
+                "characterMood": null,
+                "effect": null
+            }
+        ],
+        "background": "Footpath1.jpg"
+    },
+    {
+        "no": "72",
+        "who": "user",
+        "themesong": null,
+        "dialog": "เช้าวันเสาร์ที่สดใส",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 250,
+                "characterMood": "no.png",
+                "effect": null
+            }
+        ],
+        "background": "Newday.jpg"
+    },
+    {
+        "no": "250",
+        "who": "director",
+        "themesong": null,
+        "dialog": "Dev บอกค่อยมาทำต่อแล้วกัน",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 350,
+                "characterMood": null,
+                "effect": null
+            }
+        ],
+        "background": "Pavillion.jpg"
     }
-
 ]

@@ -17,7 +17,7 @@
             "id": "01B",
             "message": "นอนต่อ ไม่สนใจ ปล่อยให้มันดังไป",
             "score": 0,
-            "next": 70,
+            "next": 2,
             "characterMood": "no.png",
             "effect":null
         }],

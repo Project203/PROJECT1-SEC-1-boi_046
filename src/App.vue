@@ -201,7 +201,7 @@ const { gameStart, getDialog, getOption, selectOption, showNextDialog, getCurren
         <div
           class="relative w-[50%] h-[95%] border-[#f82b74] border-4 flex mr-auto ml-auto indent-10 p-20 items-center bg-white bg-opacity-70 rounded-bl-[100px] rounded-tr-[100px]">
           <p class="pb-32 leading-10 text-[#f82b74] typing break-all">{{ getDialog() }}</p>
-          <div v-show="true" @click="selectOption(getOption()[0].id)"
+          <div v-show="true"
             class="z-50 bounce absolute cursor-pointer text-2xl w-20 h-20 bottom-4 right-8">
             <img src="./assets/images/element/skipwhite.png">
           </div>

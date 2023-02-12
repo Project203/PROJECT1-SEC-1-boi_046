@@ -384,13 +384,13 @@ body {
 
 @keyframes pageTransitionFade {
 
-  0% {
-    transition-delay: 0.2s;
+  50% {
+    
     background-color: #b10239;
-    opacity: 0.6;
+    opacity: 0.8;
   }
 
-  100% {
+  0%, 100% {
     transform: scale(100%);
     opacity: 1;
   }

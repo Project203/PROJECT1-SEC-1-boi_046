@@ -1400,7 +1400,7 @@
         "no": "74.1",
         "who": "user",
         "themesong": null,
-        "dialog": "",
+        "dialog": "ส่งมีมไป",
         "options": [
             {
                 "id": "02A",
@@ -1414,7 +1414,7 @@
         "background": "Newday.jpg"
     },
     {
-        "no": "74.1",
+        "no": "74.2",
         "who": "user",
         "themesong": null,
         "dialog": "",
@@ -1424,7 +1424,41 @@
                 "message": ">>",
                 "score": 0,
                 "next": 76,
-                "characterMood": "Chat/Meme2.jpg",
+                "characterMood": "Chat/Cat2.jpg",
+                "effect": null
+            }
+        ],
+        "background": "Newday.jpg"
+    },
+    {
+        "no": "74.3",
+        "who": "user",
+        "themesong": null,
+        "dialog": "",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 76,
+                "characterMood": "Chat/Leaked2.jpg",
+                "effect": null
+            }
+        ],
+        "background": "Newday.jpg"
+    },
+    {
+        "no": "74.4",
+        "who": "user",
+        "themesong": null,
+        "dialog": "",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 76,
+                "characterMood": "Chat/Pto2.jpg",
                 "effect": null
             }
         ],
@@ -1434,13 +1468,30 @@
         "no": "76",
         "who": "user",
         "themesong": null,
-        "dialog": "",
+        "dialog": "ตอบกลับมาแล้ว",
         "options": [
             {
                 "id": "02A",
                 "message": ">>",
                 "score": 0,
                 "next": 77,
+                "characterMood": "no.png",
+                "effect": null
+            }
+        ],
+        "background": "Newday.jpg"
+    },
+    {
+        "no": "77",
+        "who": "user",
+        "themesong": null,
+        "dialog": "ตอบกลับมาแล้ว",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 78,
                 "characterMood": "no.png",
                 "effect": null
             }

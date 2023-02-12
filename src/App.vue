@@ -28,6 +28,7 @@ function game() {
     setScene(1)
     state.value = 2
     score = 0
+    endData = {}
   }
 
   function interactiveDialogs(dialog) {
@@ -86,6 +87,7 @@ function game() {
     // check to endScene 
     if (no === 0) {
       if (now.value.no == 150) endScene(9)
+      endScene(0)
     }
 
     // set new scene

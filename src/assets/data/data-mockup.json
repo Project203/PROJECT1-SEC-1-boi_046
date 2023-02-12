@@ -1137,7 +1137,8 @@
                 "next": 62,
                 "characterMood": "base.png",
                 "effect": null
-            },{
+            },
+            {
                 "id": null
             }
         ],

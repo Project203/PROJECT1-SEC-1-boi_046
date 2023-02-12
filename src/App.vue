@@ -192,12 +192,12 @@ const { gameStart, getDialog, getOption, selectOption, showNextDialog, getCurren
     </div>
   </div>
   <!-- subtitles------------------------------------------------------------------------------------------------------------------------------->
-  <div class="w-screen h-screen"  v-show="getCurrentState() == 2"> 
-    
+  <div class="w-screen h-screen"  v-show="getCurrentState() == 2" v-bind=""> 
+  
     <!-- cutScene -->
     <div v-show="showDirectorScene()" class="w-full h-full page-change">
       <img :src="getBackground()" class=" absolute w-full h-full -z-50 page-change" />
-      <div class="w-full h-full flex justify-center text-xl font-semibold mali items-center" :class="getEvent()" @click="selectOption(getOption()[0].id)">
+      <div class="w-full h-full flex justify-center text-xl font-semibold mali items-center" @click="selectOption(getOption()[0].id)">
         <div
           class="relative w-[50%] h-[95%] border-[#f82b74] border-4 flex mr-auto ml-auto indent-10 p-20 items-center bg-white bg-opacity-70 rounded-bl-[100px] rounded-tr-[100px]">
           <p class="pb-32 leading-10 text-[#f82b74] typing break-all">{{ getDialog() }}</p>
@@ -214,7 +214,7 @@ const { gameStart, getDialog, getOption, selectOption, showNextDialog, getCurren
       <!-- background image -->
       <img :src="getBackground()" class="absolute -z-50 w-full h-full justify-center" />
       <!-- header bar -->
-      <div class="w-full h-full translation-fade-1">
+      <div class="w-full h-full translation-fade-1" >
         <div class="w-full h-24 flex flex-row">
           <div class="w-30 w-full flex justify-end">
             <!-- Back Btn -->
@@ -238,7 +238,7 @@ const { gameStart, getDialog, getOption, selectOption, showNextDialog, getCurren
             <!-- choice -->
             <div v-for="(choice, index) in getOption()" :key="index" @click="selectOption(choice.id)" v-show="choice.id!==null"
               class="opacity-80 hover:opacity-100 mr-12 break-all w-fit hover:bg-[#f82b74] hover:border-white hover:scale-[105%] duration-300 each-in-out hover:text-white cursor-pointer border-[#f82b74] border-y-4 border-solid place-self-center flex place-items-center rounded-full py-3 pl-12 pr-12 bg-fuchsia-50">
-             <div >{{ choice.message }}</div> 
+            {{ choice.message }}
             </div>
           </div>
         </div>

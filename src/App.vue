@@ -1,10 +1,10 @@
 <script setup>
 import { ref } from "vue";
-import data from "./assets/data/data-mockup.json";
+import data from "./assets/data/tsundere.json";
 import summalize from "./assets/data/summalize.json";
 // user input data
 console.log(summalize)
-let playername = ref('กะไกซ์ซึ')
+let playername = ref('ไกซ์')
 //game function
 function game() {
   let user = { name: "", ages: 20 }
@@ -12,7 +12,7 @@ function game() {
   let now = ref({ dialog: "ขออภัย คุณไม่มีสิทธิในการเข้าถึงหน้านี้ หากคิดว่าการแจ้งเตือนนี้ผิดพลาดขอให้ refresh page อีกครั้ง" })
   let nextDialogBtn = false
   let state = ref(1);
-  let characterName = { th: "ขะไข่ตุ๋นนึ", en: "kaitoon" }
+  let characterName = { th: "ไข่ต้ม", en: "kaitom" }
   let characterMood = ""
   let imageBackground = "error.png"
   let endData = {}

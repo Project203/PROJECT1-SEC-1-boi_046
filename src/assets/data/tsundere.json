@@ -1,0 +1,1383 @@
+[
+    {
+        "no": "1",
+        "who": "user",
+        "themesong": null,
+        "dialog": "กริ๊งง—งงงงงง เสียงนาฬิกาปลุกในยามเช้า ",
+        "options": [
+            {
+                "id": "01A",
+                "message": "ปิดเสียงนาฬิกาปลุก แล้วนอนต่อ",
+                "score": 0,
+                "next": 2,
+                "characterMood": "no.png",
+                "effect": null
+            },
+            {
+                "id": "01B",
+                "message": "นอนต่อ ไม่สนใจ ปล่อยให้มันดังไป",
+                "score": 0,
+                "next": 2,
+                "characterMood": "no.png",
+                "effect": null
+            }
+        ],
+        "background": "Alarm.jpg"
+    },
+    {
+        "no": "2",
+        "who": "user",
+        "themesong": null,
+        "dialog": "( ฉันฝันว่าตกจากที่สูง แล้วก็สะดุ้งตื่น.. )",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 3,
+                "characterMood": "no.png",
+                "effect": null
+            }
+        ],
+        "background": "Bedroom.jpg"
+    },
+    {
+        "no": "3",
+        "who": "user",
+        "themesong": null,
+        "dialog": "“แย่แล้วววว สายยยแล้วววว” วันนี้เปิดเรียนวันแรกซะด้วยยย ดันเผลอนอนต่อไปซะได้”",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 4,
+                "characterMood": "no.png",
+                "effect": null
+            }
+        ],
+        "background": "Bedroom.jpg"
+    },
+    {
+        "no": "4",
+        "who": "user",
+        "themesong": null,
+        "dialog": "( ฉันลุกจากเตียงทันที และรีบเร่งฝีเท้าเดินไปที่ห้องน้ำอย่างรวดเร็ว! )",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 5,
+                "characterMood": "no.png",
+                "effect": null
+            }
+        ],
+        "background": "Bathroom1.jpg"
+    },
+    {
+        "no": "5",
+        "who": "user",
+        "themesong": null,
+        "dialog": "( ฉันอาบน้ำ.. ล้างหน้า.. แปรงฟัน.. ใส่ชุดนักศึกษา.. และรีบเดินทางไปมหาวิทยาลัยโดยทันที )",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 6,
+                "characterMood": "no.png",
+                "effect": null
+            }
+        ],
+        "background": "Bathroom2.jpg"
+    },
+    {
+        "no": "6",
+        "who": "user",
+        "themesong": null,
+        "dialog": "“แฮ่กๆ  ถึงสักที ว่าแต่..เราเรียนชั้นไหนละเนี่ย”",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 7,
+                "characterMood": null,
+                "effect": null
+            }
+        ],
+        "background": "Under-lx.jpg"
+    },
+    {
+        "no": "7",
+        "who": "user",
+        "themesong": null,
+        "dialog": "( ฉันหยิบโทรศัพท์ขึ้นมา.. ก้มหน้าดูตารางสอน.. พร้อมเดินเร่งฝีเท้าให้เร็วขึ้น )",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 8,
+                "characterMood": null,
+                "effect": null
+            }
+        ],
+        "background": "Under-lx.jpg"
+    },
+    {
+        "no": "8",
+        "who": "director",
+        "themesong": null,
+        "dialog": "ตุบ..บบ",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 9,
+                "characterMood": null,
+                "effect": null
+            }
+        ],
+        "background": "Under-lx.jpg"
+    },
+    {
+        "no": "9",
+        "who": "หญิงสาวปริศนา",
+        "themesong": null,
+        "dialog": "โอ้ย มาชนฉันทำไมเนี่ยหัดมองทางสะบ้าง",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 10,
+                "characterMood": null,
+                "effect": null
+            }
+        ],
+        "background": "Under-lx.jpg"
+    },
+    {
+        "no": "10",
+        "who": "user",
+        "themesong": null,
+        "dialog": "โอ๊ะ ขอโทษนะ พอดีเรารีบก็เลย ไม่ได้มองทาง",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 11,
+                "characterMood": "speak.jpg",
+                "effect": null
+            }
+        ],
+        "background": "Under-lx.jpg"
+    },
+    {
+        "no": "11",
+        "who": "director",
+        "themesong": null,
+        "dialog": "ฉันเผลอสบตากับหญิงสาวคนหนึ่ง ที่ค่อนข้างจะดุเลยทีเดียว",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 12,
+                "characterMood": "simple.jpg",
+                "effect": null
+            }
+        ],
+        "background": "Under-lx.jpg"
+    },
+    {
+        "no": "12",
+        "who": "user",
+        "themesong": null,
+        "dialog": "“เอ่อ..งั้นเดี๋ยวเราไปก่อนนะ ”",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 13,
+                "characterMood": "boring.jpg",
+                "effect": null
+            }
+        ],
+        "background": "Under-lx.jpg"
+    },
+    {
+        "no": "13",
+        "who": "หญิงสาวปริศนา",
+        "themesong": null,
+        "dialog": "จะไปไหนก็ไป",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 14,
+                "characterMood": "no.png",
+                "effect": null
+            }
+        ],
+        "background": "Under-lx.jpg"
+    },
+    {
+        "no": "14",
+        "who": "director",
+        "themesong": null,
+        "dialog": "ณ ตึก LX ชั้น 11 ห้อง 3",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 15,
+                "characterMood": null,
+                "effect": null
+            }
+        ],
+        "background": "Lx-11.jpg"
+    },
+    {
+        "no": "15",
+        "who": "อาจารย์",
+        "themesong": null,
+        "dialog": "“เห็นสไลด์ของอาจารย์กันใช่มั้ยคะ... โอเคงั้นเริ่มเลยนะ เดี๋ยวอาจารย์จะแนะนำ outline วิชาให้นะคะ วิชานี้เกรด 2 หน่วยกิตนะคะ ทฤษฎี 1 ชั่วโมง/สัปดาห์ ปฏิบัติ 2 ชั่วโมง/สัปดาห์, เรียนรู้ด้วยตัวเอง 4 ชั่วโมง/สัปดาห์...”",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 16,
+                "characterMood": null,
+                "effect": null
+            }
+        ],
+        "background": "Lx-11-classroom1.jpg"
+    },
+    {
+        "no": "16",
+        "who": "director",
+        "themesong": null,
+        "dialog": "1 ชั่วโมง ผ่านไป... ",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 17,
+                "characterMood": null,
+                "effect": null
+            }
+        ],
+        "background": "Lx-11-classroom2.jpg"
+    },
+    {
+        "no": "17",
+        "who": "อาจารย์",
+        "themesong": null,
+        "dialog": "“เดี๋ยวอาจารย์ให้เบรก 10 นาทีนะคะ”",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 18,
+                "characterMood": null,
+                "effect": null
+            }
+        ],
+        "background": "Lx-11-classroom2.jpg"
+    },
+    {
+        "no": "18",
+        "who": "director",
+        "themesong": null,
+        "dialog": "( ฉันเหลือบไปเห็นหญิงสาวที่เดินชนเมื่อเช้า )",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 19,
+                "characterMood": "no.png",
+                "effect": null
+            }
+        ],
+        "background": "Lx-11-classroom2.jpg"
+    },
+    {
+        "no": "19",
+        "who": "user",
+        "themesong": null,
+        "dialog": "ตึกๆตักๆ.. ( ธะ..เธอคนนั้นนี่หน่า เขาเรียน sec เดียวกับเราหรอเนี่ย )",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 20,
+                "characterMood": "no.png",
+                "effect": null
+            }
+        ],
+        "background": "Lx-11-classroom2.jpg"
+    },
+    {
+        "no": "20",
+        "who": "หญิงสาวปริศนา",
+        "themesong": null,
+        "dialog": ".เธอหันมาสบตาคุณ",
+        "options": [
+            {
+                "id": "03A",
+                "message": "โบกมือทักทาย ",
+                "score": 2,
+                "next": 21,
+                "characterMood": "boring.jpg",
+                "effect": null
+            },
+            {
+                "id": "03B",
+                "message": "ตีเนียน ทำเป็นมองไม่เห็น",
+                "score": 0,
+                "next": 21,
+                "characterMood": "boring.jpg",
+                "effect": null
+            },
+            {
+                "id": "03C",
+                "message": "ส่งยิ้มให้",
+                "score": 1,
+                "next": 21,
+                "characterMood": "boring.jpg",
+                "effect": null
+            }
+        ],
+        "background": "Lx-11-classroom2.jpg"
+    },
+    {
+        "no": "21",
+        "who": "director",
+        "themesong": null,
+        "dialog": ".หญิงสาวคนนั้นทำท่าทางโมโห และเดินเข้ามาหาคุณ",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 22,
+                "characterMood": "boring.jpg",
+                "effect": null
+            }
+        ],
+        "background": "Lx-11-classroom1.jpg"
+    },
+    {
+        "no": "22",
+        "who": "หญิงสาวปริศนา",
+        "themesong": null,
+        "dialog": "นี่ นายน่ะเรียน sec เดียวกับฉันหรอเนี่ย",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 23,
+                "characterMood": "simple.jpg",
+                "effect": null
+            }
+        ],
+        "background": "Lx-11-classroom1.jpg"
+    },
+    {
+        "no": "23",
+        "who": "director",
+        "themesong": null,
+        "dialog": ".หญิงสาวดูเหมือนจะไม่พอใจเท่าไหร่",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 24,
+                "characterMood": null,
+                "effect": null
+            }
+        ],
+        "background": "Lx-11-classroom1.jpg"
+    },
+    {
+        "no": "24",
+        "who": "user",
+        "themesong": null,
+        "dialog": "( .ตึกตัก ๆ เสียงหัวใจของฉันกำลังเต้นเร็วขึ้น )",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 25,
+                "characterMood": "speak.jpg",
+                "effect": null
+            }
+        ],
+        "background": "Lx-11-classroom1.jpg"
+    },
+    {
+        "no": "25",
+        "who": "หญิงสาวปริศนา",
+        "themesong": null,
+        "dialog": "ฉันชื่อไข่ต้มนะ ที่บอกก็ไม่ได้อยากทำความรู้จักหรอกนะแค่เห็นว่าอยู่ห้องเดียวกัน",
+        "options": [
+            {
+                "id": "A",
+                "message": "$NAME",
+                "score": 0,
+                "next": 26,
+                "characterMood": "simple.jpg",
+                "effect": null
+            },
+            {
+                "id": "B",
+                "message": "เราชื่อ $NAME",
+                "score": 1,
+                "next": 26,
+                "characterMood": "simple.jpg",
+                "effect": null
+            },
+            {
+                "id": "C",
+                "message": "เราชื่อ $NAME นะ ^^",
+                "score": 3,
+                "next": 26,
+                "characterMood": "simple.jpg",
+                "effect": null
+            }
+        ],
+        "background": "Lx-11-classroom1.jpg"
+    },
+    {
+        "no": "26",
+        "who": "system",
+        "themesong": null,
+        "dialog": " “อืมชื่อ  $NAME หรอ”",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 27,
+                "characterMood": "simple.jpg",
+                "effect": null
+            }
+        ],
+        "background": "Lx-11-classroom1.jpg"
+    },
+    {
+        "no": "27",
+        "who": "system",
+        "themesong": null,
+        "dialog": "“นี่$NAMEน่ะไปกินข้าวด้วยกันมั้ย ที่ชวนไม่ได้อะไรหรอกนะแค่เห็นว่าอยู่ห้องเดียวกัน” ",
+        "options": [
+            {
+                "id": "04A",
+                "message": "ได้สิ",
+                "score": 1,
+                "next": 28,
+                "characterMood": "simple.jpg",
+                "effect": null
+            },
+            {
+                "id": "04B",
+                "message": "ที่จริงก็แอบขี้เกียจนะ แต่ไปก็ได้",
+                "score": -1,
+                "next": 28,
+                "characterMood": "simple.jpg",
+                "effect": null
+            },
+            {
+                "id": "04B",
+                "message": "ได้เลยยยยย",
+                "score": 2,
+                "next": 28,
+                "characterMood": "simple.jpg",
+                "effect": null
+            }
+        ],
+        "background": "Lx-11-classroom1.jpg"
+    },
+    {
+        "no": "28",
+        "who": "system",
+        "themesong": null,
+        "dialog": "อืม",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 29,
+                "characterMood": "speak.jpg",
+                "effect": null
+            }
+        ],
+        "background": "Lx-11-classroom1.jpg"
+    },
+    {
+        "no": "29",
+        "who": "system",
+        "themesong": null,
+        "dialog": " “เดี๋ยวฉันจะไปกินข้าวที่โรงอาหารใหญ่นะ” ",
+        "options": [
+            {
+                "id": "04A",
+                "message": "อ๋ออ..โอเครได้เลย",
+                "score": 2,
+                "next": 30,
+                "characterMood": "simple.jpg",
+                "effect": null
+            },
+            {
+                "id": "04B",
+                "message": "อ่าๆ",
+                "score": 0,
+                "next": 30,
+                "characterMood": "simple.jpg",
+                "effect": null
+            },
+            {
+                "id": "04B",
+                "message": "อืมๆๆ",
+                "score": -1,
+                "next": 30,
+                "characterMood": "simple.jpg",
+                "effect": null
+            }
+        ],
+        "background": "Lx-11-classroom1.jpg"
+    },
+    {
+        "no": "30",
+        "who": "system",
+        "themesong": null,
+        "dialog": "งั้นเดี๋ยวฉันไปนั่งที่ก่อนนะ หมดเวลาพักเบรกแล้ว ",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 31,
+                "characterMood": "no.png",
+                "effect": null
+            }
+        ],
+        "background": "Lx-11-classroom1.jpg"
+    },
+    {
+        "no": "31",
+        "who": "director",
+        "themesong": null,
+        "dialog": "เวลา 12.30",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 32,
+                "characterMood": null,
+                "effect": null
+            }
+        ],
+        "background": "Lx-11-classroom1.jpg"
+    },
+    {
+        "no": "32",
+        "who": "user",
+        "themesong": null,
+        "dialog": "เลิกเรียนสักที หิวข้าวจะแย่อยู่แล้ว ( .ฉันรีบเดินออกจากประตูห้องเรียนอย่างรวดเร็วเนื่องจากหิวข้าวสุดๆ -w- )",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 33,
+                "characterMood": "no.png",
+                "effect": null
+            }
+        ],
+        "background": "Pathway.jpg"
+    },
+    {
+        "no": "33",
+        "who": "system",
+        "themesong": null,
+        "dialog": " “ไปกันเถอะ $NAME ไปกินข้าวกัน ”",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 34,
+                "characterMood": "speak.jpg",
+                "effect": null
+            }
+        ],
+        "background": "Kfc1.jpg"
+    },
+    {
+        "no": "34",
+        "who": "user",
+        "themesong": null,
+        "dialog": " “เพื่อนๆ นี่ $NAME นะ”",
+        "options": [
+            {
+                "id": "04A",
+                "message": "ไง เรา $NAME  นะ ยินดีที่ได้รู้จัก",
+                "score": 2,
+                "next": 35,
+                "characterMood": "simple.jpg",
+                "effect": null
+            },
+            {
+                "id": "04B",
+                "message": "สวัสดีเพื่อนๆเรา $NAME ฝากเนื้อฝากตัวด้วยนะ",
+                "score": 2,
+                "next": 35,
+                "characterMood": "simple.jpg",
+                "effect": null
+            },
+            {
+                "id": "04B",
+                "message": "โบกมือ ส่งยิ้มให้ทุกคน",
+                "score": 1,
+                "next": 35,
+                "characterMood": "simple.jpg",
+                "effect": null
+            }
+        ],
+        "background": "Kfc1.jpg"
+    },
+    {
+        "no": "35",
+        "who": "director",
+        "themesong": null,
+        "dialog": "..หลังจากนั้น ไข่ต้มก็แนะนำเพื่อนๆ ให้ฉันได้รู้จัก",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 36,
+                "characterMood": "no.png",
+                "effect": null
+            }
+        ],
+        "background": "Kfc2.jpg"
+    },
+    {
+        "no": "36",
+        "who": "user",
+        "themesong": null,
+        "dialog": "( .ฉันเดินตามไข่ต้มกับกลุ่มเพื่อนๆของเขา )",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 37,
+                "characterMood": "speak.jpg",
+                "effect": null
+            }
+        ],
+        "background": "Kfc-table1.jpg"
+    },
+    {
+        "no": "37",
+        "who": "system",
+        "themesong": null,
+        "dialog": "นี่ๆ มานั่งตรงนี้กัน",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 38,
+                "characterMood": "simple.jpg",
+                "effect": null
+            }
+        ],
+        "background": "Kfc-table2.jpg"
+    },
+    {
+        "no": "38",
+        "who": "user",
+        "themesong": null,
+        "dialog": "( .ฉันและเพื่อนๆของไข่ต้ม เดินไปวางของที่โต๊ะที่ไข่ต้มเลือก )",
+        "options": [
+            {
+                "id": "04A",
+                "message": "เดินไปถามไข่ต้มว่า “กินอะไรดี“   ",
+                "score": 1,
+                "next": 39,
+                "characterMood": "speak.jpg",
+                "effect": null
+            },
+            {
+                "id": "04B",
+                "message": "เดินไปถามไข่ต้มว่า “ไข่ต้มจะกินอะไรหรอ“ ",
+                "score": 2,
+                "next": 39,
+                "characterMood": "speak.jpg",
+                "effect": null
+            },
+            {
+                "id": "04B",
+                "message": "เดินไปถามไข่ต้ม “ที่นี่มีร้านไหนแนะนำบ้างมั้ย“",
+                "score": 0,
+                "next": 39,
+                "characterMood": "speak.jpg",
+                "effect": null
+            }
+        ],
+        "background": "Kfc-table2.jpg"
+    },
+    {
+        "no": "39",
+        "who": "system",
+        "themesong": null,
+        "dialog": "“ หึ ถ้า$NAMEขอร้องขนาดนั้นล่ะก็ ฉันจะบอกให้ก้ได้ ”(.ไข่ต้มบอกให้คุณรีบตามมา)",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 40,
+                "characterMood": "no.png",
+                "effect": null
+            }
+        ],
+        "background": "Kfc-table2.jpg"
+    },
+    {
+        "no": "40",
+        "who": "user",
+        "themesong": null,
+        "dialog": "( .ฉันเดินตามไข่ต้มไป)",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 41,
+                "characterMood": "speak.jpg",
+                "effect": null
+            }
+        ],
+        "background": "Kfc-walk-follow.jpg"
+    },
+    {
+        "no": "41",
+        "who": "system",
+        "themesong": null,
+        "dialog": "“ร้านนี้ไง ที่จริงไม่ได้อยากกินด้วยหรอกนะ แค่เห็นว่าไม่รู้จะกินอะไรก็แค่นั้น”",
+        "options": [
+            {
+                "id": "04A",
+                "message": ">>",
+                "score": 0,
+                "next": 42,
+                "characterMood": "shy.png",
+                "effect": null
+            }
+        ],
+        "background": "Kfc-queue.jpg"
+    },
+    {
+        "no": "42",
+        "who": "user",
+        "themesong": null,
+        "dialog": "“เลือกได้แจ่มแมวมากเลยไข่ต้ม หอมมมมากก น่ากินมากเลยยย สมแล้วที่เป็นเธอ”",
+        "options": [
+            {
+                "id": "04A",
+                "message": ">>",
+                "score": 0,
+                "next": 43,
+                "characterMood": "confi.jpg",
+                "effect": null
+            }
+        ],
+        "background": "Kfc-queue.jpg"
+    },
+    {
+        "no": "43",
+        "who": "system",
+        "themesong": null,
+        "dialog": "“ แน่นอนอยู่แล้ว ”",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 44,
+                "characterMood": "no.png",
+                "effect": null
+            }
+        ],
+        "background": "Kfc-queue.jpg"
+    },
+    {
+        "no": "44",
+        "who": "user",
+        "themesong": null,
+        "dialog": "หลังจากที่ซื้อข้าวเสร็จ... ( .ฉันกับไข่ต้มและเพื่อนๆก็ได้นั่งกินข้าวและคุยเล่นกันอย่างสนุกสนาน )",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 45,
+                "characterMood": "no.png",
+                "effect": null
+            }
+        ],
+        "background": "Kfc-lunch.jpg"
+    },
+    {
+        "no": "45",
+        "who": "user",
+        "themesong": null,
+        "dialog": "( .ฉันมองดูเวลาจากนาฬิกาข้อมือของตัวเอง ) “โอ้วทุกคน เหลือเวลาอีก 10 นาที ก็จะเรียนวิชาต่อไปแล้วล่ะ”",
+        "options": [
+            {
+                "id": "02A",
+                "message": "",
+                "score": 0,
+                "next": 46,
+                "characterMood": "no.png",
+                "effect": null
+            }
+        ],
+        "background": "Kfc-lunch.jpg"
+    },
+    {
+        "no": "46",
+        "who": "system",
+        "themesong": null,
+        "dialog": "“นี่ๆ รีบเก็บจานแล้วขึ้นห้องไปเรียนกัน”",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 47,
+                "characterMood": "no.png",
+                "effect": null
+            }
+        ],
+        "background": "Kfc-dish-storage.jpg"
+    },
+    {
+        "no": "47",
+        "who": "user",
+        "themesong": null,
+        "dialog": "( .ฉันกับไข่ต้มและเพื่อนๆ ก็รีบเดินไปเรียนวิชาต่อไป )",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 48,
+                "characterMood": "no.png",
+                "effect": null
+            }
+        ],
+        "background": "Lx-10-classroom1.jpg"
+    },
+    {
+        "no": "48",
+        "who": "director",
+        "themesong": null,
+        "dialog": "ณ เวลา 16.30 น.",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 49,
+                "characterMood": "no.png",
+                "effect": null
+            }
+        ],
+        "background": "Lx-10-classroom2.jpg"
+    },
+    {
+        "no": "49",
+        "who": "อาจารย์",
+        "themesong": null,
+        "dialog": "“วันนี้ก็ config แค่นี้ละ กลับบ้านได้!! ใครอยากอยู่ทำแลปต่อก็อยู่ได้นะ”",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 50,
+                "characterMood": null,
+                "effect": null
+            }
+        ],
+        "background": "Lx-10-classroom2.jpg"
+    },
+    {
+        "no": "50",
+        "who": "director",
+        "themesong": null,
+        "dialog": "เพื่อนๆ ทุกคนในห้องรีบเก็บข้าวของทันทีหลังจากที่อาจารย์ปล่อย",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 51,
+                "characterMood": "no.png",
+                "effect": null
+            }
+        ],
+        "background": "Lx-10-classroom2.jpg"
+    },
+    {
+        "no": "51",
+        "who": "user",
+        "themesong": null,
+        "dialog": "( อยากกลับบ้านกับไข่ต้มจัง ลองไปถามดูดีมั้ยนะว่าเขากลับบ้านยังไง )",
+        "options": [
+            {
+                "id": "04A",
+                "message": "ไปถามไข่ต้ม",
+                "score": 2,
+                "next": 52,
+                "characterMood": "simple.jpg",
+                "effect": null
+            },
+            {
+                "id": "04B",
+                "message": "ไม่ถามดีกว่า ขี้เกียจ",
+                "score": 0,
+                "next": 150,
+                "characterMood": "angry.png",
+                "effect": null
+            }
+        ],
+        "background": "Pathway.jpg"
+    },
+    {
+        "no": "150",
+        "who": "director",
+        "themesong": null,
+        "dialog": "สรุปจบพาทแรก",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 0,
+                "characterMood": "no.png",
+                "effect": null
+            }
+        ],
+        "background": "Pathway.jpg"
+    },
+    {
+        "no": "52",
+        "who": "user",
+        "themesong": null,
+        "dialog": "นี่ๆ ไข่ต้มกลับบ้านยังไงหรอ",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 53,
+                "characterMood": "shy.jpg",
+                "effect": null
+            }
+        ],
+        "background": "Pathway.jpg"
+    },
+    {
+        "no": "53",
+        "who": "system",
+        "themesong": null,
+        "dialog": "ก็นั่งรถตรงหน้ามอนี่ละ (จะถามทำไมเนี่ย)",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 54,
+                "characterMood": "simple.jpg",
+                "effect": null
+            }
+        ],
+        "background": "Pathway.jpg"
+    },
+    {
+        "no": "54",
+        "who": "user",
+        "themesong": null,
+        "dialog": "หึย กลับทางเดียวกันเลย",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 55,
+                "characterMood": "no.png",
+                "effect": null
+            }
+        ],
+        "background": "Pathway.jpg"
+    },
+    {
+        "no": "55",
+        "who": "director",
+        "themesong": null,
+        "dialog": "ระหว่างเดินกลับบ้านกับไข่ต้ม",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 56,
+                "characterMood": null,
+                "effect": null
+            }
+        ],
+        "background": "Footpath10.jpg"
+    },
+    {
+        "no": "56",
+        "who": "user",
+        "themesong": null,
+        "dialog": "$NAME คิดในใจ เยี่ยมเลย จะได้คุยกับไข่ต้มก่อนกับบ้านยาวๆ",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 57,
+                "characterMood": null,
+                "effect": null
+            }
+        ],
+        "background": "Footpath8.jpg"
+    },
+    {
+        "no": "57",
+        "who": "director",
+        "themesong": null,
+        "dialog": "ระหว่างทางกลับบ้าน",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 58,
+                "characterMood": null,
+                "effect": null
+            }
+        ],
+        "background": "Footpath4.jpg"
+    },
+    {
+        "no": "58",
+        "who": "ห่าน",
+        "themesong": null,
+        "dialog": "แกว๊กกกกกก",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 59,
+                "characterMood": null,
+                "effect": null
+            }
+        ],
+        "background": "Goose1.jpg"
+    },
+    {
+        "no": "59",
+        "who": "system",
+        "themesong": null,
+        "dialog": "นี่ห่านนิ (อยากกอดจัง)",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 60,
+                "characterMood": null,
+                "effect": null
+            }
+        ],
+        "background": "Goose1.jpg"
+    },
+    {
+        "no": "60",
+        "who": "user",
+        "themesong": null,
+        "dialog": "เดินตามไข้ต้มไป",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 61,
+                "characterMood": null,
+                "effect": null
+            }
+        ],
+        "background": "Goose2.jpg"
+    },
+    {
+        "no": "61",
+        "who": "ห่าน",
+        "themesong": null,
+        "dialog": "แกว๊กกกกกก",
+        "options": [
+            {
+                "id": "04A",
+                "message": "น้องน่ารักดีนะ ชอบห่านหรอ",
+                "score": 2,
+                "next": 62,
+                "characterMood": "boring.jpg",
+                "effect": null
+            },
+            {
+                "id": null
+            }
+        ],
+        "background": "Goose2.jpg"
+    },
+    {
+        "no": "62",
+        "who": "system",
+        "themesong": null,
+        "dialog": "ชอบสิ แต่ชอบแมวมากกว่า",
+        "options": [
+            {
+                "id": "04A",
+                "message": "หึยชอบแมวหรอ เราก็ชอบแมวเหมือนกัน",
+                "score": 10,
+                "next": 63,
+                "characterMood": "confi.jpg",
+                "effect": null
+            },
+            {
+                "id": "04B",
+                "message": "แหมม เป็นทาสแมวหรอเนี่ยย",
+                "score": 5,
+                "next": 63,
+                "characterMood": "confi.jpg",
+                "effect": null
+            }
+        ],
+        "background": "Footpath2.jpg"
+    },
+    {
+        "no": "63",
+        "who": "system",
+        "themesong": null,
+        "dialog": "“ใช่มะแมวน่ารักที่สุด”",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 64,
+                "characterMood": "boring.jpg",
+                "effect": null
+            }
+        ],
+        "background": "Footpath2.jpg"
+    },
+    {
+        "no": "64",
+        "who": "system",
+        "themesong": null,
+        "dialog": "“ขอเฟสหน่อยสิ ไม่ได้อะไรนะแค่ add เพื่อนไว้ติดต่อน่ะ”",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 65,
+                "characterMood": "shy.jpg",
+                "effect": null
+            }
+        ],
+        "background": "Footpath2.jpg"
+    },
+    {
+        "no": "65",
+        "who": "user",
+        "themesong": null,
+        "dialog": "ได้ๆ อะนี่",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 66,
+                "characterMood": "speak.jpg",
+                "effect": null
+            }
+        ],
+        "background": "Footpath2.jpg"
+    },
+    {
+        "no": "66",
+        "who": "system",
+        "themesong": null,
+        "dialog": "Add ไปแล้วนะ เจ้าบ้า",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 67,
+                "characterMood": "no.png",
+                "effect": null
+            }
+        ],
+        "background": "Footpath2.jpg"
+    },
+    {
+        "no": "67",
+        "who": "user",
+        "themesong": null,
+        "dialog": "หะ เจ้าบ้าหรอ",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 68,
+                "characterMood": "no.png",
+                "effect": null
+            }
+        ],
+        "background": "Footpath2.jpg"
+    },
+    {
+        "no": "68",
+        "who": "system",
+        "themesong": null,
+        "dialog": "ส่งสติ๊กเกอร์",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 69,
+                "characterMood": null,
+                "effect": null
+            }
+        ],
+        "background": "Footpath2.jpg"
+    },
+    {
+        "no": "69",
+        "who": "user",
+        "themesong": null,
+        "dialog": "ส่งสติ๊กเกอร์กลับ",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 70,
+                "characterMood": null,
+                "effect": null
+            }
+        ],
+        "background": "Footpath2.jpg"
+    },
+    {
+        "no": "70",
+        "who": "system",
+        "themesong": null,
+        "dialog": "กลับบ้านกัน เจ้าบ้า",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 71,
+                "characterMood": null,
+                "effect": null
+            }
+        ],
+        "background": "Footpath1.jpg"
+    },
+    {
+        "no": "71",
+        "who": "director",
+        "themesong": null,
+        "dialog": "ฉันแปลกใจนิดหน่อยที่ถูกเรียกว่าเจ้าบ้า และเราก็แยกกันกลับบ้าน",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 72,
+                "characterMood": null,
+                "effect": null
+            }
+        ],
+        "background": "Footpath1.jpg"
+    },
+    {
+        "no": "72",
+        "who": "user",
+        "themesong": null,
+        "dialog": "เช้าวันเสาร์ที่สดใส",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 250,
+                "characterMood": "no.png",
+                "effect": null
+            }
+        ],
+        "background": "Newday.jpg"
+    },
+    {
+        "no": "250",
+        "who": "director",
+        "themesong": null,
+        "dialog": "Dev บอกค่อยมาทำต่อแล้วกัน",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 1,
+                "characterMood": null,
+                "effect": null
+            }
+        ],
+        "background": "Pavillion.jpg"
+    }
+]

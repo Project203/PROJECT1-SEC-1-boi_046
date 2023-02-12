@@ -17,7 +17,7 @@
             "id": "01B",
             "message": "นอนต่อ ไม่สนใจ ปล่อยให้มันดังไป",
             "score": 0,
-            "next": 2,
+            "next": 72,
             "characterMood": "no.png",
             "effect":null
         }],
@@ -1331,7 +1331,7 @@
                 "id": "02A",
                 "message": ">>",
                 "score": 0,
-                "next": 250,
+                "next": 73,
                 "characterMood": "no.png",
                 "effect": null
             }
@@ -1354,5 +1354,97 @@
             }
         ],
         "background": "Pavillion.jpg"
+    },
+    {
+        "no": "73",
+        "who": "user",
+        "themesong": null,
+        "dialog": "ในที่สุดก็ได้หยุดสักที ส่งข้อความไปหาปาล์มมี่ดีไหมน้า ว่าแต่จะชวนคุยเรื่องไรดี",
+        "options": [
+            {
+                "id": "04A",
+                "message": "ส่งมีมไป",
+                "score": 0,
+                "next": 74.1,
+                "characterMood": "Chat/Meme1.jpg",
+                "effect": null
+            },
+            {
+                "id": "04B",
+                "message": "ส่งคลิปแมวตลกๆ ให้ไข่ตุ๋น",
+                "score": 0,
+                "next": 74.2,
+                "characterMood": "Chat/Cat1.jpg",
+                "effect": null
+            },
+            {
+                "id": "04C",
+                "message": "ส่งภาพหลุดเพื่อนให้ไข่ตุ๋น",
+                "score": 0,
+                "next": 74.3,
+                "characterMood": "Chat/Leaked1.jpg",
+                "effect": null
+            },
+            {
+                "id": "04D",
+                "message": "ส่งคลิปพี่โตให้ไข่ตุ๋น",
+                "score": 0,
+                "next": 74.4,
+                "characterMood": "Chat/Pto1.jpg",
+                "effect": null
+            }
+        ],
+        "background": "Newday.jpg"
+    },
+    {
+        "no": "74.1",
+        "who": "user",
+        "themesong": null,
+        "dialog": "",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 76,
+                "characterMood": "Chat/Meme2.jpg",
+                "effect": null
+            }
+        ],
+        "background": "Newday.jpg"
+    },
+    {
+        "no": "74.1",
+        "who": "user",
+        "themesong": null,
+        "dialog": "",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 76,
+                "characterMood": "Chat/Meme2.jpg",
+                "effect": null
+            }
+        ],
+        "background": "Newday.jpg"
+    },
+    {
+        "no": "76",
+        "who": "user",
+        "themesong": null,
+        "dialog": "",
+        "options": [
+            {
+                "id": "02A",
+                "message": ">>",
+                "score": 0,
+                "next": 77,
+                "characterMood": "no.png",
+                "effect": null
+            }
+        ],
+        "background": "Newday.jpg"
     }
 ]

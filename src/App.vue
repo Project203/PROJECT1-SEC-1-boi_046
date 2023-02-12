@@ -1,6 +1,6 @@
 <script setup>
 import { computed, ref } from "vue";
-import data from "./assets/data/tsundere.json";
+import data from "./assets/data/data-mockup.json";
 import summalize from "./assets/data/summalize.json";
 // user input data
 let playername = ref("ไกซ์");
@@ -15,7 +15,7 @@ function game() {
   });
   let nextDialogBtn = false;
   let state = ref(1);
-  let characterName = { th: "ไข่ต้ม", en: "kaitom" };
+  let characterName = { th: "ไข่ตุ๋น", en: "kaitoon" };
   let characterMood = "";
   let imageBackground = "error.png";
   let endData = {};

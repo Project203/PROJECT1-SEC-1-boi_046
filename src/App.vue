@@ -77,8 +77,9 @@ function game() {
     let options = []
     if (now.value?.options == undefined) return []
     now.value.options.forEach(e => {
-      e.message = interactiveDialogs(e.message)
-      options.push(e)
+      let newOption = e
+      newOption.message = interactiveDialogs(newOption.message)
+      options.push(newOption)
     })
     return options
   }

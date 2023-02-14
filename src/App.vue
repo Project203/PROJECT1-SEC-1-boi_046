@@ -1,5 +1,5 @@
 <script setup>
-import { computed, ref } from "vue";
+import { ref } from "vue";
 import data from "./assets/data/data-mockup.json";
 import summalize from "./assets/data/summalize.json";
 // user input data
@@ -7,82 +7,22 @@ let playername = ref('ไกซ์')
 
 //game function :: clouser
 function game() {
+  let characterName = { th: "ไข่ตุ๋น", en: "kaitoon" };
   let user = { name: "" }
+  let state = ref(1);
   let score = 0
   let now = ref({ dialog: "ขออภัย คุณไม่มีสิทธิในการเข้าถึงหน้านี้ หากคิดว่าการแจ้งเตือนนี้ผิดพลาดขอให้ refresh page อีกครั้ง" })
-  let nextDialogBtn = false
-  let state = ref(1);
-  let characterName = { th: "ไข่ตุ๋น", en: "kaitoon" };
   let characterMood = "";
   let imageBackground = "error.png";
   let endData = {};
-  let directorScene = false;
-
-  function setPlayer(name) {
-    user.name = name
-  }
 
   function gameStart() {
-    setPlayer(playername.value)
+    user.name = playername.value
     characterMood = "no.png"
-    setScene(1)
-    state.value = 2
     score = 0
     endData = {}
-  }
-
-  function interactiveDialogs(dialog) {
-    let replaceDialog = dialog
-    do {
-      if (dialog == undefined) return undefined
-      if (replaceDialog?.includes("$NAME")) replaceDialog = replaceDialog.replace("$NAME", user.name)
-      if (replaceDialog?.includes("$CHARNAME")) replaceDialog = replaceDialog.replace("$CHARNAME", characterName.th)
-    } while (replaceDialog.includes("$"))
-    return replaceDialog
-  }
-
-  function getDialog() {
-    return interactiveDialogs(now.value?.dialog)
-
-  }
-
-  function endScene(type) {
-    state.value = 3
-    let keyEnding = ""
-    if (type === 0) {
-      if (score > 34) {
-        keyEnding = "b1"
-      } else if (score > 14) {
-        keyEnding = "b2"
-      } else {
-        keyEnding = "b3"
-      }
-    } else if (type === 9) {
-      if (score > 5) {
-        keyEnding = "a1"
-      } else {
-        keyEnding = "a2"
-      }
-    }
-    endData = summalize.find(e => e.id == keyEnding)
-    endData.message = interactiveDialogs(endData.message)
-    endData.score = score
-    return getEndScene()
-  }
-
-  function getEndScene() {
-    return endData
-  }
-
-  function getOption() {
-    let options = []
-    if (now.value?.options == undefined) return []
-    now.value.options.forEach(e => {
-      let newOption = e
-      newOption.message = interactiveDialogs(newOption.message)
-      options.push(newOption)
-    })
-    return options
+    state.value = 2
+    setScene(1)
   }
 
   function setScene(no) {
@@ -100,20 +40,22 @@ function game() {
     } else {
       now.value = newScene
       imageBackground = newScene.background
-      directorScene = newScene.who == "director" ? true : false
     }
   }
 
-  function showDirectorScene() {
-    return directorScene
+  function interactiveDialogs(dialog) {
+    let replaceDialog = dialog
+    let i = 0
+    while(replaceDialog.includes("$") && i < 3) {
+      i++
+      if (replaceDialog?.includes("$NAME")) replaceDialog = replaceDialog.replace("$NAME", user.name)
+      if (replaceDialog?.includes("$CHARNAME")) replaceDialog = replaceDialog.replace("$CHARNAME", characterName.th)
+    }
+    return replaceDialog
   }
 
-  function getCurrentState() {
-    return state.value
-  }
-
-  function showNextDialog() {
-    return getOption().length == 1 ? true : false
+  function getDialog() {
+    return interactiveDialogs(now.value?.dialog)
   }
 
   function selectOption(id) {
@@ -121,6 +63,59 @@ function game() {
     score += selected?.score ?? 0
     setScene(selected.next)
     if (selected?.characterMood !== null) characterMood = selected?.characterMood
+  }
+
+  function getOption() {
+    let options = []
+    if (now.value?.options == undefined) return []
+    now.value.options.forEach(oldOption => {
+      let replaceOption = oldOption
+      replaceOption.message = interactiveDialogs(replaceOption.message)
+      options.push(replaceOption)
+    })
+    return options
+  }
+
+  function endScene(type) {
+    state.value = 3
+    let keyEnding = ""
+    // end game summalize
+    if (type === 0) {
+      if (score > 34) {
+        keyEnding = "b1"
+      } else if (score > 14) {
+        keyEnding = "b2"
+      } else {
+        keyEnding = "b3"
+      }
+    } else if (type === 9) {
+      // endgame in no.150 summalize
+      if (score > 5) {
+        keyEnding = "a1"
+      } else {
+        keyEnding = "a2"
+      }
+    }
+    endData = summalize.find(e => e.id == keyEnding)
+    endData.message = interactiveDialogs(endData.message)
+    endData.score = score
+    return getEndScene()
+  }
+
+  function getEndScene() {
+    return endData
+  }
+
+  function getCurrentState() {
+    return state.value
+  }
+  
+  function showDirectorScene() {
+    return now.value?.who == "director" ? true : false
+  }
+
+  function showNextDialogBtn() {
+    return getOption().length == 1 ? true : false
   }
 
   function getName() {
@@ -139,11 +134,11 @@ function game() {
     state.value = 1
   }
 
-  return { gameStart, getDialog, getOption, selectOption, showNextDialog, getCurrentState, getEndScene, getName, goHomePage, getCharecterMood, getBackground, showDirectorScene }
+  return { gameStart, getDialog, getOption, selectOption, showNextDialogBtn, getCurrentState, getEndScene, getName, goHomePage, getCharecterMood, getBackground, showDirectorScene }
 }
 
 
-const { gameStart, getDialog, getOption, selectOption, showNextDialog, getCurrentState, getEndScene, getName, goHomePage, getCharecterMood, getBackground, showDirectorScene } = game()
+const { gameStart, getDialog, getOption, selectOption, showNextDialogBtn, getCurrentState, getEndScene, getName, goHomePage, getCharecterMood, getBackground, showDirectorScene } = game()
 
 
 </script>
@@ -248,12 +243,12 @@ const { gameStart, getDialog, getOption, selectOption, showNextDialog, getCurren
           </div>
           <!-- right + option -->
           <div class="w-8/12 grid text-[#f82b74] font-semibold text-3xl mali pt-20 pb-20 show-option"
-            v-if="!showNextDialog()">
+            v-if="!showNextDialogBtn()">
             <!-- choice -->
-            <div v-for="(choice, index) in getOption()" :key="index" @click="selectOption(choice.id)"
-              v-show="choice.id !== null"
+            <div v-for="(option, index) in getOption()" :key="index" @click="selectOption(option.id)"
+              v-show="option.id !== null"
               class="opacity-80 hover:opacity-100 mr-12 break-all w-fit hover:bg-[#f82b74] hover:border-white hover:scale-[105%] duration-300 each-in-out hover:text-white cursor-pointer border-[#f82b74] border-y-4 border-solid place-self-center flex place-items-center rounded-full py-3 pl-12 pr-12 bg-fuchsia-50">
-              {{ choice.message }}
+              {{ option.message }}
             </div>
           </div>
         </div>
@@ -270,7 +265,7 @@ const { gameStart, getDialog, getOption, selectOption, showNextDialog, getCurren
               <p class="flex text-center"> {{ getName() }} </p>
             </div>
             <!-- next dialog btn -->
-            <div v-show="showNextDialog()" @click="selectOption(getOption()[0].id)"
+            <div v-show="showNextDialogBtn()" @click="selectOption(getOption()[0].id)"
               class="bounce cursor-pointer text-2xl  w-20 h-20 m-1 absolute bottom-0 right-16 mali flex place-items-center justify-center text-white skip">
               <img src="./assets/images/element/skipwhite.png">
             </div>

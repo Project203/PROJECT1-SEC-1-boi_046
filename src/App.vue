@@ -43,6 +43,7 @@ function game() {
 
   function getDialog() {
     return interactiveDialogs(now.value?.dialog)
+
   }
 
   function endScene(type) {
@@ -88,7 +89,7 @@ function game() {
     // check to endScene 
     if (no === 0) {
       if (now.value.no == 150) endScene(9)
-      endScene(0)
+      else endScene(0)
     }
 
     // set new scene
@@ -102,6 +103,7 @@ function game() {
       directorScene = newScene.who == "director" ? true : false
     }
   }
+
   function showDirectorScene() {
     return directorScene
   }
@@ -111,8 +113,7 @@ function game() {
   }
 
   function showNextDialog() {
-    nextDialogBtn = getOption().length == 1 ? true : false
-    return nextDialogBtn
+    return getOption().length == 1 ? true : false
   }
 
   function selectOption(id) {
@@ -143,13 +144,7 @@ function game() {
 
 
 const { gameStart, getDialog, getOption, selectOption, showNextDialog, getCurrentState, getEndScene, getName, goHomePage, getCharecterMood, getBackground, showDirectorScene } = game()
-let mes
-const dialogMsg = computed(() => {
-  Array.from(getDialog()).forEach(e => {
-    mes += e
-    setTimeout(20)
-  })
-})
+
 
 </script>
 <template>
@@ -193,11 +188,11 @@ const dialogMsg = computed(() => {
           <div
             class="h-1/6 w-1/2 ml-52 rounded-full flex justify-center items-center text-4xl mali mt-52 text-[#9B4F5E] font-bold">
             <input placeholder="Enter Your Name" v-model="playername" maxlength="18"
-              class="text-center boi-input focus:border-[#9B4F5E] rounded-tl-3xl rounded-br-3xl h-24">
+              class="text-center boi-input focus:border-[#9B4F5E] rounded-tl-3xl  rounded-br-3xl h-24 p-20">
           </div>
-          <div @click="gameStart()"
+          <div @click="gameStart"
             class="mali hover:scale-[115%] duration-300 each-in-out text-[#f82b74] font-bold hover:bg-[#f82b74] hover:text-white transition delay-100 hover:border-white cursor-pointer m-16 border-[#f82b74] border-8 border-solid h-1/5 w-96 ml-64 rounded-full flex justify-center items-center text-5xl bg-white">
-            PLAY NOW!!!
+            PLAY NOW
           </div>
         </div>
       </div>

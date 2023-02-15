@@ -5,6 +5,17 @@ import summalize from "./assets/data/summalize.json";
 // user input data
 let playername = ref('ไกซ์')
 
+//song
+const defaultMusic=ref('background.mp3')
+const isPlaying = ref(false) 
+const inputMusic = ref(null)
+
+const playPauseSong = () => {
+  isPlaying.value = !isPlaying.value
+  if(isPlaying.value) inputMusic.value.play()
+  else inputMusic.value.pause()
+}
+
 //game function :: clouser
 function game() {
   let characterName = { th: "ไข่ตุ๋น", en: "kaitoon" };
@@ -143,9 +154,18 @@ const { gameStart, getDialog, getOption, selectOption, showNextDialogBtn, getCur
 
 </script>
 <template>
+
+  <!-- Icon Web + Song ------------------------------------------------------------------------------------------------------------------------------->
   <div class="shadow-4xl bg-white pb-4 pr-2 rounded-br-[30px] absolute z-10 w-24 rounded-bl-[10px] rounded-tr-[10px]">
     <img src="./assets/images/element/Logo.png" class="scale-100" />
+    <audio ref="inputMusic" :src="defaultMusic" id="startMusic-001"></audio>
+		    <button fleid="mybtn" class="w-20 h-10 rounded-full hover:scale-[115%] duration-300 each-in-out bg-pink-500 m-1" @click="playPauseSong">
+          <span class="flex justify-center text-white">{{ isPlaying ? "Pause" : "Play" }}</span>
+        </button>
   </div>
+
+
+
   <!-- firstpage------------------------------------------------------------------------------------------------------------------------------->
   <div class="w-screen h-screen" v-if="getCurrentState() == 1">
     <img src="./assets/images/other/Enerd.png"

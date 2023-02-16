@@ -9,7 +9,7 @@
             "id": "01A",
             "message": "ปิดเสียงนาฬิกาปลุก แล้วนอนต่อ",
             "score": 0,
-            "next": 49,
+            "next": 2,
             "characterMood": "no.png",
             "effect":null
         }, 

@@ -144,8 +144,10 @@ function game() {
   function goHomePage() {
     state.value = 1
   }
-
-  return { gameStart, getDialog, getOption, selectOption, showNextDialogBtn, getCurrentState, getEndScene, getName, goHomePage, getCharecterMood, getBackground, showDirectorScene }
+  function getEffect(){
+    return `choice.mp3`
+  }
+  return { gameStart, getDialog, getOption, selectOption, showNextDialogBtn, getCurrentState, getEndScene, getName, goHomePage, getCharecterMood, getBackground, showDirectorScene,getEffect }
 }
 
 
@@ -160,7 +162,8 @@ const { gameStart, getDialog, getOption, selectOption, showNextDialogBtn, getCur
     <img src="./assets/images/element/Logo.png" class="scale-100" />
     <audio ref="inputMusic" :src="defaultMusic" id="startMusic-001"></audio>
 		    <button fleid="mybtn" class="w-20 h-10 rounded-full hover:scale-[115%] duration-300 each-in-out bg-pink-500 m-1" @click="playPauseSong">
-          <span class="flex justify-center text-white">{{ isPlaying ? "Pause" : "Play" }}</span>
+          <span class="flex justify-center text-white">{{ isPlaying ? "Pause": "Play" }}</span>
+         
         </button>
   </div>
 
@@ -266,7 +269,7 @@ const { gameStart, getDialog, getOption, selectOption, showNextDialogBtn, getCur
             v-if="!showNextDialogBtn()">
             <!-- choice -->
             <div v-for="(option, index) in getOption()" :key="index" @click="selectOption(option.id)"
-              v-show="option.id !== null"
+              v-show="option.id !== null" 
               class="opacity-80 hover:opacity-100 mr-12 break-all w-fit hover:bg-[#f82b74] hover:border-white hover:scale-[105%] duration-300 each-in-out hover:text-white cursor-pointer border-[#f82b74] border-y-4 border-solid place-self-center flex place-items-center rounded-full py-3 pl-12 pr-12 bg-fuchsia-50">
               {{ option.message }}
             </div>

@@ -11,7 +11,7 @@
             "score": 0,
             "next": 2,
             "characterMood": "no.png",
-            "effect":null
+            "effect":"choice.mp3"
         }, 
         {
             "id": "01B",
@@ -19,7 +19,7 @@
             "score": 0,
             "next": 2,
             "characterMood": "no.png",
-            "effect":null
+            "effect":"choice.mp3"
         }],
         "background": "Alarm.jpg"
     },
@@ -342,7 +342,7 @@
                 "score": 2,
                 "next": 21,
                 "characterMood": "smile.png",
-                "effect":null
+                "effect":"choice.mp3"
             },
             {
                 "id": "03B",
@@ -350,7 +350,7 @@
                 "score": 0,
                 "next": 21,
                 "characterMood": "base.png",
-                "effect":null
+                "effect":"choice.mp3"
             },
             {
                 "id": "03C",
@@ -358,7 +358,7 @@
                 "score": 1,
                 "next": 21,
                 "characterMood": "sad.png",
-                "effect":null
+                "effect":"choice.mp3"
             }
         ],
         "background": "Lx-11-classroom2.jpg"
@@ -440,14 +440,14 @@
             "score": 0,
             "next": 26,
             "characterMood": "smile.png",
-            "effect": null
+            "effect": "choice.mp3"
         },{
             "id": "B",
             "message": "เราชื่อ $NAME",
             "score": 1,
             "next": 26,
             "characterMood": "smile.png",
-            "effect": null
+            "effect": "choice.mp3"
         }
         ,{
             "id": "C",
@@ -455,7 +455,7 @@
             "score": 3,
             "next": 26,
             "characterMood": "smile.png",
-            "effect": null
+            "effect": "choice.mp3"
         }
     ],
         "background": "Lx-11-classroom1.jpg"
@@ -490,7 +490,7 @@
             "score": 1,
             "next": 28,
             "characterMood": "smile.png",
-            "effect":null
+            "effect":"choice.mp3"
         },
         {
             "id": "04B",
@@ -498,7 +498,7 @@
             "score": -1,
             "next": 28,
             "characterMood": "smile.png",
-            "effect":null
+            "effect":"choice.mp3"
         },
         {
             "id": "04B",
@@ -506,7 +506,7 @@
             "score": 2,
             "next": 28,
             "characterMood": "smile.png",
-            "effect":null
+            "effect":"choice.mp3"
         }
     ],
         "background": "Lx-11-classroom1.jpg"
@@ -543,7 +543,7 @@
             "score": 2,
             "next": 30,
             "characterMood": "base.png",
-            "effect":null
+            "effect":"choice.mp3"
         },
         {
             "id": "04B",
@@ -551,7 +551,7 @@
             "score": 0,
             "next": 30,
             "characterMood": "base.png",
-            "effect":null
+            "effect":"choice.mp3"
         },
         {
             "id": "04B",
@@ -559,7 +559,7 @@
             "score": -1,
             "next": 30,
             "characterMood": "base.png",
-            "effect":null
+            "effect":"choice.mp3"
         }
     ],
         "background": "Lx-11-classroom1.jpg"
@@ -638,7 +638,7 @@
             "score": 2,
             "next": 35,
             "characterMood": "smile.png",
-            "effect":null
+            "effect":"choice.mp3"
         },
         {
             "id": "04B",
@@ -646,7 +646,7 @@
             "score": 2,
             "next": 35,
             "characterMood": "smile.png",
-            "effect":null
+            "effect":"choice.mp3"
         },
         {
             "id": "04B",
@@ -654,7 +654,7 @@
             "score": 1,
             "next": 35,
             "characterMood": "base.png",
-            "effect":null
+            "effect":"choice.mp3"
         }
     ],
         "background": "Kfc1.jpg"
@@ -718,7 +718,7 @@
             "score": 1,
             "next": 39,
             "characterMood": "base.png",
-            "effect":null
+            "effect":"choice.mp3"
         },
         {
             "id": "04B",
@@ -726,7 +726,7 @@
             "score": 2,
             "next": 39,
             "characterMood": "smile.png",
-            "effect":null
+            "effect":"choice.mp3"
         },
         {
             "id": "04B",
@@ -734,7 +734,7 @@
             "score": 0,
             "next": 39,
             "characterMood": "base.png",
-            "effect":null
+            "effect":"choice.mp3"
         }
     ],
         "background": "Kfc-table2.jpg"
@@ -941,7 +941,7 @@
             "score": 2,
             "next": 52,
             "characterMood": "base.png",
-            "effect":null
+            "effect":"choice.mp3"
         },
         {
             "id": "04B",
@@ -949,7 +949,7 @@
             "score": 0,
             "next": 150,
             "characterMood": "smile.png",
-            "effect":null
+            "effect":"choice.mp3"
         }
 
     ],
@@ -959,7 +959,7 @@
         "no": "150",
         "who" : "director",
         "themesong":null,
-        "dialog": "ผู้บรรยาย : เห้อตอบได้ห่วยชะมัด ฉันจะให้โอกาสนายอีกครั้งแล้วกัน",
+        "dialog": "ผู้บรรยาย : เห้อตอบได้ห่วยชะมัด ลองใหม่อีกครั้งนะ",
         "options": [{
             "id": "02A",
             "message": ">>",
@@ -1173,14 +1173,14 @@
                 "score": 10,
                 "next": 63,
                 "characterMood": "smile.png",
-                "effect": null
+                "effect": "choice.mp3"
             },{
                 "id": "04B",
                 "message": "แหมม เป็นทาสแมวหรอเนี่ยย",
                 "score": 5,
                 "next": 63,
                 "characterMood": "smile.png",
-                "effect": null
+                "effect": "choice.mp3"
             }
         ],
         "background": "Footpath2.jpg"
@@ -1367,7 +1367,7 @@
                 "score": 1,
                 "next": 74.1,
                 "characterMood": "Chat/Meme1.jpg",
-                "effect": null
+                "effect": "choice.mp3"
             },
             {
                 "id": "04B",
@@ -1375,7 +1375,7 @@
                 "score": 2,
                 "next": 74.2,
                 "characterMood": "Chat/Cat1.jpg",
-                "effect": null
+                "effect": "choice.mp3"
             },
             {
                 "id": "04C",
@@ -1383,7 +1383,7 @@
                 "score": 0,
                 "next": 74.3,
                 "characterMood": "Chat/Leaked1.jpg",
-                "effect": null
+                "effect": "choice.mp3"
             },
             {
                 "id": "04D",
@@ -1391,7 +1391,7 @@
                 "score": -2,
                 "next": 74.4,
                 "characterMood": "Chat/Pto1.jpg",
-                "effect": null
+                "effect": "choice.mp3"
             }
         ],
         "background": "Newday.jpg"
@@ -1527,28 +1527,28 @@
                 "score": 2,
                 "next": 80,
                 "characterMood": "no.png",
-                "effect": null
+                "effect": "choice.mp3"
             },{
                 "id": "04B",
                 "message": "บาย",
                 "score": 1,
                 "next": 80,
                 "characterMood": "no.png",
-                "effect": null
+                "effect": "choice.mp3"
             },{
                 "id": "04C",
                 "message": "บ๊ายบาย //ส่งสติ๊กเกอร์บ๊ายบาย",
                 "score": 5,
                 "next": 80,
                 "characterMood": "no.png",
-                "effect": null
+                "effect": "choice.mp3"
             },{
                 "id": "04D",
                 "message": "ไม่ตอบกลับอะไรเลย",
                 "score": -5,
                 "next": 80,
                 "characterMood": "no.png",
-                "effect": null
+                "effect": "choice.mp3"
             }
         ],
         "background": "Newday.jpg"
@@ -1769,21 +1769,21 @@
                 "score": 7,
                 "next": 92.1,
                 "characterMood": "shy.png",
-                "effect": null
+                "effect": "choice.mp3"
             },{
                 "id": "04B",
                 "message": "เรา..ชะ...ชอบ..ไข่ตุ๋นนนมากๆเลยยย ( .พูดพร้อมเขิลไปด้วย )",
                 "score": 10,
                 "next": 92.2,
                 "characterMood": "shy.png",
-                "effect": null
+                "effect": "choice.mp3"
             },{
                 "id": "04C",
                 "message": "เรามาคบกันไหม ( .กุมมือของ$CHARNAME )",
                 "score": 6,
                 "next": 92.3,
                 "characterMood": "shy.png",
-                "effect": null
+                "effect": "choice.mp3"
             }
         ],
         "background": "Library1.jpg"

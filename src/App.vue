@@ -80,9 +80,8 @@ function game() {
     let options = []
     if (now.value?.options == undefined) return []
     now.value.options.forEach(oldOption => {
-      let replaceOption = oldOption
-      replaceOption.message = interactiveDialogs(replaceOption.message)
-      options.push(replaceOption)
+      let option = {id:oldOption?.id, message:interactiveDialogs(oldOption.message)}
+      options.push(option)
     })
     return options
   }
@@ -184,16 +183,7 @@ const { gameStart, getDialog, getOption, selectOption, showNextDialogBtn, getCur
     <img src="./assets/images/other/Ekaitoon.png"
       class="absolute z-0 h-[120%] -bottom-52 left-[-5%] contrast-[100%] left" />
     <img src="./assets/images/element/gameName.png" class="w-full h-full absolute -z-50" />
-    <!-- snow animation -->
-    <div class="snow-container">
-      <div class="snow foreground"></div>
-      <div class="snow foreground layered"></div>
-      <div class="snow middleground"></div>
-      <div class="snow middleground layered"></div>
-      <div class="snow background"></div>
-      <div class="snow background layered"></div>
-    </div>
-
+    
 
     <div class="w-full h-full relative">
       <!-- content right -->
@@ -224,6 +214,15 @@ const { gameStart, getDialog, getOption, selectOption, showNextDialogBtn, getCur
   </div>
   <!-- subtitles------------------------------------------------------------------------------------------------------------------------------->
   <div class="w-screen h-screen" v-show="getCurrentState() == 2">
+    <div class="w-full h-24 flex flex-row absolute">
+        <div class="w-30 w-full flex justify-end">
+            <!-- Back Btn -->
+          <div @click="goHomePage()"
+              class="z-50 text-3xl mali font-semibold text-[#f82b74] mt-4 mr-12 hover:bg-rose-600 hover:text-white cursor-pointer border-[#f82b74] border-2 border-solid place-self-center flex place-items-center rounded-[15px] py-3 pl-8 pr-8 bg-white">
+              ไออ่อนย้อนเวลา
+          </div>
+        </div>
+      </div>
 
     <!-- cutScene -->
     <div v-show="showDirectorScene()" class="w-full h-full page-change">
@@ -246,17 +245,8 @@ const { gameStart, getDialog, getOption, selectOption, showNextDialogBtn, getCur
       <img :src="getBackground()" class="absolute -z-50 w-full h-full justify-center" />
       <!-- header bar -->
       <div class="w-full h-full translation-fade-1">
-        <div class="w-full h-24 flex flex-row">
-          <div class="w-30 w-full flex justify-end">
-            <!-- Back Btn -->
-            <div @click="goHomePage()"
-              class="z-50 text-3xl mali font-semibold text-[#f82b74] mt-4 mr-12 hover:bg-rose-600 hover:text-white cursor-pointer border-[#f82b74] border-2 border-solid place-self-center flex place-items-center rounded-[15px] py-3 pl-8 pr-8 bg-white">
-              ไออ่อนย้อนเวลา
-            </div>
-          </div>
-        </div>
         <!-- game content -->
-        <div class="w-full h-2/3 flex">
+        <div class="w-full h-[75%] flex">
           <!-- left + charecter-->
           <div class=" w-full flex justify-center relative -z-50">
             <!-- image -->
@@ -266,7 +256,7 @@ const { gameStart, getDialog, getOption, selectOption, showNextDialogBtn, getCur
           </div>
           <!-- right + option -->
           <div class="w-8/12 grid text-[#f82b74] font-semibold text-3xl mali pt-20 pb-20 show-option"
-            v-if="!showNextDialogBtn()">
+            v-show="!showNextDialogBtn()">
             <!-- choice -->
             <div v-for="(option, index) in getOption()" :key="index" @click="selectOption(option.id)"
               v-show="option.id !== null" 
@@ -277,19 +267,19 @@ const { gameStart, getDialog, getOption, selectOption, showNextDialogBtn, getCur
         </div>
         <!-- footer -->
         <div
-          class="w-full h-56 flex justify-center text-white mali text-2xl font-semibold bg-rose-400 bg-opacity-80 border-t-4 border-white rounded-tl-[20px] show-dialog">
+          class="w-full h-64 flex justify-center text-white mali text-2xl font-semibold bg-rose-400 bg-opacity-80 border-t-4 border-white rounded-tl-[20px] show-dialog">
           <div class="w-10/12 relative ">
             <!-- dialog -->
             <p class="ml-20 mt-12 mr-28 pt-5"> {{ getDialog() }}
             </p>
             <!-- name -->
             <div
-              class="cursor-pointer border-white border-4 -top-9 h-16 absolute ml-28 flex justify-center place-items-center pl-6 pr-6 text-3xl bg-rose-500 rounded-3xl drop-shadow-3xl">
+              class=" border-white border-4 -top-9 h-16 absolute ml-28 flex justify-center place-items-center pl-6 pr-6 text-3xl bg-rose-500 rounded-3xl drop-shadow-3xl">
               <p class="flex text-center"> {{ getName() }} </p>
             </div>
             <!-- next dialog btn -->
             <div v-show="showNextDialogBtn()" @click="selectOption(getOption()[0].id)"
-              class="bounce cursor-pointer text-2xl  w-20 h-20 m-1 absolute bottom-0 right-16 mali flex place-items-center justify-center text-white skip">
+              class="bounce cursor-pointer text-2xl  w-20 h-20 m-1 absolute bottom-5 right-16 mali flex place-items-center justify-center skip">
               <img src="./assets/images/element/skipwhite.png">
             </div>
           </div>
@@ -320,10 +310,10 @@ const { gameStart, getDialog, getOption, selectOption, showNextDialogBtn, getCur
         <!-- ending text -->
         <div class="w-3/4 h-[45%] mt-16 mr-auto ml-auto border-red-300 border-2 relative flex justify-center">
           <div
-            class="mali border-red-300 border-2 border-solid -top-8 h-16 absolute -left-10 flex justify-center place-items-center pl-6 pr-6 text-3xl bg-rose-300 rounded-3xl drop-shadow-3xl">
-            <p class="flex text-center"> {{ getName() }} </p>
+            class="mali border-red-300 border-2 border-solid font-bold -top-8 h-16 absolute -left-10 flex justify-center place-items-center pl-6 pr-6 text-3xl bg-rose-300 rounded-3xl drop-shadow-3xl">
+            <p class="flex text-center">  บทสรุปของ  "{{ playername }}" </p>
           </div>
-          <p class="mr-10 ml-10 mt-12 text-lg mali indent-10">
+          <p class="mr-10 ml-10 mt-12 text-lg mali indent-10 ">
             {{ getEndScene().message }}
           </p>
         </div>
@@ -449,70 +439,6 @@ body {
 
   to {
     transform: translateX(0)
-  }
-}
-
-/* snow homepage */
-.snow-container {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  max-width: 100%;
-  top: 0;
-  overflow: hidden;
-  z-index: 2;
-  pointer-events: none;
-}
-
-.snow {
-  display: block;
-  position: absolute;
-  z-index: 2;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  pointer-events: none;
-  opacity: 0.5;
-  transform: translate3d(0, -100%, 0);
-  -webkit-animation: snow linear infinite;
-  animation: snow linear infinite;
-}
-
-.snow.foreground {
-  background-image: url("https://dl6rt3mwcjzxg.cloudfront.net/assets/snow/snow-large-075d267ecbc42e3564c8ed43516dd557.png");
-  -webkit-animation-duration: 15s;
-  animation-duration: 15s;
-}
-
-.snow.foreground.layered {
-  -webkit-animation-delay: 7.5s;
-  animation-delay: 7.5s;
-}
-
-.snow.middleground {
-  background-image: image-url("https://dl6rt3mwcjzxg.cloudfront.net/assets/snow/snow-medium-0b8a5e0732315b68e1f54185be7a1ad9.png");
-  -webkit-animation-duration: 20s;
-  animation-duration: 20s;
-}
-
-.snow.middleground.layered {
-  -webkit-animation-delay: 10s;
-  animation-delay: 10s;
-}
-
-.snow.background.layered {
-  -webkit-animation-delay: 15s;
-  animation-delay: 15s;
-}
-
-@keyframes snow {
-  0% {
-    transform: translate3d(0, -100%, 0);
-  }
-
-  100% {
-    transform: translate3d(15%, 100%, 0);
   }
 }
 </style>

@@ -6,11 +6,15 @@ import summalize from "./assets/data/summalize.json";
 let playername = ref('ไกซ์')
 
 //song
+const effectsource=ref('choice.mp3')
 const defaultMusic=ref('background.mp3')
 const isPlaying = ref(false) 
 const inputMusic = ref(null)
+const effect = ref(null)
+
 
 const playPauseSong = () => {
+  inputMusic.value.volume=0.4
   isPlaying.value = !isPlaying.value
   if(isPlaying.value) inputMusic.value.play()
   else inputMusic.value.pause()
@@ -20,20 +24,22 @@ const playPauseSong = () => {
 function game() {
   let characterName = { th: "ไข่ตุ๋น", en: "kaitoon" };
   let user = { name: "" }
-  let state = ref(1);
+  let state = ref(3);
   let score = 0
   let now = ref({ dialog: "ขออภัย คุณไม่มีสิทธิในการเข้าถึงหน้านี้ หากคิดว่าการแจ้งเตือนนี้ผิดพลาดขอให้ refresh page อีกครั้ง" })
   let characterMood = "";
   let imageBackground = "error.png";
   let endData = {};
+  
 
   function gameStart() {
     user.name = playername.value
     characterMood = "no.png"
-    score = 0
+    score = 6
     endData = {}
     state.value = 2
-    setScene(1)
+    setScene(150)
+    effectSound()
   }
 
   function setScene(no) {
@@ -57,7 +63,7 @@ function game() {
   function interactiveDialogs(dialog) {
     let replaceDialog = dialog
     let i = 0
-    while(replaceDialog.includes("$") && i < 3) {
+    while(replaceDialog?.includes("$") && i < 3) {
       i++
       if (replaceDialog?.includes("$NAME")) replaceDialog = replaceDialog.replace("$NAME", user.name)
       if (replaceDialog?.includes("$CHARNAME")) replaceDialog = replaceDialog.replace("$CHARNAME", characterName.th)
@@ -74,6 +80,7 @@ function game() {
     score += selected?.score ?? 0
     setScene(selected.next)
     if (selected?.characterMood !== null) characterMood = selected?.characterMood
+    effectSound()
   }
 
   function getOption() {
@@ -142,27 +149,36 @@ function game() {
 
   function goHomePage() {
     state.value = 1
+    effectsource.value='goHome.mp3'
+    effectSound()
   }
-  function getEffect(){
-    return `choice.mp3`
+
+  function effectSound() {
+    effect.value.volume=0.33
+    effect.value.play()
+    setTimeout(effectsource.value='choice.mp3',2000)
   }
-  return { gameStart, getDialog, getOption, selectOption, showNextDialogBtn, getCurrentState, getEndScene, getName, goHomePage, getCharecterMood, getBackground, showDirectorScene,getEffect }
+
+
+  return { gameStart, getDialog, getOption, selectOption, showNextDialogBtn, getCurrentState, getEndScene, getName, goHomePage, getCharecterMood, getBackground, showDirectorScene }
 }
 
 
-const { gameStart, getDialog, getOption, selectOption, showNextDialogBtn, getCurrentState, getEndScene, getName, goHomePage, getCharecterMood, getBackground, showDirectorScene } = game()
+const { gameStart, getDialog, getOption, selectOption, showNextDialogBtn, getCurrentState, getEndScene, getName, goHomePage, getCharecterMood, getBackground, showDirectorScene} = game()
 
 
 </script>
 <template>
+    
+
 
   <!-- Icon Web + Song ------------------------------------------------------------------------------------------------------------------------------->
+  <audio ref="effect" :src="effectsource" /> 
   <div class="shadow-4xl bg-white pb-4 pr-2 rounded-br-[30px] absolute z-10 w-24 rounded-bl-[10px] rounded-tr-[10px]">
     <img src="./assets/images/element/Logo.png" class="scale-100" />
-    <audio ref="inputMusic" :src="defaultMusic" id="startMusic-001"></audio>
+    <audio ref="inputMusic" :src="defaultMusic" id="startMusic-001" autoplay/>
 		    <button fleid="mybtn" class="w-20 h-10 rounded-full hover:scale-[115%] duration-300 each-in-out bg-pink-500 m-1" @click="playPauseSong">
           <span class="flex justify-center text-white">{{ isPlaying ? "Pause": "Play" }}</span>
-         
         </button>
   </div>
 
@@ -219,7 +235,7 @@ const { gameStart, getDialog, getOption, selectOption, showNextDialogBtn, getCur
             <!-- Back Btn -->
           <div @click="goHomePage()"
               class="z-50 text-3xl mali font-semibold text-[#f82b74] mt-4 mr-12 hover:bg-rose-600 hover:text-white cursor-pointer border-[#f82b74] border-2 border-solid place-self-center flex place-items-center rounded-[15px] py-3 pl-8 pr-8 bg-white">
-              ไออ่อนย้อนเวลา
+              RESTART
           </div>
         </div>
       </div>
@@ -231,7 +247,7 @@ const { gameStart, getDialog, getOption, selectOption, showNextDialogBtn, getCur
         @click="selectOption(getOption()[0].id)">
         <div
           class="relative w-[50%] h-[95%] border-[#f82b74] border-4 flex mr-auto ml-auto indent-10 p-20 items-center bg-white bg-opacity-70 rounded-bl-[100px] rounded-tr-[100px] show-dialog">
-          <p class="pb-32 leading-10 text-[#f82b74] typing break-all">{{ getDialog() }}</p>
+          <p class="pb-32 leading-[2em] text-[#f82b74] typing break-words text-3xl indent-16">{{ getDialog() }}</p>
           <div v-show="true" class="z-50 bounce absolute cursor-pointer text-2xl w-20 h-20 bottom-4 right-8">
             <img src="./assets/images/element/skipwhite.png">
           </div>
@@ -289,38 +305,45 @@ const { gameStart, getDialog, getOption, selectOption, showNextDialogBtn, getCur
   </div>
   <!-- endingpage------------------------------------------------------------------------------------------------------------------------------->
   <div class="w-screen h-screen" v-if="getCurrentState() == 3">
+    <img src="./assets/images/backEnd.png" class="absolute -z-50 w-full h-full justify-center" />
     <div class="w-full border-red-300 border-2 h-full p-1 flex">
       <!-- left -->
       <div class="w-1/2 border-red-300 border-2 h-[90%] ">
-        <div class="w-5/6 h-1/2 border-red-300 border-2 mt-24 ml-auto mr-auto m-1">
+        <div class="w-5/6 h-[60%] border-red-300 border-2 mt-8 ml-auto mr-auto m-1">
           <!-- Ending Image Character -->
-          <img :src="getEndScene().image">
+          <img class=" -z-50 w-full h-full  " :src="getEndScene().image">
         </div>
-        <div class="w-5/6 h-1/3 border-red-300 border-2 mt-4 ml-auto mr-auto m-1">
+        <div class="w-5/6 h-1/3 border-red-300  border-2 mt-4 ml-auto mr-auto m-1 justify-center flex items-center">
           <!-- Ending -->
-          <img src="">
+        <div class="mali flex text-7xl font-bold" >{{  getEndScene().endingWord }}</div>
+
         </div>
       </div>
       <!-- right -->
       <div class="w-1/2 ml-1 h-[90%]  border-red-300 border-2 ">
         <!-- score -->
-        <div class="w-3/4 h-[30%] m-1 mt-24 mr-auto ml-auto border-red-300 border-2">
-          {{ getEndScene().score }}
-        </div>
-        <!-- ending text -->
-        <div class="w-3/4 h-[45%] mt-16 mr-auto ml-auto border-red-300 border-2 relative flex justify-center">
+        <div class="mali w-3/4 h-[30%] m-1 mt-24 mr-auto ml-auto text-7xl flex justify-center	relative border-red-300 border-2 bg-rose-50 rounded-3xl drop-shadow-3xl"  >
           <div
-            class="mali border-red-300 border-2 border-solid font-bold -top-8 h-16 absolute -left-10 flex justify-center place-items-center pl-6 pr-6 text-3xl bg-rose-300 rounded-3xl drop-shadow-3xl">
-            <p class="flex text-center">  บทสรุปของ  "{{ playername }}" </p>
+            class="flex  justify-center -top-8 h-16 -left-10 absolute mali border-red-300 border-2 border-solid font-bold place-items-center px-8 text-3xl bg-[#f82b74] rounded-3xl drop-shadow-3xl">
+            <p class="text-white font-bold"> Total Score </p>
           </div>
-          <p class="mr-10 ml-10 mt-12 text-lg mali indent-10 ">
+          <p class="flex justify-center items-center mb-5 ">{{ getEndScene().score }}  point(s)</p>
+        </div>
+        
+        <!-- ending text -->
+        <div class=" w-3/4 h-[45%] mt-16 mr-auto ml-auto border-red-300 border-2 relative flex justify-center bg-rose-50">
+          <div
+            class="text-white mali border-red-300 border-2 border-solid font-bold -top-8 h-16 absolute -left-10 flex justify-center place-items-center pl-6 pr-6 text-3xl bg-[#f82b74] rounded-3xl drop-shadow-3xl">
+            <p class="flex text-center text-semibold">  บทสรุปของ  "{{ playername }}" </p>
+          </div>
+          <p class="mr-10 ml-10 mt-14 text-2xl mali indent-10 font-semibold break-words leading-10">
             {{ getEndScene().message }}
           </p>
         </div>
       </div>
-      <div @click="goHomePage()"
-        class="absolute bottom-4 right-4 text-3xl mali font-semibold text-[#f82b74] hover:bg-rose-600 hover:text-white cursor-pointer border-rose-500 border-y-4 border-solid place-self-center flex place-items-center rounded-full py-3 pl-8 pr-8 bg-fuchsia-50">
-        Retry
+      <div @click="goHomePage"
+        class="absolute bounce z-30 bottom-4 right-4 text-3xl mali font-semibold text-[#f82b74] cursor-pointer border-rose-500 border-y-4 border-solid place-self-center flex place-items-center rounded-full p-1 bg-fuchsia-50 retry-btn">
+       <div class="bg-[#ffffff] rounded-full py-3 pl-8 pr-8 ">Retry</div>
       </div>
     </div>
   </div>
@@ -441,4 +464,46 @@ body {
     transform: translateX(0)
   }
 }
+.retry-btn{
+  background: linear-gradient(60deg, #ef4e7b, #a166ab, #5073b8, #1098ad, #088877);
+  animation: animatedbordergradient 3s ease-in-out alternate infinite;
+  background-size: 300% 300%;
+}
+
+@keyframes animatedbordergradient {
+	0% {
+		background-position: 0% 50%;
+    bottom:20px;
+	}
+	50% {
+		background-position: 100% 50%;
+    bottom:15px;
+	}
+	100% {
+		background-position: 0% 50%;
+    bottom:20px;
+	}
+}
+
+.typing {
+  overflow: hidden; /* Ensures the content is not revealed until the animation /
+  white-space: nowrap; / Keeps the content on a single line / / Gives that scrolling effect as the typing happens /
+  letter-spacing: .05em; / Adjust as needed /
+  animation: 
+    typing 4s steps(15000,end) ,
+    blink-caret .75s step-end infinite;
+}
+/ The typing effect /
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+/ The typewriter cursor effect */
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: rgb(255, 255, 255); }
+}
+
 </style>

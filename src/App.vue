@@ -6,25 +6,26 @@ import summalize from "./assets/data/summalize.json";
 let playername = ref('ไกซ์')
 
 //song
-const effectsource=ref('choice.mp3')
-const defaultMusic=ref('background.mp3')
 const isPlaying = ref(false) 
 const inputMusic = ref(null)
 const effect = ref(null)
 
 
 const playPauseSong = () => {
+  inputMusic.value.src='background.mp3'
   inputMusic.value.volume=0.4
   isPlaying.value = !isPlaying.value
   if(isPlaying.value) inputMusic.value.play()
   else inputMusic.value.pause()
 }
 
+
+
 //game function :: clouser
 function game() {
   let characterName = { th: "ไข่ตุ๋น", en: "kaitoon" };
   let user = { name: "" }
-  let state = ref(3);
+  let state = ref(1);
   let score = 0
   let now = ref({ dialog: "ขออภัย คุณไม่มีสิทธิในการเข้าถึงหน้านี้ หากคิดว่าการแจ้งเตือนนี้ผิดพลาดขอให้ refresh page อีกครั้ง" })
   let characterMood = "";
@@ -38,8 +39,8 @@ function game() {
     score = 6
     endData = {}
     state.value = 2
-    setScene(150)
-    effectSound()
+    setScene(1)
+    effectSound('choice.mp3')
   }
 
   function setScene(no) {
@@ -80,7 +81,7 @@ function game() {
     score += selected?.score ?? 0
     setScene(selected.next)
     if (selected?.characterMood !== null) characterMood = selected?.characterMood
-    effectSound()
+    effectSound('choice.mp3')
   }
 
   function getOption() {
@@ -148,15 +149,14 @@ function game() {
   }
 
   function goHomePage() {
+    effectSound((state.value===3?'choice.mp3':'goHome.mp3'))
     state.value = 1
-    effectsource.value='goHome.mp3'
-    effectSound()
   }
 
-  function effectSound() {
+  function effectSound(effectName) {
+    effect.value.src=effectName
     effect.value.volume=0.33
     effect.value.play()
-    setTimeout(effectsource.value='choice.mp3',2000)
   }
 
 
@@ -173,10 +173,10 @@ const { gameStart, getDialog, getOption, selectOption, showNextDialogBtn, getCur
 
 
   <!-- Icon Web + Song ------------------------------------------------------------------------------------------------------------------------------->
-  <audio ref="effect" :src="effectsource" /> 
+  <audio ref="effect" /> 
   <div class="shadow-4xl bg-white pb-4 pr-2 rounded-br-[30px] absolute z-10 w-24 rounded-bl-[10px] rounded-tr-[10px]">
     <img src="./assets/images/element/Logo.png" class="scale-100" />
-    <audio ref="inputMusic" :src="defaultMusic" id="startMusic-001" autoplay/>
+    <audio ref="inputMusic" id="startMusic-001" autoplay/>
 		    <button fleid="mybtn" class="w-20 h-10 rounded-full hover:scale-[115%] duration-300 each-in-out bg-pink-500 m-1" @click="playPauseSong">
           <span class="flex justify-center text-white">{{ isPlaying ? "Pause": "Play" }}</span>
         </button>
@@ -486,19 +486,18 @@ body {
 }
 
 .typing {
-  overflow: hidden; /* Ensures the content is not revealed until the animation /
-  white-space: nowrap; / Keeps the content on a single line / / Gives that scrolling effect as the typing happens /
-  letter-spacing: .05em; / Adjust as needed /
+  overflow: hidden; /* Ensures the content is not revealed until the animation */
+  white-space: break-spaces; /* Keeps the content on a single line / / Gives that scrolling effect as the typing happens */
+  letter-spacing: .05em; /* Adjust as needed */
   animation: 
-    typing 4s steps(15000,end) ,
+    typing 1s steps(1500,end) ,
     blink-caret .75s step-end infinite;
 }
-/ The typing effect /
+/* The typing effect */
 @keyframes typing {
-  from { width: 0 }
+  from { width: 0}
   to { width: 100% }
-}
-/ The typewriter cursor effect */
+/* The typewriter cursor effect */
 }
 
 @keyframes blink-caret {

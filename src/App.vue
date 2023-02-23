@@ -112,9 +112,11 @@ function game() {
         keyEnding = "a2"
       }
     }
-    endData = summalize.find(e => e.id == keyEnding)
-    endData.message = interactiveDialogs(endData.message)
+    const endObj = summalize.find(e => e.id == keyEnding)
+    endData.message = interactiveDialogs(endObj.message)
     endData.score = score
+    endData.image = endObj.image
+    endData.endingWord = endObj.endingWord
     return getEndScene()
   }
 
@@ -227,7 +229,7 @@ const { gameStart, getDialog, getOption, selectOption, showNextDialogBtn, getCur
     </div>
   </div>
   <!-- subtitles------------------------------------------------------------------------------------------------------------------------------->
-  <div class="w-screen h-screen" v-show="getCurrentState() == 2">
+  <div class="w-screen h-screen" v-if="getCurrentState() == 2">
     <div class="w-full h-24 flex flex-row absolute">
         <div class="w-30 w-full flex justify-end">
             <!-- Back Btn -->
@@ -504,3 +506,5 @@ body {
 }
 
 </style>
+
+

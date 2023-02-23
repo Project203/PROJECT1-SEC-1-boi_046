@@ -19,8 +19,6 @@ const playPauseSong = () => {
   else inputMusic.value.pause()
 }
 
-
-
 //game function :: clouser
 function game() {
   let characterName = { th: "ไข่ตุ๋น", en: "kaitoon" };
@@ -306,32 +304,32 @@ const { gameStart, getDialog, getOption, selectOption, showNextDialogBtn, getCur
   <!-- endingpage------------------------------------------------------------------------------------------------------------------------------->
   <div class="w-screen h-screen" v-if="getCurrentState() == 3">
     <img src="./assets/images/backEnd.png" class="absolute -z-50 w-full h-full justify-center" />
-    <div class="w-full border-red-300 border-2 h-full p-1 flex">
+    <div class="w-full h-full p-1 flex">
       <!-- left -->
-      <div class="w-1/2 border-red-300 border-2 h-[90%] ">
-        <div class="w-5/6 h-[60%] border-red-300 border-2 mt-8 ml-auto mr-auto m-1">
+      <div class="w-1/2 h-[90%] mt-20">
+        <div class="w-5/6 h-[70%] mt-8 ml-auto mr-auto m-1">
           <!-- Ending Image Character -->
-          <img class=" -z-50 w-full h-full  " :src="getEndScene().image">
+          <img class=" -z-50 w-full h-full border-red-300 border-2 rounded-3xl bg-red-200 bg-opacity-70" :src="getEndScene().image">
         </div>
-        <div class="w-5/6 h-1/3 border-red-300  border-2 mt-4 ml-auto mr-auto m-1 justify-center flex items-center">
+        <div class="w-5/6 h-1/3 mt-4 ml-auto mr-auto m-1 justify-center flex items-center">
           <!-- Ending -->
-        <div class="mali flex text-7xl font-bold" >{{  getEndScene().endingWord }}</div>
+        <div class="mali flex text-7xl font-bold border-red-300 border-2 rounded-3xl bg-red-200 px-14 py-5 -mt-[260px]" >{{  getEndScene().endingWord }}</div>
 
         </div>
       </div>
       <!-- right -->
-      <div class="w-1/2 ml-1 h-[90%]  border-red-300 border-2 ">
+      <div class="w-1/2 ml-1 h-[90%] ">
         <!-- score -->
-        <div class="mali w-3/4 h-[30%] m-1 mt-24 mr-auto ml-auto text-7xl flex justify-center	relative border-red-300 border-2 bg-rose-50 rounded-3xl drop-shadow-3xl"  >
+        <div class="mali w-3/4 h-[30%] m-1 mt-24 mr-auto ml-auto text-7xl flex justify-center	relative border-2 bg-rose-50 rounded-3xl drop-shadow-3xl bg-opacity-80"  >
           <div
-            class="flex  justify-center -top-8 h-16 -left-10 absolute mali border-red-300 border-2 border-solid font-bold place-items-center px-8 text-3xl bg-[#f82b74] rounded-3xl drop-shadow-3xl">
-            <p class="text-white font-bold"> Total Score </p>
+            class="flex  justify-center -top-8 h-16 -left-10 absolute mali border-red-300 border-2 border-solid font-bold place-items-center px-8 text-3xl bg-[#f82b74] rounded-3xl drop-shadow-3xl ">
+            <p class="text-white font-bold "> Total Score </p>
           </div>
           <p class="flex justify-center items-center mb-5 ">{{ getEndScene().score }}  point(s)</p>
         </div>
         
         <!-- ending text -->
-        <div class=" w-3/4 h-[45%] mt-16 mr-auto ml-auto border-red-300 border-2 relative flex justify-center bg-rose-50">
+        <div class=" w-3/4 h-[45%] mt-16 mr-auto ml-auto border-red-300 border-2 relative flex justify-center bg-rose-50 rounded-3xl bg-opacity-80">
           <div
             class="text-white mali border-red-300 border-2 border-solid font-bold -top-8 h-16 absolute -left-10 flex justify-center place-items-center pl-6 pr-6 text-3xl bg-[#f82b74] rounded-3xl drop-shadow-3xl">
             <p class="flex text-center text-semibold">  บทสรุปของ  "{{ playername }}" </p>

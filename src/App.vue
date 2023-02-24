@@ -26,12 +26,12 @@ const showCharacter = () => {
     selectCharacter.value = true
     
 }
-const characterImg = ['src/assets/images/other/Ekaitoon.png',
-    'src/assets/images/other/Edu.png',
-    'src/assets/images/other/Ejaidee.png',
-    'src/assets/images/other/Enerd.png',
-    'src/assets/images/other/Enu.png',
-    'src/assets/images/other/EyenCha.png']
+const characterImg = ['images/character/kaitoon/base.png',
+    'images/character/kaidu/base.png',
+    'images/character/kaidee/base.png',
+    'images/character/kainerd/base.png',
+    'images/character/kainu/base.png',
+    'images/character/kaiyen/base.png']
 
     
 let currentCharacter = ref(0)

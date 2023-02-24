@@ -608,7 +608,7 @@
             "effect": null
         }
     ],
-        "background": "Pathway.jpg"
+        "background": "Elevator-11.jpg"
     },
     {
         "no": "33",
@@ -985,7 +985,7 @@
                 "effect": null
             }
         ],
-        "background": "Pathway.jpg"
+        "background": "Elevator-10.jpg"
     },
     {
         "no": "53",
@@ -1002,7 +1002,7 @@
                 "effect": null
             }
         ],
-        "background": "Pathway.jpg"
+        "background": "Elevator-10.jpg"
     },
     {
         "no": "54",
@@ -1019,7 +1019,7 @@
                 "effect": null
             }
         ],
-        "background": "Pathway.jpg"
+        "background": "Elevator-10.jpg"
     },
     {
         "no": "55",
@@ -1067,7 +1067,7 @@
                 "score": 0,
                 "next": 58,
                 "characterMood": null,
-                "effect": null
+                "effect": "goose.mp3"
             }
         ],
         "background": "Footpath4.jpg"

@@ -35,6 +35,7 @@ const characterImg = ['src/assets/images/other/Ekaitoon.png',
 
     
 let currentCharacter = ref(0)
+
 const NextCharacter = () => {
     if(currentCharacter.value === 5){ 
         currentCharacter.value = 0
@@ -51,7 +52,7 @@ const BackCharacter = () => {
 }
 // randomname
 const RandomName = () => {
-    const randomed = Math.floor(Math.random() * 2739);
+    const randomed = Math.floor(Math.random() * randomname.length+1);
     playername.value = randomname[randomed]
     
 }
@@ -59,7 +60,7 @@ const RandomName = () => {
 
 //game function :: clouser
 function game() {
-    let characterName = { th: "ไข่ตุ๋น", en: "kaitoon" };
+    let characterName = ref({ th: "ไข่ตุ๋น", en: "kaitoon" })
     let user = { name: "" }
     let state = ref(1);
     let score = 0
@@ -67,34 +68,42 @@ function game() {
     let characterMood = "";
     let imageBackground = "error.png";
     let endData = {};
+    
 
     const SaveCharacter = () => {
         if (currentCharacter.value === 0) {
-            characterName.th = 'ไข่ตุ๋น'
-            characterName.en = 'kaitoon'
+            // characterName.th = "ไข่ตุ๋น"
+            // characterName.en = "kaitoon"
+            characterName.value = { th: "ไข่ตุ๋น", en: "kaitoon" }
         }
         if (currentCharacter.value === 1) {
-            characterName.th = 'ไข่ดุ'
-            characterName.en = 'kaitoon2'
+            // characterName.th = "ไข่ดุ"
+            // characterName.en = "kaidu"
+            characterName.value = { th: "ไข่ดุ", en: "kaidu" }
         }
         if (currentCharacter.value === 2) {
-            characterName.th = 'ไข่ดี'
-            characterName.en = 'kaitoon3'
+            // characterName.th = "ไข่ดี"
+            // characterName.en = "kaidee"
+            characterName.value = { th: "ไข่ดี", en: "kaidee" }
         }
         if (currentCharacter.value === 3) {
-            characterName.th = 'ไข่เนิร์ด'
-            characterName.en = 'kaitoon4'
+            // characterName.th = "ไข่เนิร์ด"
+            // characterName.en = "kainerd"
+            characterName.value = { th: "ไข่เนิร์ด", en: "kainerd" }
         }
         if (currentCharacter.value === 4) {
-            characterName.th = 'ไข่หนู'
-            characterName.en = 'kaitoon5'
+            // characterName.th = "ไข่หนู"
+            // characterName.en = "kainu"
+            characterName.value = { th: "ไข่หนู", en: "kainu" }
         }
         if (currentCharacter.value === 5) {
-            characterName.th = 'ไข่เย็น'
-            characterName.en = 'kaitoon6'
+            // characterName.th = "ไข่เย็น"
+            // characterName.en = "kaiyen"
+            characterName.value = { th: "ไข่เย็น", en: "kaiyen" }
         }
         selectCharacter.value = false
     }
+    
 
 
     function gameStart() {
@@ -104,7 +113,8 @@ function game() {
         endData = {}
         state.value = 2
         setScene(1)
-        effectSound('choice.mp3')
+        effectSound('alarm.mp3')
+        
     }
     function setScene(no) {
         // check to endScene 
@@ -128,7 +138,7 @@ function game() {
         while (replaceDialog?.includes("$") && i < 3) {
             i++
             if (replaceDialog?.includes("$NAME")) replaceDialog = replaceDialog.replace("$NAME", user.name)
-            if (replaceDialog?.includes("$CHARNAME")) replaceDialog = replaceDialog.replace("$CHARNAME", characterName.th)
+            if (replaceDialog?.includes("$CHARNAME")) replaceDialog = replaceDialog.replace("$CHARNAME", characterName.value.th)
         }
         return replaceDialog
     }
@@ -139,8 +149,13 @@ function game() {
         const selected = now.value?.options.find(e => e.id == id)
         score += selected?.score ?? 0
         setScene(selected.next)
+
         if (selected?.characterMood !== null) characterMood = selected?.characterMood
-        effectSound('choice.mp3')
+        // effectSound('choice.mp3')
+        if(selected.effect !== null) {
+            effectSound(selected.effect)
+        }else{ effectSound('choice.mp3') }
+        
     }
     function getOption() {
         let options = []
@@ -192,10 +207,10 @@ function game() {
         return getOption().length == 1 ? true : false
     }
     function getName() {
-        return now.value?.who == "user" ? user.name : now.value?.who == "system" ? characterName.th : now.value?.who
+        return now.value?.who == "user" ? user.name : now.value?.who == "system" ? characterName.value.th : now.value?.who
     }
     function getCharecterMood() {
-        return `images/character/${characterName.en}/${characterMood}`
+        return `images/character/${characterName.value.en}/${characterMood}`
     }
     function getBackground() {
         return `images/background/${imageBackground}`
@@ -204,10 +219,11 @@ function game() {
         effectSound((state.value === 3 ? 'choice.mp3' : 'goHome.mp3'))
         state.value = 1
         currentCharacter.value = 0
+        SaveCharacter()
     }
     function effectSound(effectName) {
         effect.value.src = effectName
-        effect.value.volume = 0.33
+        effect.value.volume = 0.44
         effect.value.play()
     }
     
@@ -258,17 +274,17 @@ const { gameStart, getDialog, getOption, selectOption, showNextDialogBtn, getCur
                 </div>
                 <div class="w-full h-full flex flex-col">
                     <!-- Select Character Button -->
-                    <div class="w-20 h-20 flex justify-center items-center bg-white">
-                        <button @click="showCharacter()">Select Character</button>
-                    </div>
+                    <div @click="showCharacter()" class="w-20 h-20 flex justify-center items-center bg-white">
+                                Select Character
+                            </div>
                     <div
                         class="h-1/6 w-1/2 ml-52 rounded-full flex justify-center items-center text-4xl mali mt-52 text-[#9B4F5E] font-bold">
                         <input placeholder="Enter Your Name" v-model="playername" maxlength="18"
-                            class="text-center boi-input focus:border-[#9B4F5E] rounded-tl-3xl  rounded-br-3xl h-24 p-20">
+                            class="flex-col text-center boi-input focus:border-[#9B4F5E] rounded-tl-3xl  rounded-br-3xl h-24 p-20">
                     </div>
                     <!-- Random Button -->
-                    <div class="w-20 h-20 flex justify-center items-center bg-white">
-                        <button @click="RandomName()" >Random</button>
+                    <div @click="RandomName()" class="w-20 h-20 flex justify-center items-center bg-white">
+                        Random
                     </div>
 
                     <div @click="gameStart"

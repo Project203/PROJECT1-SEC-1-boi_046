@@ -948,7 +948,7 @@
             "score": 0,
             "next": 150,
             "characterMood": "smile.png",
-            "effect":"choice.mp3"
+            "effect":"nakomlaugh.mp3"
         }
 
     ],
@@ -957,7 +957,7 @@
     {
         "no": "150",
         "who" : "director",
-        "themesong":null,
+        "themesong":"sadmusic.mp3",
         "dialog": "ผู้บรรยาย : จีบสาวไม่เก่งเอาเสียเลย ไปลองตอบใหม่อีกครั้งนะ",
         "options": [{
             "id": "02A",

@@ -1,30 +1,41 @@
 <script setup>
-import { ref } from "vue";
+import { ref,onMounted } from "vue";
 import data from "./assets/data/data-mockup.json";
 import summalize from "./assets/data/summalize.json";
 import randomname from "./assets/data/array-names.json";
-
+onMounted(() => {
+    inputMusic.value.src = 'themesongs/background.mp3'
+    isPlaying.value = !isPlaying.value
+    playPauseSong()
+})
 // user input data
 let playername = ref('ไกซ์')
 
 //song
 const isPlaying = ref(false)
 const inputMusic = ref(null)
+const musicVolume = ref(0.4)
 const effect = ref(null)
-
-
-const playPauseSong = () => {
-    inputMusic.value.src = 'background.mp3'
-    inputMusic.value.volume = 0.4
-    isPlaying.value = !isPlaying.value
-    if (isPlaying.value) inputMusic.value.play()
-    else inputMusic.value.pause()
+const effectVolume = ref(1.0)
+// setting button
+const setting = ref(false)
+// effect
+const effectSound = (effectName)=> {
+    effect.value.src = `effects/${effectName}`
+    effect.value.volume = effectVolume.value
+    effect.value.play()
+}
+// sound control
+const Effectcontrol = () => {
+    effect.value.volume = effectVolume.value
+}
+const Musiccontrol = () =>{
+    inputMusic.value.volume = musicVolume.value
 }
 // select character
 const selectCharacter = ref(false)
 const showCharacter = () => {
-    selectCharacter.value = true
-    
+    selectCharacter.value = !selectCharacter.value  
 }
 const characterImg = ['images/character/kaitoon/base.png',
     'images/character/kaidu/base.png',
@@ -33,9 +44,7 @@ const characterImg = ['images/character/kaitoon/base.png',
     'images/character/kainu/base.png',
     'images/character/kaiyen/base.png']
 
-    
 let currentCharacter = ref(0)
-
 const NextCharacter = () => {
     if(currentCharacter.value === 5){ 
         currentCharacter.value = 0
@@ -54,7 +63,8 @@ const BackCharacter = () => {
 const RandomName = () => {
     const randomed = Math.floor(Math.random() * randomname.length+1);
     playername.value = randomname[randomed]
-    
+    let effectName = 'dice.mp3'
+    effectSound(effectName)
 }
 
 
@@ -72,33 +82,21 @@ function game() {
 
     const SaveCharacter = () => {
         if (currentCharacter.value === 0) {
-            // characterName.th = "ไข่ตุ๋น"
-            // characterName.en = "kaitoon"
             characterName.value = { th: "ไข่ตุ๋น", en: "kaitoon" }
         }
         if (currentCharacter.value === 1) {
-            // characterName.th = "ไข่ดุ"
-            // characterName.en = "kaidu"
             characterName.value = { th: "ไข่ดุ", en: "kaidu" }
         }
         if (currentCharacter.value === 2) {
-            // characterName.th = "ไข่ดี"
-            // characterName.en = "kaidee"
             characterName.value = { th: "ไข่ดี", en: "kaidee" }
         }
         if (currentCharacter.value === 3) {
-            // characterName.th = "ไข่เนิร์ด"
-            // characterName.en = "kainerd"
             characterName.value = { th: "ไข่เนิร์ด", en: "kainerd" }
         }
         if (currentCharacter.value === 4) {
-            // characterName.th = "ไข่หนู"
-            // characterName.en = "kainu"
             characterName.value = { th: "ไข่หนู", en: "kainu" }
         }
         if (currentCharacter.value === 5) {
-            // characterName.th = "ไข่เย็น"
-            // characterName.en = "kaiyen"
             characterName.value = { th: "ไข่เย็น", en: "kaiyen" }
         }
         selectCharacter.value = false
@@ -151,10 +149,9 @@ function game() {
         setScene(selected.next)
 
         if (selected?.characterMood !== null) characterMood = selected?.characterMood
-        // effectSound('choice.mp3')
-        if(selected.effect !== null) {
-            effectSound(selected.effect)
-        }else{ effectSound('choice.mp3') }
+        if(selected.effect !== null) {effectSound(selected.effect)}
+        else{ effectSound('choice.mp3')}
+        getThemesong()
         
     }
     function getOption() {
@@ -215,21 +212,46 @@ function game() {
     function getBackground() {
         return `images/background/${imageBackground}`
     }
+    function getThemesong(){
+        if (state.value == 3) {
+            inputMusic.value.src = 'themesongs/end.mp3'
+            inputMusic.value.volume = musicVolume.value
+            if (isPlaying.value) inputMusic.value.play()
+            else inputMusic.value.pause()
+        }else if (state.value == 1) {
+            inputMusic.value.src = 'themesongs/background.mp3'
+            inputMusic.value.volume = musicVolume.value
+            if (isPlaying.value) inputMusic.value.play()
+            else inputMusic.value.pause()
+        }else if(now.value.themesong === null){
+            inputMusic.value.volume = musicVolume.value
+            if (isPlaying.value) inputMusic.value.play()
+            else inputMusic.value.pause() 
+        }else{
+            inputMusic.value.src = `themesongs/${now.value.themesong}`
+            inputMusic.value.volume = musicVolume.value
+            if (isPlaying.value) inputMusic.value.play()
+            else inputMusic.value.pause()
+        }
+    }
+    function playPauseSong(){
+        isPlaying.value = !isPlaying.value
+        if (isPlaying.value) getThemesong()
+        else inputMusic.value.pause()
+    }
+
     function goHomePage() {
         effectSound((state.value === 3 ? 'choice.mp3' : 'goHome.mp3'))
         state.value = 1
         currentCharacter.value = 0
         SaveCharacter()
-    }
-    function effectSound(effectName) {
-        effect.value.src = effectName
-        effect.value.volume = 0.44
-        effect.value.play()
+        isPlaying.value = !isPlaying.value
+        playPauseSong()
     }
     
-    return { gameStart, getDialog, getOption, selectOption, showNextDialogBtn, getCurrentState, getEndScene, getName, goHomePage, getCharecterMood, getBackground, showDirectorScene, SaveCharacter}
+    return { gameStart, getDialog, getOption, selectOption, showNextDialogBtn, getCurrentState, getEndScene, getName, goHomePage, getCharecterMood, getBackground, showDirectorScene, SaveCharacter, playPauseSong, getThemesong }
 }
-const { gameStart, getDialog, getOption, selectOption, showNextDialogBtn, getCurrentState, getEndScene, getName, goHomePage, getCharecterMood, getBackground, showDirectorScene, SaveCharacter} = game()
+const { gameStart, getDialog, getOption, selectOption, showNextDialogBtn, getCurrentState, getEndScene, getName, goHomePage, getCharecterMood, getBackground, showDirectorScene, SaveCharacter,  playPauseSong, getThemesong } = game()
 </script>
 <template>
     <!-- Icon Web + Song ------------------------------------------------------------------------------------------------------------------------------->
@@ -238,9 +260,21 @@ const { gameStart, getDialog, getOption, selectOption, showNextDialogBtn, getCur
         <img src="./assets/images/element/Logo.png" class="scale-100" />
         <audio ref="inputMusic" id="startMusic-001" autoplay />
         <button fleid="mybtn" class="w-20 h-10 rounded-full hover:scale-[115%] duration-300 each-in-out bg-pink-500 m-1"
-            @click="playPauseSong">
+            @click="playPauseSong(inputMusic)">
             <span class="flex justify-center text-white">{{ isPlaying ? "Pause" : "Play" }}</span>
         </button>
+        <!-- Setting Button -->
+            <div class="w-20 h-10 rounded-full hover:scale-[115%] duration-300 each-in-out flex justify-center text-white bg-pink-500 m-1"  @click="setting = !setting">
+                Setting</div>
+        <!-- Setting -->
+            <div class="flex w-full h-full bg-white" v-show="setting"> 
+                <div>
+                    <div>Music</div>
+                        <input @input="Musiccontrol()" id="music" v-model="musicVolume" type="range" min="0" step="0.05" max="1" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
+                    <div>Effect</div>
+                        <input @input="Effectcontrol()" id="effect" v-model="effectVolume" type="range" min="0" step="0.05" max="1" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
+                </div>
+            </div>
     </div>
     <!-- firstpage------------------------------------------------------------------------------------------------------------------------------->
     <div class="w-screen h-screen" v-if="getCurrentState() == 1">
@@ -259,19 +293,21 @@ const { gameStart, getDialog, getOption, selectOption, showNextDialogBtn, getCur
         <img src="./assets/images/element/gameName.png" class="w-full h-full absolute -z-50" />
 
         <div class="w-full h-full relative">
+            <!-- Select Character -->
+                <div class=" p-4 w-full max-w-lg h-full md:h-auto">
+                            <div class="absolute flex justify-center items-center w-100 bg-white" v-show="selectCharacter">
+                                <div class="flex w-full h-full"  > <img :src= "characterImg[currentCharacter]"  class="w-80 h-80" /> </div>
+                                          <div class="flex w-20 h-10 "><button @click="BackCharacter" class="m-auto"> Back</button></div>
+                                          <div class="flex w-20 h-10 "><button @click="NextCharacter" class="m-auto"> Next</button></div>
+                                          <div class="flex w-20 h-10 "><button @click="SaveCharacter" class="m-auto"> Save</button></div>
+                                </div>
+                            </div>
             <!-- content right -->
             <div class="w-30  w-1/12 ">
             </div>
             <!-- <img src="./assets/images/element/jingjung.png"
             class="scale-150 -top-8 absolute right-48 cursor-pointer" /> -->
             <div class="w-1/2 h-2/3 absolute right-0 bottom-12">
-                <!-- Select Character -->
-                <div class="flex w-full h-full bg-white" v-show="selectCharacter">
-                    <div class="flex w-full h-full"  > <img :src= "characterImg[currentCharacter]"  class="w-80 h-80" /> </div>
-                              <div class="flex w-20 h-10 "><button @click="BackCharacter" class="m-auto"> Back</button></div>
-                              <div class="flex w-20 h-10 "><button @click="NextCharacter" class="m-auto"> Next</button></div>
-                              <div class="flex w-20 h-10 "><button @click="SaveCharacter" class="m-auto"> Save</button></div>
-                </div>
                 <div class="w-full h-full flex flex-col">
                     <!-- Select Character Button -->
                     <div @click="showCharacter()" class="w-20 h-20 flex justify-center items-center bg-white">
@@ -412,7 +448,7 @@ const { gameStart, getDialog, getOption, selectOption, showNextDialogBtn, getCur
                         class="text-white mali border-red-300 border-2 border-solid font-bold -top-8 h-16 absolute -left-10 flex justify-center place-items-center pl-6 pr-6 text-3xl bg-[#f82b74] rounded-3xl drop-shadow-3xl">
                         <p class="flex text-center text-semibold"> บทสรุปของ "{{ playername }}" </p>
                     </div>
-                    <p class="mr-10 ml-10 mt-14 text-2xl mali indent-10 font-semibold break-words leading-10">
+                    <p class="mr-10 ml-10 mt-14 text-2xl mali indent-10 font-semibold break-words leading-10 overflow-auto">
                         {{ getEndScene().message }}
                     </p>
                 </div>

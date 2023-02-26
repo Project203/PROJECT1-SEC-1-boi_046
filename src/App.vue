@@ -260,7 +260,7 @@ const { gameStart, getDialog, getOption, selectOption, showNextDialogBtn, getCur
         <img src="./assets/images/element/Logo.png" class="scale-100" />
         <audio ref="inputMusic" id="startMusic-001" autoplay />
         <button fleid="mybtn" class="w-20 h-10 rounded-full hover:scale-[115%] duration-300 each-in-out bg-pink-500 m-1"
-            @click="playPauseSong(inputMusic)">
+            @click="playPauseSong()">
             <span class="flex justify-center text-white">{{ isPlaying ? "Pause" : "Play" }}</span>
         </button>
         <!-- Setting Button -->

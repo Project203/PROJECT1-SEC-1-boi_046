@@ -124,7 +124,7 @@
             "score": 0,
             "next": 8,
             "characterMood": null,
-            "effect": null
+            "effect": "punch.mp3"
         }],
         "background": "Under-lx.jpg"
     },
@@ -590,7 +590,7 @@
             "score": 0,
             "next": 32,
             "characterMood": null,
-            "effect": null
+            "effect": "elevator-ding.mp3"
         }],
         "background": "Lx-11-classroom1.jpg"
     },
@@ -608,7 +608,7 @@
             "effect": null
         }
     ],
-        "background": "Pathway.jpg"
+        "background": "Elevator-11.jpg"
     },
     {
         "no": "33",
@@ -749,7 +749,7 @@
             "score": 0,
             "next": 40,
             "characterMood": "no.png",
-            "effect": null
+            "effect": "walk.mp3"
         }
     ],
         "background": "Kfc-table2.jpg"
@@ -948,7 +948,7 @@
             "score": 0,
             "next": 150,
             "characterMood": "smile.png",
-            "effect":"choice.mp3"
+            "effect":"nakomlaugh.mp3"
         }
 
     ],
@@ -957,7 +957,7 @@
     {
         "no": "150",
         "who" : "director",
-        "themesong":null,
+        "themesong":"sadmusic.mp3",
         "dialog": "ผู้บรรยาย : จีบสาวไม่เก่งเอาเสียเลย ไปลองตอบใหม่อีกครั้งนะ",
         "options": [{
             "id": "02A",
@@ -985,7 +985,7 @@
                 "effect": null
             }
         ],
-        "background": "Pathway.jpg"
+        "background": "Elevator-10.jpg"
     },
     {
         "no": "53",
@@ -999,10 +999,10 @@
                 "score": 0,
                 "next": 54,
                 "characterMood": "smile.png",
-                "effect": null
+                "effect": "elevator-ding.mp3"
             }
         ],
-        "background": "Pathway.jpg"
+        "background": "Elevator-10.jpg"
     },
     {
         "no": "54",
@@ -1019,7 +1019,7 @@
                 "effect": null
             }
         ],
-        "background": "Pathway.jpg"
+        "background": "Elevator-10.jpg"
     },
     {
         "no": "55",
@@ -1067,7 +1067,7 @@
                 "score": 0,
                 "next": 58,
                 "characterMood": null,
-                "effect": null
+                "effect": "goose.mp3"
             }
         ],
         "background": "Footpath4.jpg"
@@ -1118,7 +1118,7 @@
                 "score": 0,
                 "next": 61,
                 "characterMood": null,
-                "effect": null
+                "effect": "goose2.mp3"
             }
         ],
         "background": "Goose2.jpg"
@@ -1264,7 +1264,7 @@
                 "score": 0,
                 "next": 68,
                 "characterMood": "Chat/Sticker1.jpg",
-                "effect": null
+                "effect": "chat2.mp3"
             }
         ],
         "background": "Footpath2.jpg"
@@ -1281,7 +1281,7 @@
                 "score": 0,
                 "next": 69,
                 "characterMood": "Chat/Sticker2.jpg",
-                "effect": null
+                "effect": "chat1.mp3"
             }
         ],
         "background": "Footpath2.jpg"
@@ -1366,7 +1366,7 @@
                 "score": 2,
                 "next": 74.1,
                 "characterMood": "Chat/Meme1.jpg",
-                "effect": "choice.mp3"
+                "effect": "chat1.mp3"
             },
             {
                 "id": "04B",
@@ -1374,7 +1374,7 @@
                 "score": 3,
                 "next": 74.2,
                 "characterMood": "Chat/Cat1.jpg",
-                "effect": "choice.mp3"
+                "effect": "chat1.mp3"
             },
             {
                 "id": "04C",
@@ -1382,7 +1382,7 @@
                 "score": -1,
                 "next": 74.3,
                 "characterMood": "Chat/Leaked1.jpg",
-                "effect": "choice.mp3"
+                "effect": "chat1.mp3"
             },
             {
                 "id": "04D",
@@ -1390,7 +1390,7 @@
                 "score": -2,
                 "next": 74.4,
                 "characterMood": "Chat/Pto1.jpg",
-                "effect": "choice.mp3"
+                "effect": "chat1.mp3"
             }
         ],
         "background": "Newday.jpg"
@@ -1407,7 +1407,7 @@
                 "score": 0,
                 "next": 76,
                 "characterMood": "Chat/Meme2.jpg",
-                "effect": null
+                "effect": "chat2.mp3"
             }
         ],
         "background": "Newday.jpg"
@@ -1424,7 +1424,7 @@
                 "score": 0,
                 "next": 76,
                 "characterMood": "Chat/Cat2.jpg",
-                "effect": null
+                "effect": "chat2.mp3"
             }
         ],
         "background": "Newday.jpg"
@@ -1441,7 +1441,7 @@
                 "score": 0,
                 "next": 76,
                 "characterMood": "Chat/Leaked2.jpg",
-                "effect": null
+                "effect": "chat2.mp3"
             }
         ],
         "background": "Newday.jpg"
@@ -1458,7 +1458,7 @@
                 "score": 0,
                 "next": 76,
                 "characterMood": "Chat/Pto2.jpg",
-                "effect": null
+                "effect": "chat2.mp3"
             }
         ],
         "background": "Newday.jpg"
@@ -1764,14 +1764,14 @@
         "options": [
             {
                 "id": "02A",
-                "message": "เราชอบไข่ตุ๋นนะ ชอบมาก ๆ เลย",
+                "message": "เราชอบ$CHARNAMEนะ ชอบมาก ๆ เลย",
                 "score": 8,
                 "next": 92.1,
                 "characterMood": "shy.png",
                 "effect": "choice.mp3"
             },{
                 "id": "04B",
-                "message": "เรา..ชะ...ชอบ..ไข่ตุ๋นนนมาก ๆ เลยยย",
+                "message": "เรา..ชะ...ชอบ..$CHARNAMEมาก ๆ เลยยย",
                 "score": 7,
                 "next": 92.2,
                 "characterMood": "shy.png",

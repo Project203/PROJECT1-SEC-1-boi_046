@@ -80,6 +80,7 @@ function showMenu() {
   console.log(displayMenu.value)
 }
 
+
 //game function :: clouser
 function game() {
   let characterName = { th: "ไข่ตุ๋น", en: "kaitoon" };
@@ -715,65 +716,65 @@ const { getThemesong, playPauseSong, saveCharacter, configPage, groupInfoPage, c
 </template>
 <style scoped>
 body {
-  background-color: #000000 !important;
+    background-color: #000000 !important;
 }
 
 .mali {
-  font-family: "Mali", cursive;
+    font-family: "Mali", cursive;
 }
 
 .boi-input {
-  padding: 12px 20px;
-  margin: 8px 0;
-  box-sizing: border-box;
-  border: 5px solid #f82b74;
-  -webkit-transition: 0.5s;
-  transition: 0.5s;
-  outline: none;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 5px solid #f82b74;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    outline: none;
 }
 
 .left {
-  transform: scaleX(-1);
+    transform: scaleX(-1);
 }
 
 .bounce {
-  animation: bounce 1s infinite;
+    animation: bounce 1s infinite;
 }
 
 @keyframes bounce {
 
-  0%,
-  100% {
-    transform: translateX(-20%);
-    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
-  }
+    0%,
+    100% {
+        transform: translateX(-20%);
+        animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+    }
 
-  50% {
-    transform: translateX(0);
-    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
-  }
+    50% {
+        transform: translateX(0);
+        animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+    }
 }
 
 .shadowcharecter {
-  animation: shadowchar 1s infinite;
+    animation: shadowchar 1s infinite;
 }
 
 @keyframes shadowchar {
 
-  0%,
-  100% {
-    transform: translateY(1%);
-    animation-timing-function: cubic-bezier(-0.1, 0, 1, 0.8);
-  }
+    0%,
+    100% {
+        transform: translateY(1%);
+        animation-timing-function: cubic-bezier(-0.1, 0, 1, 0.8);
+    }
 
-  50% {
-    transform: translateY(0.1%);
-    animation-timing-function: cubic-bezier(0.2, 0.1, 0.8, 1);
-  }
+    50% {
+        transform: translateY(0.1%);
+        animation-timing-function: cubic-bezier(0.2, 0.1, 0.8, 1);
+    }
 }
 
 .page-change {
-  animation: pageTransitionFade 1s ease-in-out;
+    animation: pageTransitionFade 1s ease-in-out;
 }
 
 @keyframes pageTransitionFade {
@@ -792,43 +793,43 @@ body {
 }
 
 .skip {
-  animation: skip-annimation 1.2s infinite ease-in;
+    animation: skip-annimation 1.2s infinite ease-in;
 }
 
 @keyframes skip-annimation {
-  50% {
-    transform: translateX(10%)
-  }
+    50% {
+        transform: translateX(10%)
+    }
 }
 
 .show-option {
-  animation: option-annimation 1s ease-in-out;
+    animation: option-annimation 1s ease-in-out;
 }
 
 @keyframes option-annimation {
-  from {
-    transform: translateX(10%);
-    opacity: 0.1;
-  }
+    from {
+        transform: translateX(10%);
+        opacity: 0.1;
+    }
 
-  to {
-    transform: translateX(0)
-  }
+    to {
+        transform: translateX(0)
+    }
 }
 
 .show-dialog {
-  animation: dialog-bar-annimation 1s ease-in-out;
+    animation: dialog-bar-annimation 1s ease-in-out;
 }
 
 @keyframes dialog-bar-annimation {
-  from {
-    transform: translateY(5%);
-    opacity: 10%;
-  }
+    from {
+        transform: translateY(5%);
+        opacity: 10%;
+    }
 
-  to {
-    transform: translateX(0)
-  }
+    to {
+        transform: translateX(0)
+    }
 }
 
 .retry-btn {
@@ -865,6 +866,7 @@ body {
     typing 1s steps(1500, end),
     blink-caret .75s step-end infinite;
 }
+
 
 /* The typing effect */
 @keyframes typing {

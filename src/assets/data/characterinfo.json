@@ -1,38 +1,44 @@
 [
     {
-        "charNameTH":"ไข่ตุ๋น",
-        "charNameEng": "kaitoon",
+        "th":"ไข่ตุ๋น",
+        "en": "kaitoon",
         "image":"images/character/kaitoon/base.png",
-        "message":"dsasadsa"
+        "message":"dsasadsa",
+        "who":"อีนางเอก"
     },
     {
-        "charNameTH":"ไข่ต้ม",
-        "charNameEng": "kaitoon",
-        "image":"images/character/kaitom/confi.png",
-        "message":"sadsadsa"
+        "th":"ไข่น้ำ",
+        "en": "kainam",
+        "image":"images/character/kaidu/base.png",
+        "message":"sadsadsa",
+        "who":"อีดุ"
     },
     {
-        "charNameTH":"ไข่ตุ๋น",
-        "charNameEng": "kaitoon",
-        "image":"images/character/kainam/base.png",
-        "message":"sadsadsa"
+        "th": "ไข่ต้ม",
+        "en": "kaitoom",
+        "image": "images/character/kaidee/base.png",
+        "message": "sadsadsa",
+        "who": "อีดี"
     },
     {
-        "charNameTH":"ไข่ตุ๋น",
-        "charNameEng": "kaitoon",
-        "image":"images/character/kaitoon/base.png",
-        "message":""
+        "th":"ไข่แว่น",
+        "en": "kaivan",
+        "image":"images/character/kainerd/base.png",
+        "message":"sadsadsa",
+        "who":"อีเนิร์ด"
     },
     {
-        "charNameTH":"ไข่ตุ๋น",
-        "charNameEng": "kaitoon",
-        "image":"images/character/kaitoon/base.png",
-        "message":""
+        "th":"ไข่เจียว",
+        "en": "kaijeaw",
+        "image":"images/character/kainu/base.png",
+        "message":"ไม่ได้อยากไปด้วยสักหน่อย",
+        "who":"อีนู๋"
     },
     {
-        "charNameTH":"ไข่ตุ๋น",
-        "charNameEng": "kaitoon",
-        "image":"images/character/kaitoon/base.png",
-        "message":""
+        "th":"ไข่เย็น",
+        "en": "kaiyen",
+        "image":"images/character/kaiyen/base.png",
+        "message":"",
+        "who":"อีเย็นชา"
     }
 ]

@@ -7,6 +7,9 @@ import randomname from "./assets/data/randomName.json";
 // user input data
 let playername = ref('ไกซ์')
 
+// select Character
+let selected = ref(null)
+
 onMounted(() => {
   inputMusic.value.src = 'themesongs/background.mp3'
   isPlaying.value = !isPlaying.value
@@ -20,12 +23,15 @@ const musicVolume = ref(0.4)
 const effect = ref(null)
 const effectVolume = ref(1.0)
 
-// setting button
+// btn
 const setting = ref(false)
+const achieve = ref(false)
+const info = ref(false)
+const help = ref(false)
 
 // menu
 let count = ref(0)
-let displayMenu = ref(false)
+const displayMenu = ref(false)
 
 const effectSound = (effectName) => {
   effect.value.src = `effects/${effectName}`
@@ -41,16 +47,10 @@ const Musiccontrol = () => {
 }
 // select character
 const selectCharacter = ref(false)
-const showCharacter = () => {
-  selectCharacter.value = !selectCharacter.value
-}
-const characterImg = ['images/character/kaitoon/base.png',
-  'images/character/kaidu/base.png',
-  'images/character/kaidee/base.png',
-  'images/character/kainerd/base.png',
-  'images/character/kainu/base.png',
-  'images/character/kaiyen/base.png']
+
 let currentCharacter = ref(0)
+
+
 const nextCharacter = () => {
   if (currentCharacter.value === 5) {
     currentCharacter.value = 0
@@ -71,17 +71,10 @@ const backCharacter = () => {
 const randomName = () => {
   const randomed = Math.floor(Math.random() * randomname.length + 1);
   playername.value = randomname[randomed]
-  let effectName = 'dice.mp3'
-  effectSound(effectName)
+  effectSound('dice.mp3')
 }
 
-function showMenu() {
-  displayMenu.value = !displayMenu.value
-  console.log(displayMenu.value)
-}
-
-
-//game function :: clouser
+//game function :: closure
 function game() {
   let characterName = { th: "ไข่ตุ๋น", en: "kaitoon" };
   let user = { name: "" }
@@ -104,36 +97,25 @@ function game() {
 
   function saveCharacter() {
     if (currentCharacter.value === 0) {
-      characterName.value = { th: "ไข่ตุ๋น", en: "kaitoon" }
+      characterName.value = characterinfo[0]
     }
     if (currentCharacter.value === 1) {
-      characterName.value = { th: "ไข่ดุ", en: "kaidu" }
+      characterName.value = characterinfo[1]
     }
     if (currentCharacter.value === 2) {
-      characterName.value = { th: "ไข่ดี", en: "kaidee" }
+      characterName.value = characterinfo[2]
     }
     if (currentCharacter.value === 3) {
-      characterName.value = { th: "ไข่เนิร์ด", en: "kainerd" }
+      characterName.value = characterinfo[3]
     }
     if (currentCharacter.value === 4) {
-      characterName.value = { th: "ไข่หนู", en: "kainu" }
+      characterName.value = characterinfo[4]
     }
     if (currentCharacter.value === 5) {
-      characterName.value = { th: "ไข่เย็น", en: "kaiyen" }
+      characterName.value = characterinfo[5]
     }
     selectCharacter.value = false
-  }
-
-  function configPage() {
-    state.value = 4
-  }
-
-  function charDetailPage() {
-    state.value = 5
-  }
-
-  function groupInfoPage() {
-    state.value = 6
+    selected.value = 'DATE WITH ' + characterName.value.en.toUpperCase()
   }
 
   function setScene(no) {
@@ -275,10 +257,9 @@ function game() {
   }
 
   function goHomePage() {
+    selected.value = null
     effectSound((state.value === 2 ? 'goHome.mp3' : 'choice.mp3'))
     state.value = 1
-    currentCharacter.value = 0
-    saveCharacter()
     isPlaying.value = !isPlaying.value
     playPauseSong()
   }
@@ -295,11 +276,11 @@ function game() {
     else inputMusic.value.pause()
   }
 
-  return { getThemesong, playPauseSong, saveCharacter, configPage, groupInfoPage, charDetailPage, gameStart, getDialog, getOption, selectOption, showNextDialogBtn, getCurrentState, getEndScene, getName, goHomePage, getCharecterMood, getBackground, showDirectorScene }
+  return { getThemesong, playPauseSong, saveCharacter, gameStart, getDialog, getOption, selectOption, showNextDialogBtn, getCurrentState, getEndScene, getName, goHomePage, getCharecterMood, getBackground, showDirectorScene }
 }
 
 
-const { getThemesong, playPauseSong, saveCharacter, configPage, groupInfoPage, charDetailPage, gameStart, getDialog, getOption, selectOption, showNextDialogBtn, getCurrentState, getEndScene, getName, goHomePage, getCharecterMood, getBackground, showDirectorScene } = game()
+const { getThemesong, playPauseSong, saveCharacter, gameStart, getDialog, getOption, selectOption, showNextDialogBtn, getCurrentState, getEndScene, getName, goHomePage, getCharecterMood, getBackground, showDirectorScene } = game()
 
 
 </script>
@@ -318,18 +299,31 @@ const { getThemesong, playPauseSong, saveCharacter, configPage, groupInfoPage, c
       class="w-20 h-10 rounded-full hover:scale-[115%] duration-300 each-in-out flex justify-center text-white bg-pink-500 m-1"
       @click="setting = !setting">
       Setting</div>
-    <!-- Setting -->
-    <div class="flex w-full h-full bg-white" v-show="setting">
-      <div>
-        <div>Music</div>
-        <input @input="Musiccontrol()" id="music" v-model="musicVolume" type="range" min="0" step="0.05" max="1"
+  </div>
+
+  <!-- Setting sound v-show setting-->
+  <div class="flex w-full h-full bg-red-200 bg-opacity-50 absolute justify-center rounded-3xl" v-show="setting">
+    <div class="flex flex-col w-1/2 bg-black m-48 mt-24 p-16 z-30 bg-opacity-90 rounded-3xl">
+      <div class="bg-slate-50 rounded-lg p-5 my-3">
+        <div class="flex justify-between">
+        <div class="text-lg font-bold">Background Music </div>
+        <div class="flex justify-center"> {{ musicVolume*100 }}% </div>
+      </div>
+        <input @input="Musiccontrol()" id="music" v-model="musicVolume" type="range" min="0" step="0.01" max="1"
           class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
-        <div>Effect</div>
-        <input @input="Effectcontrol()" id="effect" v-model="effectVolume" type="range" min="0" step="0.05" max="1"
+      </div>
+      <div class="bg-slate-50 rounded-lg p-5 my-3">
+      <div class="flex justify-between">
+        <div class="text-lg font-bold">Sound Effect </div>
+        <div class="flex justify-center"> {{ effectVolume*100 }}% </div>
+      </div>
+        
+        <input @input="Effectcontrol()" id="effect" v-model="effectVolume" type="range" min="0" step="0.01" max="1"
           class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
       </div>
     </div>
   </div>
+  
   <!-- firstpage------------------------------------------------------------------------------------------------------------------------------->
   <div class="w-screen h-screen" v-if="getCurrentState() == 1">
     <img src="./assets/images/other/Enerd.png"
@@ -348,221 +342,94 @@ const { getThemesong, playPauseSong, saveCharacter, configPage, groupInfoPage, c
 
 
     <div class="w-full h-full relative">
+      <div class="w-full h-full flex flex-col justify-center items-center pb-14">
 
-      <!-- content right -->
-      <!-- <img src="./assets/images/element/jingjung.png"
-                                                      class="scale-150 -top-8 absolute right-48 cursor-pointer" /> -->
+        <!-- select Character -->
+        <div
+          class="flex justify-center items-center bg-white bg-opacity-90  rounded-3xl z-30 w-[60%] pl-8 pr-8  mali font-bold"
+          v-show="selectCharacter">
+          <div class="absolute top-14 text-5xl text-[#f82b74] ">N' {{ characterinfo[currentCharacter].en.toUpperCase()
+          }}
+          </div>
+          <div class="absolute right-[8.725em] top-14 text-5xl text-[#f82b74] hover:scale-110 duration-200 ease-in-out">
+            <ion-icon @click="selectCharacter = !selectCharacter" name="close-sharp"></ion-icon>
+          </div>
+          <div class="flex w-20 h-10 text-7xl text-[#f82b74] hover:scale-110 duration-200 ease-in-out"
+            @click="backCharacter"> <ion-icon name="chevron-back-outline"></ion-icon></div>
+          <div class="flex w-full h-full">
+            <img :src="characterinfo[currentCharacter].image" />
+          </div>
+          <div class="flex w-20 h-10 hover:skip text-7xl text-[#f82b74] hover:scale-110 duration-200 ease-in-out"
+            @click="nextCharacter"><ion-icon name="chevron-forward-outline"></ion-icon></div>
+        </div>
+
+        <div
+          class="bg-white font-semibold text-5xl -mt-28 z-50 hover:scale-[110%] duration-200 each-in-out text-[#f82b74] font-bold hover:bg-[#f82b74] hover:text-white transition delay-100 hover:border-white cursor-pointer flex px-5 py-3 mr-5 w-[18%] h-fit justify-center rounded-full border-[#f82b74] border-4 border-solid"
+          @click="saveCharacter" v-show="selectCharacter">
+          Save
+        </div>
+      </div>
+
+      <!-- Achivement -->
+
+      <!-- help -->
+
+      <!-- info -->
+
       <div class="w-1/2 h-3/5 absolute right-20 bottom-12">
-        <div class="w-full h-full flex flex-col mt-10 place-items-end">
-          <div
-            class="h-1/6 w-1/2 ml-52 rounded-full flex justify-center items-center text-4xl mali mt-44 text-[#9B4F5E] font-bold">
-            <input placeholder="Enter Your Name" v-model="playername" maxlength="18"
-              class="text-center boi-input focus:border-[#9B4F5E] rounded-tl-3xl  rounded-br-3xl h-20 p-20">
-          </div>
-          <div @click="showCharacter" class="w-20 h-20 flex justify-center items-center bg-white">
-            Select Character
-          </div>
-          <div class=" p-4 w-full max-w-lg h-full md:h-auto z-50">
-            <div class="absolute flex justify-center items-center w-100 bg-white" v-show="selectCharacter">
-              <div class="flex w-full h-full"> <img :src="characterImg[currentCharacter]" class="w-80 h-80" /> </div>
-              <div class="flex w-20 h-10 "><button @click="backCharacter" class="m-auto"> Back</button></div>
-              <div class="flex w-20 h-10 "><button @click="nextCharacter" class="m-auto"> Next</button></div>
-              <div class="flex w-20 h-10 "><button @click="saveCharacter" class="m-auto"> Save</button></div>
+        <div class="w-full h-full flex flex-col mt-6 place-items-end relative">
+          <div class="h-1/6 w-1/2 rounded-full flex justify-center items-center text-3xl mali text-[#9B4F5E] font-bold">
+            <div>
+              <input placeholder="Enter Your Name" v-model="playername" maxlength="18" required
+                class="text-center boi-input focus:border-[#9B4F5E] rounded-tl-3xl  rounded-br-3xl h-16 mr-5">
+            </div>
+            <div @click="randomName"
+              class="transition delay-100 hover:scale-[115%] duration-200 each-in-out cursor-pointer flex justify-center place-items-center text-5xl rounded-full p-3 border-[#f82b74] border-4 border-solid bg-white absolute right-0">
+              <ion-icon name="dice-outline"></ion-icon>
             </div>
           </div>
-          <div @click="randomName" class="w-20 h-20 flex justify-center items-center bg-white">
-            Random
+
+          <div @click="selectCharacter = !selectCharacter"
+            class="mali hover:scale-[110%] duration-200 each-in-out text-[#f82b74] font-bold hover:bg-[#f82b74] hover:text-white transition delay-100 hover:border-white cursor-pointer mt-5 border-[#f82b74] border-4 border-solid h-[12%] w-fit pl-20 pr-20 ml-64 rounded-full flex justify-center items-center text-4xl bg-white">
+            {{ selected === null ? 'SELECT CHARACTER' : selected }}
+            <div class="pl-4 flex items-center">
+              <ion-icon name="heart-half-sharp"></ion-icon>
+            </div>
           </div>
           <div @click="gameStart"
+            :style="selected === null ? 'pointer-events:none; color:#D3D3D3; border-color:#D3D3D3; background-color:grey' : ''"
             class="mali hover:scale-[110%] duration-200 each-in-out text-[#f82b74] font-bold hover:bg-[#f82b74] hover:text-white transition delay-100 hover:border-white cursor-pointer mt-8 border-[#f82b74] border-4 border-solid h-[12%] w-fit pl-20 pr-20 ml-64 rounded-full flex justify-center items-center text-4xl bg-white">
             START GAME
+            <div class="pl-4 flex items-center">
+              <ion-icon name="arrow-forward-sharp"></ion-icon>
+            </div>
           </div>
-          <div @click="configPage"
+          <div @click="setting = !setting"
             class="mali hover:scale-[110%] duration-200 each-in-out text-[#f82b74] font-bold hover:bg-[#f82b74] hover:text-white transition delay-100 hover:border-white cursor-pointer mt-8 border-[#f82b74] border-4 border-solid h-[12%] w-fit pl-20 pr-20 ml-64 rounded-full flex justify-center items-center text-4xl bg-white">
-            CONFIG
+            SETTING
+            <div class="pl-4 flex items-center">
+              <ion-icon name="settings-sharp"></ion-icon>
+            </div>
           </div>
-          <div @click="charDetailPage"
+          <div @click="achieve = !achieve"
             class="mali hover:scale-[110%] duration-200 each-in-out text-[#f82b74] font-bold hover:bg-[#f82b74] hover:text-white transition delay-100 hover:border-white cursor-pointer mt-8 border-[#f82b74] border-4 border-solid h-[12%] w-fit pl-20 pr-20 ml-64 rounded-full flex justify-center items-center text-4xl bg-white">
-            CHARACTER DETAILS
+            ACHIEVEMENT
+            <div class="pl-4 flex items-center">
+              <ion-icon name="ribbon-sharp"></ion-icon>
+            </div>
           </div>
-          <div @click="groupInfoPage"
-            class="mali hover:scale-[110%] duration-200 each-in-out text-[#f82b74] font-bold hover:bg-[#f82b74] hover:text-white transition delay-100 hover:border-white cursor-pointer mt-8 border-[#f82b74] border-4 border-solid h-[12%] w-fit pl-20 pr-20 ml-64 rounded-full flex justify-center items-center text-4xl bg-white">
-            Group INFO
-          </div>
-          <div class="mt-4 h-1/6 w-96 ml-64 grid grid-cols-3 gap-20 p-4">
-            <div @click="howtoPlay"
+          <div class="mt-5 h-1/6 w-96 ml-64 grid grid-cols-3 gap-20 p-4">
+            <div @click="help = !help"
               class="text-4xl bg-white rounded-full border-[#f82b74] border-4 border-solid flex justify-center items-center hover:scale-[115%] duration-200 each-in-out text-[#f82b74] font-bold hover:bg-[#f82b74] hover:text-white transition delay-100 hover:border-white cursor-pointer">
-              i
+              <ion-icon name="help-sharp"></ion-icon>
+            </div>
+            <div @click="info = !info"
+              class="text-4xl bg-white rounded-full flex border-[#f82b74] border-4 border-solid justify-center items-center hover:scale-[115%] duration-200 each-in-out text-[#f82b74] font-bold hover:bg-[#f82b74] hover:text-white transition delay-100 hover:border-white cursor-pointer">
+              <ion-icon name="information-sharp"></ion-icon>
             </div>
             <div @click=""
-              class="text-4xl bg-white rounded-full flex border-[#f82b74] border-4 border-solid justify-center items-center hover:scale-[115%] duration-200 each-in-out text-[#f82b74] font-bold hover:bg-[#f82b74] hover:text-white transition delay-100 hover:border-white cursor-pointer">
-              i
-            </div>
-            <div @click=""
               class="text-4xl bg-white rounded-full border-[#f82b74] border-4 border-solid flex justify-center items-center hover:scale-[115%] duration-200 each-in-out text-[#f82b74] font-bold hover:bg-[#f82b74] hover:text-white transition delay-100 hover:border-white cursor-pointer">
-              i
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Config------------------------------------------------------------------------------------------------------------------------------->
-  <div class="w-screen h-screen" v-if="getCurrentState() == 4">
-    <img src="./assets/images/element/gameName.png" class="w-full h-full absolute -z-50" />
-    <div class="w-full h-full relative">
-      <!-- content right -->
-      <!-- <img src="./assets/images/element/jingjung.png"
-                                                      class="scale-150 -top-8 absolute right-48 cursor-pointer" /> -->
-      <div class="w-1/2 h-3/5 absolute right-20 bottom-12">
-        <div class="w-full h-full flex flex-col mt-10 place-items-end">
-          <!-- <div
-                                                        class="h-1/6 w-1/2 ml-52 rounded-full flex justify-center items-center text-4xl mali mt-44 text-[#9B4F5E] font-bold">
-                                                        <input placeholder="Enter Your Name" v-model="playername" maxlength="18"
-                                                          class="text-center boi-input focus:border-[#9B4F5E] rounded-tl-3xl  rounded-br-3xl h-20 p-20">
-                                                      </div> -->
-          <div @click="goHomePage"
-            class="opacity-50 mali hover:scale-[110%] duration-200 each-in-out text-[#f82b74] font-bold hover:bg-[#f82b74] hover:text-white transition delay-100 hover:border-white cursor-pointer mt-8 border-[#f82b74] border-4 border-solid h-[12%] w-fit pl-20 pr-20 ml-64 rounded-full flex justify-center items-center text-4xl bg-white">
-            BACK TO FIRST PAGE
-          </div>
-          <div @click="configPage"
-            class="mali hover:scale-[110%] duration-200 each-in-out text-[#f82b74] font-bold hover:bg-[#f82b74] hover:text-white transition delay-100 hover:border-white cursor-pointer mt-8 border-[#f82b74] border-4 border-solid h-[12%] w-fit pl-20 pr-20 ml-64 rounded-full flex justify-center items-center text-4xl bg-white">
-            CONFIG
-          </div>
-          <div @click="charDetailPage"
-            class="opacity-50 mali hover:scale-[110%] duration-200 each-in-out text-[#f82b74] font-bold hover:bg-[#f82b74] hover:text-white transition delay-100 hover:border-white cursor-pointer mt-8 border-[#f82b74] border-4 border-solid h-[12%] w-fit pl-20 pr-20 ml-64 rounded-full flex justify-center items-center text-4xl bg-white">
-            CHARACTER DETAILS
-          </div>
-          <div @click="groupInfoPage"
-            class="opacity-50 mali hover:scale-[110%] duration-200 each-in-out text-[#f82b74] font-bold hover:bg-[#f82b74] hover:text-white transition delay-100 hover:border-white cursor-pointer mt-8 border-[#f82b74] border-4 border-solid h-[12%] w-fit pl-20 pr-20 ml-64 rounded-full flex justify-center items-center text-4xl bg-white">
-            Group INFO
-          </div>
-          <div class="mt-4 h-1/6 w-96 ml-64 grid grid-cols-3 gap-20 p-4 opacity-50">
-            <div @click="gameStart"
-              class="text-4xl bg-white rounded-full border-[#f82b74] border-4 border-solid flex justify-center items-center hover:scale-[115%] duration-200 each-in-out text-[#f82b74] font-bold hover:bg-[#f82b74] hover:text-white transition delay-100 hover:border-white cursor-pointer">
-              i
-            </div>
-            <div @click="gameStart"
-              class="text-4xl bg-white rounded-full flex border-[#f82b74] border-4 border-solid justify-center items-center hover:scale-[115%] duration-200 each-in-out text-[#f82b74] font-bold hover:bg-[#f82b74] hover:text-white transition delay-100 hover:border-white cursor-pointer">
-              i
-            </div>
-            <div @click="gameStart"
-              class="text-4xl bg-white rounded-full border-[#f82b74] border-4 border-solid flex justify-center items-center hover:scale-[115%] duration-200 each-in-out text-[#f82b74] font-bold hover:bg-[#f82b74] hover:text-white transition delay-100 hover:border-white cursor-pointer">
-              i
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Charracter Details------------------------------------------------------------------------------------------------------------------------------->
-  <div class="w-screen h-screen" v-if="getCurrentState() == 5">
-    <img src="./assets/images/element/gameName.png" class="w-full h-full absolute -z-50  m-auto" />
-    <div class="w-full h-full relative">
-      <!-- content left -->
-      <div class="ml-28 bg-opacity-50 w-[47%] h-full  bg-white  overflow-auto ">
-        <div class="h-40 items-center text-6xl flex justify-center font-bold">
-          CHARACTER DETAILS
-        </div>
-        <div class="flex border-2 border">
-          <input placeholder="Search" class="mt-5">
-        </div>
-        <div class="w-full  mt-5 z-10" v-for="(character, index) in characterinfo" :key="index">
-          <div class="">
-            <img :src="character.image">
-          </div>
-          <div class="text-center">
-            {{ character.message }}
-          </div>
-        </div>
-
-      </div>
-      <div class="w-1/2 h-3/5 absolute right-20 bottom-12">
-        <div class="w-full h-full flex flex-col mt-10 place-items-end">
-          <!-- <div
-                                                        class="h-1/6 w-1/2 ml-52 rounded-full flex justify-center items-center text-4xl mali mt-44 text-[#9B4F5E] font-bold">
-                                                        <input placeholder="Enter Your Name" v-model="playername" maxlength="18"
-                                                          class="text-center boi-input focus:border-[#9B4F5E] rounded-tl-3xl  rounded-br-3xl h-20 p-20">
-                                                      </div> -->
-          <div @click="goHomePage"
-            class="opacity-50 mali hover:scale-[110%] duration-200 each-in-out text-[#f82b74] font-bold hover:bg-[#f82b74] hover:text-white transition delay-100 hover:border-white cursor-pointer mt-8 border-[#f82b74] border-4 border-solid h-[12%] w-fit pl-20 pr-20 ml-64 rounded-full flex justify-center items-center text-4xl bg-white">
-            BACK TO FIRST PAGE
-          </div>
-          <div @click="configPage"
-            class="opacity-50 mali hover:scale-[110%] duration-200 each-in-out text-[#f82b74] font-bold hover:bg-[#f82b74] hover:text-white transition delay-100 hover:border-white cursor-pointer mt-8 border-[#f82b74] border-4 border-solid h-[12%] w-fit pl-20 pr-20 ml-64 rounded-full flex justify-center items-center text-4xl bg-white">
-            CONFIG
-          </div>
-          <div @click="charDetailPage"
-            class="mali hover:scale-[110%] duration-200 each-in-out text-[#f82b74] font-bold hover:bg-[#f82b74] hover:text-white transition delay-100 hover:border-white cursor-pointer mt-8 border-[#f82b74] border-4 border-solid h-[12%] w-fit pl-20 pr-20 ml-64 rounded-full flex justify-center items-center text-4xl bg-white">
-            CHARACTER DETAILS
-          </div>
-          <div @click="groupInfoPage"
-            class="opacity-50 mali hover:scale-[110%] duration-200 each-in-out text-[#f82b74] font-bold hover:bg-[#f82b74] hover:text-white transition delay-100 hover:border-white cursor-pointer mt-8 border-[#f82b74] border-4 border-solid h-[12%] w-fit pl-20 pr-20 ml-64 rounded-full flex justify-center items-center text-4xl bg-white">
-            Group INFO
-          </div>
-          <div class="mt-4 h-1/6 w-96 ml-64 grid grid-cols-3 gap-20 p-4 opacity-50">
-            <div @click="gameStart"
-              class="text-4xl bg-white rounded-full border-[#f82b74] border-4 border-solid flex justify-center items-center hover:scale-[115%] duration-200 each-in-out text-[#f82b74] font-bold hover:bg-[#f82b74] hover:text-white transition delay-100 hover:border-white cursor-pointer">
-              i
-            </div>
-            <div @click="gameStart"
-              class="text-4xl bg-white rounded-full flex border-[#f82b74] border-4 border-solid justify-center items-center hover:scale-[115%] duration-200 each-in-out text-[#f82b74] font-bold hover:bg-[#f82b74] hover:text-white transition delay-100 hover:border-white cursor-pointer">
-              i
-            </div>
-            <div @click="gameStart"
-              class="text-4xl bg-white rounded-full border-[#f82b74] border-4 border-solid flex justify-center items-center hover:scale-[115%] duration-200 each-in-out text-[#f82b74] font-bold hover:bg-[#f82b74] hover:text-white transition delay-100 hover:border-white cursor-pointer">
-              i
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Group Info------------------------------------------------------------------------------------------------------------------------------->
-  <div class="w-screen h-screen" v-if="getCurrentState() == 6">
-    <img src="./assets/images/element/gameName.png" class="w-full h-full absolute -z-50 " />
-    <div class="w-full h-full relative">
-      <!-- content right -->
-      <!-- <img src="./assets/images/element/jingjung.png"
-                                                      class="scale-150 -top-8 absolute right-48 cursor-pointer" /> -->
-      <div class="w-1/2 h-3/5 absolute right-20 bottom-12">
-        <div class="w-full h-full flex flex-col mt-10 place-items-end">
-          <!-- <div
-                                                        class="h-1/6 w-1/2 ml-52 rounded-full flex justify-center items-center text-4xl mali mt-44 text-[#9B4F5E] font-bold">
-                                                        <input placeholder="Enter Your Name" v-model="playername" maxlength="18"
-                                                          class="text-center boi-input focus:border-[#9B4F5E] rounded-tl-3xl  rounded-br-3xl h-20 p-20">
-                                                      </div> -->
-          <div @click="goHomePage"
-            class="opacity-50 mali hover:scale-[110%] duration-200 each-in-out text-[#f82b74] font-bold hover:bg-[#f82b74] hover:text-white transition delay-100 hover:border-white cursor-pointer mt-8 border-[#f82b74] border-4 border-solid h-[12%] w-fit pl-20 pr-20 ml-64 rounded-full flex justify-center items-center text-4xl bg-white">
-            BACK TO FIRST PAGE
-          </div>
-          <div @click="configPage"
-            class="opacity-50 mali hover:scale-[110%] duration-200 each-in-out text-[#f82b74] font-bold hover:bg-[#f82b74] hover:text-white transition delay-100 hover:border-white cursor-pointer mt-8 border-[#f82b74] border-4 border-solid h-[12%] w-fit pl-20 pr-20 ml-64 rounded-full flex justify-center items-center text-4xl bg-white">
-            CONFIG
-          </div>
-          <div @click="charDetailPage"
-            class="opacity-50 mali hover:scale-[110%] duration-200 each-in-out text-[#f82b74] font-bold hover:bg-[#f82b74] hover:text-white transition delay-100 hover:border-white cursor-pointer mt-8 border-[#f82b74] border-4 border-solid h-[12%] w-fit pl-20 pr-20 ml-64 rounded-full flex justify-center items-center text-4xl bg-white">
-            CHARACTER DETAILS
-          </div>
-          <div @click="groupInfoPage"
-            class="mali hover:scale-[110%] duration-200 each-in-out text-[#f82b74] font-bold hover:bg-[#f82b74] hover:text-white transition delay-100 hover:border-white cursor-pointer mt-8 border-[#f82b74] border-4 border-solid h-[12%] w-fit pl-20 pr-20 ml-64 rounded-full flex justify-center items-center text-4xl bg-white">
-            Group INFO
-          </div>
-          <div class="mt-4 h-1/6 w-96 ml-64 grid grid-cols-3 gap-20 p-4 opacity-50">
-            <div @click="gameStart"
-              class="text-4xl bg-white rounded-full border-[#f82b74] border-4 border-solid flex justify-center items-center hover:scale-[115%] duration-200 each-in-out text-[#f82b74] font-bold hover:bg-[#f82b74] hover:text-white transition delay-100 hover:border-white cursor-pointer">
-              i
-            </div>
-            <div @click="gameStart"
-              class="text-4xl bg-white rounded-full flex border-[#f82b74] border-4 border-solid justify-center items-center hover:scale-[115%] duration-200 each-in-out text-[#f82b74] font-bold hover:bg-[#f82b74] hover:text-white transition delay-100 hover:border-white cursor-pointer">
-              i
-            </div>
-            <div @click="gameStart"
-              class="text-4xl bg-white rounded-full border-[#f82b74] border-4 border-solid flex justify-center items-center hover:scale-[115%] duration-200 each-in-out text-[#f82b74] font-bold hover:bg-[#f82b74] hover:text-white transition delay-100 hover:border-white cursor-pointer">
-              i
+              <ion-icon name="share-social-sharp"></ion-icon>
             </div>
           </div>
         </div>
@@ -579,7 +446,7 @@ const { getThemesong, playPauseSong, saveCharacter, configPage, groupInfoPage, c
           class="z-50 mr-auto ml-36 text-3xl mali font-semibold text-[#f82b74] mt-4 mr-12 hover:bg-rose-600 hover:text-white cursor-pointer border-[#f82b74] border-2 border-solid place-self-center flex place-items-center rounded-[15px] py-3 pl-8 pr-8 bg-white">
           Scene: {{ count }}
         </div>
-        <div @click="showMenu"
+        <div @click="displayMenu = !displayMenu"
           class="focus:bg-rose-600 z-50 text-3xl mali font-semibold text-[#f82b74] mt-4 mr-12 hover:bg-rose-600 hover:text-white cursor-pointer border-[#f82b74] border-2 border-solid place-self-center flex place-items-center rounded-[15px] py-3 pl-8 pr-8 bg-white">
           MENU
         </div>
@@ -716,65 +583,64 @@ const { getThemesong, playPauseSong, saveCharacter, configPage, groupInfoPage, c
 </template>
 <style scoped>
 body {
-    background-color: #000000 !important;
+  background-color: #000000 !important;
 }
 
 .mali {
-    font-family: "Mali", cursive;
+  font-family: "Mali", cursive;
 }
 
 .boi-input {
-    padding: 12px 20px;
-    margin: 8px 0;
-    box-sizing: border-box;
-    border: 5px solid #f82b74;
-    -webkit-transition: 0.5s;
-    transition: 0.5s;
-    outline: none;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 4px solid #f82b74;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  outline: none;
 }
 
 .left {
-    transform: scaleX(-1);
+  transform: scaleX(-1);
 }
 
 .bounce {
-    animation: bounce 1s infinite;
+  animation: bounce 1s infinite;
 }
 
 @keyframes bounce {
 
-    0%,
-    100% {
-        transform: translateX(-20%);
-        animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
-    }
+  0%,
+  100% {
+    transform: translateX(-20%);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
 
-    50% {
-        transform: translateX(0);
-        animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
-    }
+  50% {
+    transform: translateX(0);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
 }
 
 .shadowcharecter {
-    animation: shadowchar 1s infinite;
+  animation: shadowchar 1s infinite;
 }
 
 @keyframes shadowchar {
 
-    0%,
-    100% {
-        transform: translateY(1%);
-        animation-timing-function: cubic-bezier(-0.1, 0, 1, 0.8);
-    }
+  0%,
+  100% {
+    transform: translateY(1%);
+    animation-timing-function: cubic-bezier(-0.1, 0, 1, 0.8);
+  }
 
-    50% {
-        transform: translateY(0.1%);
-        animation-timing-function: cubic-bezier(0.2, 0.1, 0.8, 1);
-    }
+  50% {
+    transform: translateY(0.1%);
+    animation-timing-function: cubic-bezier(0.2, 0.1, 0.8, 1);
+  }
 }
 
 .page-change {
-    animation: pageTransitionFade 1s ease-in-out;
+  animation: pageTransitionFade 1s ease-in-out;
 }
 
 @keyframes pageTransitionFade {
@@ -793,43 +659,43 @@ body {
 }
 
 .skip {
-    animation: skip-annimation 1.2s infinite ease-in;
+  animation: skip-annimation 1.2s infinite ease-in;
 }
 
 @keyframes skip-annimation {
-    50% {
-        transform: translateX(10%)
-    }
+  50% {
+    transform: translateX(10%)
+  }
 }
 
 .show-option {
-    animation: option-annimation 1s ease-in-out;
+  animation: option-annimation 1s ease-in-out;
 }
 
 @keyframes option-annimation {
-    from {
-        transform: translateX(10%);
-        opacity: 0.1;
-    }
+  from {
+    transform: translateX(10%);
+    opacity: 0.1;
+  }
 
-    to {
-        transform: translateX(0)
-    }
+  to {
+    transform: translateX(0)
+  }
 }
 
 .show-dialog {
-    animation: dialog-bar-annimation 1s ease-in-out;
+  animation: dialog-bar-annimation 1s ease-in-out;
 }
 
 @keyframes dialog-bar-annimation {
-    from {
-        transform: translateY(5%);
-        opacity: 10%;
-    }
+  from {
+    transform: translateY(5%);
+    opacity: 10%;
+  }
 
-    to {
-        transform: translateX(0)
-    }
+  to {
+    transform: translateX(0)
+  }
 }
 
 .retry-btn {

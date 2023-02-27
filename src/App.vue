@@ -1,22 +1,83 @@
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import data from "./assets/data/data-mockup.json";
 import summalize from "./assets/data/summalize.json";
+import characterinfo from "./assets/data/characterinfo.json";
+import randomname from "./assets/data/randomName.json";
 // user input data
 let playername = ref('ไกซ์')
 
-//song
-const isPlaying = ref(false) 
-const inputMusic = ref(null)
-const effect = ref(null)
-
-
-const playPauseSong = () => {
-  inputMusic.value.src='background.mp3'
-  inputMusic.value.volume=0.4
+onMounted(() => {
+  inputMusic.value.src = 'themesongs/background.mp3'
   isPlaying.value = !isPlaying.value
-  if(isPlaying.value) inputMusic.value.play()
-  else inputMusic.value.pause()
+  playPauseSong()
+})
+
+//song
+const isPlaying = ref(false)
+const inputMusic = ref(null)
+const musicVolume = ref(0.4)
+const effect = ref(null)
+const effectVolume = ref(1.0)
+
+// setting button
+const setting = ref(false)
+
+// menu
+let count = ref(0)
+let displayMenu = ref(false)
+
+const effectSound = (effectName) => {
+  effect.value.src = `effects/${effectName}`
+  effect.value.volume = effectVolume.value
+  effect.value.play()
+}
+// sound control
+const Effectcontrol = () => {
+  effect.value.volume = effectVolume.value
+}
+const Musiccontrol = () => {
+  inputMusic.value.volume = musicVolume.value
+}
+// select character
+const selectCharacter = ref(false)
+const showCharacter = () => {
+  selectCharacter.value = !selectCharacter.value
+}
+const characterImg = ['images/character/kaitoon/base.png',
+  'images/character/kaidu/base.png',
+  'images/character/kaidee/base.png',
+  'images/character/kainerd/base.png',
+  'images/character/kainu/base.png',
+  'images/character/kaiyen/base.png']
+let currentCharacter = ref(0)
+const nextCharacter = () => {
+  if (currentCharacter.value === 5) {
+    currentCharacter.value = 0
+  } else {
+    currentCharacter.value++
+  }
+
+}
+const backCharacter = () => {
+  if (currentCharacter.value === 0) {
+    currentCharacter.value = 5
+  } else {
+    currentCharacter.value--
+  }
+
+}
+// randomname
+const randomName = () => {
+  const randomed = Math.floor(Math.random() * randomname.length + 1);
+  playername.value = randomname[randomed]
+  let effectName = 'dice.mp3'
+  effectSound(effectName)
+}
+
+function showMenu() {
+  displayMenu.value = !displayMenu.value
+  console.log(displayMenu.value)
 }
 
 //game function :: clouser
@@ -29,7 +90,6 @@ function game() {
   let characterMood = "";
   let imageBackground = "error.png";
   let endData = {};
-  
 
   function gameStart() {
     user.name = playername.value
@@ -38,7 +98,41 @@ function game() {
     endData = {}
     state.value = 2
     setScene(1)
-    effectSound('choice.mp3')
+    effectSound('alarm.mp3')
+  }
+
+  function saveCharacter() {
+    if (currentCharacter.value === 0) {
+      characterName.value = { th: "ไข่ตุ๋น", en: "kaitoon" }
+    }
+    if (currentCharacter.value === 1) {
+      characterName.value = { th: "ไข่ดุ", en: "kaidu" }
+    }
+    if (currentCharacter.value === 2) {
+      characterName.value = { th: "ไข่ดี", en: "kaidee" }
+    }
+    if (currentCharacter.value === 3) {
+      characterName.value = { th: "ไข่เนิร์ด", en: "kainerd" }
+    }
+    if (currentCharacter.value === 4) {
+      characterName.value = { th: "ไข่หนู", en: "kainu" }
+    }
+    if (currentCharacter.value === 5) {
+      characterName.value = { th: "ไข่เย็น", en: "kaiyen" }
+    }
+    selectCharacter.value = false
+  }
+
+  function configPage() {
+    state.value = 4
+  }
+
+  function charDetailPage() {
+    state.value = 5
+  }
+
+  function groupInfoPage() {
+    state.value = 6
   }
 
   function setScene(no) {
@@ -56,13 +150,18 @@ function game() {
     } else {
       now.value = newScene
       imageBackground = newScene.background
+      countScene()
     }
+  }
+
+  function countScene() {
+    count.value++
   }
 
   function interactiveDialogs(dialog) {
     let replaceDialog = dialog
     let i = 0
-    while(replaceDialog?.includes("$") && i < 3) {
+    while (replaceDialog?.includes("$") && i < 3) {
       i++
       if (replaceDialog?.includes("$NAME")) replaceDialog = replaceDialog.replace("$NAME", user.name)
       if (replaceDialog?.includes("$CHARNAME")) replaceDialog = replaceDialog.replace("$CHARNAME", characterName.th)
@@ -79,14 +178,16 @@ function game() {
     score += selected?.score ?? 0
     setScene(selected.next)
     if (selected?.characterMood !== null) characterMood = selected?.characterMood
-    effectSound('choice.mp3')
+    if (selected.effect !== null) { effectSound(selected.effect) }
+    else { effectSound('choice.mp3') }
+    getThemesong()
   }
 
   function getOption() {
     let options = []
     if (now.value?.options == undefined) return []
     now.value.options.forEach(oldOption => {
-      let option = {id:oldOption?.id, message:interactiveDialogs(oldOption.message)}
+      let option = { id: oldOption?.id, message: interactiveDialogs(oldOption.message) }
       options.push(option)
     })
     return options
@@ -120,6 +221,30 @@ function game() {
     return getEndScene()
   }
 
+
+  function getThemesong() {
+    if (state.value == 3) {
+      inputMusic.value.src = 'themesongs/end.mp3'
+      inputMusic.value.volume = musicVolume.value
+      if (isPlaying.value) inputMusic.value.play()
+      else inputMusic.value.pause()
+    } else if (state.value == 1) {
+      inputMusic.value.src = 'themesongs/background.mp3'
+      inputMusic.value.volume = musicVolume.value
+      if (isPlaying.value) inputMusic.value.play()
+      else inputMusic.value.pause()
+    } else if (now.value.themesong === null) {
+      inputMusic.value.volume = musicVolume.value
+      if (isPlaying.value) inputMusic.value.play()
+      else inputMusic.value.pause()
+    } else {
+      inputMusic.value.src = `themesongs/${now.value.themesong}`
+      inputMusic.value.volume = musicVolume.value
+      if (isPlaying.value) inputMusic.value.play()
+      else inputMusic.value.pause()
+    }
+  }
+
   function getEndScene() {
     return endData
   }
@@ -127,7 +252,7 @@ function game() {
   function getCurrentState() {
     return state.value
   }
-  
+
   function showDirectorScene() {
     return now.value?.who == "director" ? true : false
   }
@@ -149,41 +274,61 @@ function game() {
   }
 
   function goHomePage() {
-    effectSound((state.value===3?'choice.mp3':'goHome.mp3'))
+    effectSound((state.value === 2 ? 'goHome.mp3' : 'choice.mp3'))
     state.value = 1
+    currentCharacter.value = 0
+    saveCharacter()
+    isPlaying.value = !isPlaying.value
+    playPauseSong()
   }
 
   function effectSound(effectName) {
-    effect.value.src=effectName
-    effect.value.volume=0.33
+    effect.value.src = effectName
+    effect.value.volume = 0.33
     effect.value.play()
   }
 
+  function playPauseSong() {
+    isPlaying.value = !isPlaying.value
+    if (isPlaying.value) getThemesong()
+    else inputMusic.value.pause()
+  }
 
-  return { gameStart, getDialog, getOption, selectOption, showNextDialogBtn, getCurrentState, getEndScene, getName, goHomePage, getCharecterMood, getBackground, showDirectorScene }
+  return { getThemesong, playPauseSong, saveCharacter, configPage, groupInfoPage, charDetailPage, gameStart, getDialog, getOption, selectOption, showNextDialogBtn, getCurrentState, getEndScene, getName, goHomePage, getCharecterMood, getBackground, showDirectorScene }
 }
 
 
-const { gameStart, getDialog, getOption, selectOption, showNextDialogBtn, getCurrentState, getEndScene, getName, goHomePage, getCharecterMood, getBackground, showDirectorScene} = game()
+const { getThemesong, playPauseSong, saveCharacter, configPage, groupInfoPage, charDetailPage, gameStart, getDialog, getOption, selectOption, showNextDialogBtn, getCurrentState, getEndScene, getName, goHomePage, getCharecterMood, getBackground, showDirectorScene } = game()
 
 
 </script>
 <template>
-    
-
-
   <!-- Icon Web + Song ------------------------------------------------------------------------------------------------------------------------------->
-  <audio ref="effect" /> 
+  <audio ref="effect" />
   <div class="shadow-4xl bg-white pb-4 pr-2 rounded-br-[30px] absolute z-10 w-24 rounded-bl-[10px] rounded-tr-[10px]">
     <img src="./assets/images/element/Logo.png" class="scale-100" />
-    <audio ref="inputMusic" id="startMusic-001" autoplay/>
-		    <button fleid="mybtn" class="w-20 h-10 rounded-full hover:scale-[115%] duration-300 each-in-out bg-pink-500 m-1" @click="playPauseSong">
-          <span class="flex justify-center text-white">{{ isPlaying ? "Pause": "Play" }}</span>
-        </button>
+    <audio ref="inputMusic" id="startMusic-001" autoplay />
+    <button fleid="mybtn" class="w-20 h-10 rounded-full hover:scale-[115%] duration-300 each-in-out bg-pink-500 m-1"
+      @click="playPauseSong()">
+      <span class="flex justify-center text-white">{{ isPlaying ? "Pause" : "Play" }}</span>
+    </button>
+    <!-- Setting Button -->
+    <div
+      class="w-20 h-10 rounded-full hover:scale-[115%] duration-300 each-in-out flex justify-center text-white bg-pink-500 m-1"
+      @click="setting = !setting">
+      Setting</div>
+    <!-- Setting -->
+    <div class="flex w-full h-full bg-white" v-show="setting">
+      <div>
+        <div>Music</div>
+        <input @input="Musiccontrol()" id="music" v-model="musicVolume" type="range" min="0" step="0.05" max="1"
+          class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
+        <div>Effect</div>
+        <input @input="Effectcontrol()" id="effect" v-model="effectVolume" type="range" min="0" step="0.05" max="1"
+          class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
+      </div>
+    </div>
   </div>
-
-
-
   <!-- firstpage------------------------------------------------------------------------------------------------------------------------------->
   <div class="w-screen h-screen" v-if="getCurrentState() == 1">
     <img src="./assets/images/other/Enerd.png"
@@ -199,55 +344,271 @@ const { gameStart, getDialog, getOption, selectOption, showNextDialogBtn, getCur
     <img src="./assets/images/other/Ekaitoon.png"
       class="absolute z-0 h-[120%] -bottom-52 left-[-5%] contrast-[100%] left" />
     <img src="./assets/images/element/gameName.png" class="w-full h-full absolute -z-50" />
-    
+
 
     <div class="w-full h-full relative">
+
       <!-- content right -->
-      <div class="w-30  w-1/12 ">
-      </div>
       <!-- <img src="./assets/images/element/jingjung.png"
-        class="scale-150 -top-8 absolute right-48 cursor-pointer" /> -->
-      <div class="w-1/2 h-2/3 absolute right-0 bottom-12">
-        <div class="w-full h-full flex flex-col">
+                                                      class="scale-150 -top-8 absolute right-48 cursor-pointer" /> -->
+      <div class="w-1/2 h-3/5 absolute right-20 bottom-12">
+        <div class="w-full h-full flex flex-col mt-10 place-items-end">
           <div
-            class="h-1/6 w-1/2 ml-52 rounded-full flex justify-center items-center text-4xl mali mt-52 text-[#9B4F5E] font-bold">
+            class="h-1/6 w-1/2 ml-52 rounded-full flex justify-center items-center text-4xl mali mt-44 text-[#9B4F5E] font-bold">
             <input placeholder="Enter Your Name" v-model="playername" maxlength="18"
-              class="text-center boi-input focus:border-[#9B4F5E] rounded-tl-3xl  rounded-br-3xl h-24 p-20">
+              class="text-center boi-input focus:border-[#9B4F5E] rounded-tl-3xl  rounded-br-3xl h-20 p-20">
+          </div>
+          <div @click="showCharacter" class="w-20 h-20 flex justify-center items-center bg-white">
+            Select Character
+          </div>
+          <div class=" p-4 w-full max-w-lg h-full md:h-auto z-50">
+            <div class="absolute flex justify-center items-center w-100 bg-white" v-show="selectCharacter">
+              <div class="flex w-full h-full"> <img :src="characterImg[currentCharacter]" class="w-80 h-80" /> </div>
+              <div class="flex w-20 h-10 "><button @click="backCharacter" class="m-auto"> Back</button></div>
+              <div class="flex w-20 h-10 "><button @click="nextCharacter" class="m-auto"> Next</button></div>
+              <div class="flex w-20 h-10 "><button @click="saveCharacter" class="m-auto"> Save</button></div>
+            </div>
+          </div>
+          <div @click="randomName" class="w-20 h-20 flex justify-center items-center bg-white">
+            Random
           </div>
           <div @click="gameStart"
-            class="mali hover:scale-[115%] duration-300 each-in-out text-[#f82b74] font-bold hover:bg-[#f82b74] hover:text-white transition delay-100 hover:border-white cursor-pointer m-16 border-[#f82b74] border-8 border-solid h-1/5 w-96 ml-64 rounded-full flex justify-center items-center text-5xl bg-white">
-            PLAY NOW
+            class="mali hover:scale-[110%] duration-200 each-in-out text-[#f82b74] font-bold hover:bg-[#f82b74] hover:text-white transition delay-100 hover:border-white cursor-pointer mt-8 border-[#f82b74] border-4 border-solid h-[12%] w-fit pl-20 pr-20 ml-64 rounded-full flex justify-center items-center text-4xl bg-white">
+            START GAME
+          </div>
+          <div @click="configPage"
+            class="mali hover:scale-[110%] duration-200 each-in-out text-[#f82b74] font-bold hover:bg-[#f82b74] hover:text-white transition delay-100 hover:border-white cursor-pointer mt-8 border-[#f82b74] border-4 border-solid h-[12%] w-fit pl-20 pr-20 ml-64 rounded-full flex justify-center items-center text-4xl bg-white">
+            CONFIG
+          </div>
+          <div @click="charDetailPage"
+            class="mali hover:scale-[110%] duration-200 each-in-out text-[#f82b74] font-bold hover:bg-[#f82b74] hover:text-white transition delay-100 hover:border-white cursor-pointer mt-8 border-[#f82b74] border-4 border-solid h-[12%] w-fit pl-20 pr-20 ml-64 rounded-full flex justify-center items-center text-4xl bg-white">
+            CHARACTER DETAILS
+          </div>
+          <div @click="groupInfoPage"
+            class="mali hover:scale-[110%] duration-200 each-in-out text-[#f82b74] font-bold hover:bg-[#f82b74] hover:text-white transition delay-100 hover:border-white cursor-pointer mt-8 border-[#f82b74] border-4 border-solid h-[12%] w-fit pl-20 pr-20 ml-64 rounded-full flex justify-center items-center text-4xl bg-white">
+            Group INFO
+          </div>
+          <div class="mt-4 h-1/6 w-96 ml-64 grid grid-cols-3 gap-20 p-4">
+            <div @click="howtoPlay"
+              class="text-4xl bg-white rounded-full border-[#f82b74] border-4 border-solid flex justify-center items-center hover:scale-[115%] duration-200 each-in-out text-[#f82b74] font-bold hover:bg-[#f82b74] hover:text-white transition delay-100 hover:border-white cursor-pointer">
+              i
+            </div>
+            <div @click=""
+              class="text-4xl bg-white rounded-full flex border-[#f82b74] border-4 border-solid justify-center items-center hover:scale-[115%] duration-200 each-in-out text-[#f82b74] font-bold hover:bg-[#f82b74] hover:text-white transition delay-100 hover:border-white cursor-pointer">
+              i
+            </div>
+            <div @click=""
+              class="text-4xl bg-white rounded-full border-[#f82b74] border-4 border-solid flex justify-center items-center hover:scale-[115%] duration-200 each-in-out text-[#f82b74] font-bold hover:bg-[#f82b74] hover:text-white transition delay-100 hover:border-white cursor-pointer">
+              i
+            </div>
           </div>
         </div>
-      </div>
-      <div class="w-full h-8 pr-4 bottom-0 absolute flex place-items-center justify-end">
-        <p class="copyright">
-          © Created By KMUTT Student For Subject INT203 Client-Side
-          Programming II
-        </p>
       </div>
     </div>
   </div>
-  <!-- subtitles------------------------------------------------------------------------------------------------------------------------------->
-  <div class="w-screen h-screen" v-if="getCurrentState() == 2">
-    <div class="w-full h-24 flex flex-row absolute">
-        <div class="w-30 w-full flex justify-end">
-            <!-- Back Btn -->
-          <div @click="goHomePage()"
-              class="z-50 text-3xl mali font-semibold text-[#f82b74] mt-4 mr-12 hover:bg-rose-600 hover:text-white cursor-pointer border-[#f82b74] border-2 border-solid place-self-center flex place-items-center rounded-[15px] py-3 pl-8 pr-8 bg-white">
-              RESTART
+
+  <!-- Config------------------------------------------------------------------------------------------------------------------------------->
+  <div class="w-screen h-screen" v-if="getCurrentState() == 4">
+    <img src="./assets/images/element/gameName.png" class="w-full h-full absolute -z-50" />
+    <div class="w-full h-full relative">
+      <!-- content right -->
+      <!-- <img src="./assets/images/element/jingjung.png"
+                                                      class="scale-150 -top-8 absolute right-48 cursor-pointer" /> -->
+      <div class="w-1/2 h-3/5 absolute right-20 bottom-12">
+        <div class="w-full h-full flex flex-col mt-10 place-items-end">
+          <!-- <div
+                                                        class="h-1/6 w-1/2 ml-52 rounded-full flex justify-center items-center text-4xl mali mt-44 text-[#9B4F5E] font-bold">
+                                                        <input placeholder="Enter Your Name" v-model="playername" maxlength="18"
+                                                          class="text-center boi-input focus:border-[#9B4F5E] rounded-tl-3xl  rounded-br-3xl h-20 p-20">
+                                                      </div> -->
+          <div @click="goHomePage"
+            class="opacity-50 mali hover:scale-[110%] duration-200 each-in-out text-[#f82b74] font-bold hover:bg-[#f82b74] hover:text-white transition delay-100 hover:border-white cursor-pointer mt-8 border-[#f82b74] border-4 border-solid h-[12%] w-fit pl-20 pr-20 ml-64 rounded-full flex justify-center items-center text-4xl bg-white">
+            BACK TO FIRST PAGE
+          </div>
+          <div @click="configPage"
+            class="mali hover:scale-[110%] duration-200 each-in-out text-[#f82b74] font-bold hover:bg-[#f82b74] hover:text-white transition delay-100 hover:border-white cursor-pointer mt-8 border-[#f82b74] border-4 border-solid h-[12%] w-fit pl-20 pr-20 ml-64 rounded-full flex justify-center items-center text-4xl bg-white">
+            CONFIG
+          </div>
+          <div @click="charDetailPage"
+            class="opacity-50 mali hover:scale-[110%] duration-200 each-in-out text-[#f82b74] font-bold hover:bg-[#f82b74] hover:text-white transition delay-100 hover:border-white cursor-pointer mt-8 border-[#f82b74] border-4 border-solid h-[12%] w-fit pl-20 pr-20 ml-64 rounded-full flex justify-center items-center text-4xl bg-white">
+            CHARACTER DETAILS
+          </div>
+          <div @click="groupInfoPage"
+            class="opacity-50 mali hover:scale-[110%] duration-200 each-in-out text-[#f82b74] font-bold hover:bg-[#f82b74] hover:text-white transition delay-100 hover:border-white cursor-pointer mt-8 border-[#f82b74] border-4 border-solid h-[12%] w-fit pl-20 pr-20 ml-64 rounded-full flex justify-center items-center text-4xl bg-white">
+            Group INFO
+          </div>
+          <div class="mt-4 h-1/6 w-96 ml-64 grid grid-cols-3 gap-20 p-4 opacity-50">
+            <div @click="gameStart"
+              class="text-4xl bg-white rounded-full border-[#f82b74] border-4 border-solid flex justify-center items-center hover:scale-[115%] duration-200 each-in-out text-[#f82b74] font-bold hover:bg-[#f82b74] hover:text-white transition delay-100 hover:border-white cursor-pointer">
+              i
+            </div>
+            <div @click="gameStart"
+              class="text-4xl bg-white rounded-full flex border-[#f82b74] border-4 border-solid justify-center items-center hover:scale-[115%] duration-200 each-in-out text-[#f82b74] font-bold hover:bg-[#f82b74] hover:text-white transition delay-100 hover:border-white cursor-pointer">
+              i
+            </div>
+            <div @click="gameStart"
+              class="text-4xl bg-white rounded-full border-[#f82b74] border-4 border-solid flex justify-center items-center hover:scale-[115%] duration-200 each-in-out text-[#f82b74] font-bold hover:bg-[#f82b74] hover:text-white transition delay-100 hover:border-white cursor-pointer">
+              i
+            </div>
           </div>
         </div>
       </div>
+    </div>
+  </div>
+
+  <!-- Charracter Details------------------------------------------------------------------------------------------------------------------------------->
+  <div class="w-screen h-screen" v-if="getCurrentState() == 5">
+    <img src="./assets/images/element/gameName.png" class="w-full h-full absolute -z-50  m-auto" />
+    <div class="w-full h-full relative">
+      <!-- content left -->
+      <div class="ml-28 bg-opacity-50 w-[47%] h-full  bg-white  overflow-auto ">
+        <div class="h-40 items-center text-6xl flex justify-center font-bold">
+          CHARACTER DETAILS
+        </div>
+        <div class="flex border-2 border">
+          <input placeholder="Search" class="mt-5">
+        </div>
+        <div class="w-full  mt-5 z-10" v-for="(character, index) in characterinfo" :key="index">
+          <div class="">
+            <img :src="character.image">
+          </div>
+          <div class="text-center">
+            {{ character.message }}
+          </div>
+        </div>
+
+      </div>
+      <div class="w-1/2 h-3/5 absolute right-20 bottom-12">
+        <div class="w-full h-full flex flex-col mt-10 place-items-end">
+          <!-- <div
+                                                        class="h-1/6 w-1/2 ml-52 rounded-full flex justify-center items-center text-4xl mali mt-44 text-[#9B4F5E] font-bold">
+                                                        <input placeholder="Enter Your Name" v-model="playername" maxlength="18"
+                                                          class="text-center boi-input focus:border-[#9B4F5E] rounded-tl-3xl  rounded-br-3xl h-20 p-20">
+                                                      </div> -->
+          <div @click="goHomePage"
+            class="opacity-50 mali hover:scale-[110%] duration-200 each-in-out text-[#f82b74] font-bold hover:bg-[#f82b74] hover:text-white transition delay-100 hover:border-white cursor-pointer mt-8 border-[#f82b74] border-4 border-solid h-[12%] w-fit pl-20 pr-20 ml-64 rounded-full flex justify-center items-center text-4xl bg-white">
+            BACK TO FIRST PAGE
+          </div>
+          <div @click="configPage"
+            class="opacity-50 mali hover:scale-[110%] duration-200 each-in-out text-[#f82b74] font-bold hover:bg-[#f82b74] hover:text-white transition delay-100 hover:border-white cursor-pointer mt-8 border-[#f82b74] border-4 border-solid h-[12%] w-fit pl-20 pr-20 ml-64 rounded-full flex justify-center items-center text-4xl bg-white">
+            CONFIG
+          </div>
+          <div @click="charDetailPage"
+            class="mali hover:scale-[110%] duration-200 each-in-out text-[#f82b74] font-bold hover:bg-[#f82b74] hover:text-white transition delay-100 hover:border-white cursor-pointer mt-8 border-[#f82b74] border-4 border-solid h-[12%] w-fit pl-20 pr-20 ml-64 rounded-full flex justify-center items-center text-4xl bg-white">
+            CHARACTER DETAILS
+          </div>
+          <div @click="groupInfoPage"
+            class="opacity-50 mali hover:scale-[110%] duration-200 each-in-out text-[#f82b74] font-bold hover:bg-[#f82b74] hover:text-white transition delay-100 hover:border-white cursor-pointer mt-8 border-[#f82b74] border-4 border-solid h-[12%] w-fit pl-20 pr-20 ml-64 rounded-full flex justify-center items-center text-4xl bg-white">
+            Group INFO
+          </div>
+          <div class="mt-4 h-1/6 w-96 ml-64 grid grid-cols-3 gap-20 p-4 opacity-50">
+            <div @click="gameStart"
+              class="text-4xl bg-white rounded-full border-[#f82b74] border-4 border-solid flex justify-center items-center hover:scale-[115%] duration-200 each-in-out text-[#f82b74] font-bold hover:bg-[#f82b74] hover:text-white transition delay-100 hover:border-white cursor-pointer">
+              i
+            </div>
+            <div @click="gameStart"
+              class="text-4xl bg-white rounded-full flex border-[#f82b74] border-4 border-solid justify-center items-center hover:scale-[115%] duration-200 each-in-out text-[#f82b74] font-bold hover:bg-[#f82b74] hover:text-white transition delay-100 hover:border-white cursor-pointer">
+              i
+            </div>
+            <div @click="gameStart"
+              class="text-4xl bg-white rounded-full border-[#f82b74] border-4 border-solid flex justify-center items-center hover:scale-[115%] duration-200 each-in-out text-[#f82b74] font-bold hover:bg-[#f82b74] hover:text-white transition delay-100 hover:border-white cursor-pointer">
+              i
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Group Info------------------------------------------------------------------------------------------------------------------------------->
+  <div class="w-screen h-screen" v-if="getCurrentState() == 6">
+    <img src="./assets/images/element/gameName.png" class="w-full h-full absolute -z-50 " />
+    <div class="w-full h-full relative">
+      <!-- content right -->
+      <!-- <img src="./assets/images/element/jingjung.png"
+                                                      class="scale-150 -top-8 absolute right-48 cursor-pointer" /> -->
+      <div class="w-1/2 h-3/5 absolute right-20 bottom-12">
+        <div class="w-full h-full flex flex-col mt-10 place-items-end">
+          <!-- <div
+                                                        class="h-1/6 w-1/2 ml-52 rounded-full flex justify-center items-center text-4xl mali mt-44 text-[#9B4F5E] font-bold">
+                                                        <input placeholder="Enter Your Name" v-model="playername" maxlength="18"
+                                                          class="text-center boi-input focus:border-[#9B4F5E] rounded-tl-3xl  rounded-br-3xl h-20 p-20">
+                                                      </div> -->
+          <div @click="goHomePage"
+            class="opacity-50 mali hover:scale-[110%] duration-200 each-in-out text-[#f82b74] font-bold hover:bg-[#f82b74] hover:text-white transition delay-100 hover:border-white cursor-pointer mt-8 border-[#f82b74] border-4 border-solid h-[12%] w-fit pl-20 pr-20 ml-64 rounded-full flex justify-center items-center text-4xl bg-white">
+            BACK TO FIRST PAGE
+          </div>
+          <div @click="configPage"
+            class="opacity-50 mali hover:scale-[110%] duration-200 each-in-out text-[#f82b74] font-bold hover:bg-[#f82b74] hover:text-white transition delay-100 hover:border-white cursor-pointer mt-8 border-[#f82b74] border-4 border-solid h-[12%] w-fit pl-20 pr-20 ml-64 rounded-full flex justify-center items-center text-4xl bg-white">
+            CONFIG
+          </div>
+          <div @click="charDetailPage"
+            class="opacity-50 mali hover:scale-[110%] duration-200 each-in-out text-[#f82b74] font-bold hover:bg-[#f82b74] hover:text-white transition delay-100 hover:border-white cursor-pointer mt-8 border-[#f82b74] border-4 border-solid h-[12%] w-fit pl-20 pr-20 ml-64 rounded-full flex justify-center items-center text-4xl bg-white">
+            CHARACTER DETAILS
+          </div>
+          <div @click="groupInfoPage"
+            class="mali hover:scale-[110%] duration-200 each-in-out text-[#f82b74] font-bold hover:bg-[#f82b74] hover:text-white transition delay-100 hover:border-white cursor-pointer mt-8 border-[#f82b74] border-4 border-solid h-[12%] w-fit pl-20 pr-20 ml-64 rounded-full flex justify-center items-center text-4xl bg-white">
+            Group INFO
+          </div>
+          <div class="mt-4 h-1/6 w-96 ml-64 grid grid-cols-3 gap-20 p-4 opacity-50">
+            <div @click="gameStart"
+              class="text-4xl bg-white rounded-full border-[#f82b74] border-4 border-solid flex justify-center items-center hover:scale-[115%] duration-200 each-in-out text-[#f82b74] font-bold hover:bg-[#f82b74] hover:text-white transition delay-100 hover:border-white cursor-pointer">
+              i
+            </div>
+            <div @click="gameStart"
+              class="text-4xl bg-white rounded-full flex border-[#f82b74] border-4 border-solid justify-center items-center hover:scale-[115%] duration-200 each-in-out text-[#f82b74] font-bold hover:bg-[#f82b74] hover:text-white transition delay-100 hover:border-white cursor-pointer">
+              i
+            </div>
+            <div @click="gameStart"
+              class="text-4xl bg-white rounded-full border-[#f82b74] border-4 border-solid flex justify-center items-center hover:scale-[115%] duration-200 each-in-out text-[#f82b74] font-bold hover:bg-[#f82b74] hover:text-white transition delay-100 hover:border-white cursor-pointer">
+              i
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- subtitles------------------------------------------------------------------------------------------------------------------------------->
+  <div class="w-screen h-screen" v-if="getCurrentState() == 2">
+    <div class="w-full h-24 flex absolute">
+      <div class="w-30 w-full flex justify-end">
+        <!-- Back Btn -->
+        <div
+          class="z-50 mr-auto ml-36 text-3xl mali font-semibold text-[#f82b74] mt-4 mr-12 hover:bg-rose-600 hover:text-white cursor-pointer border-[#f82b74] border-2 border-solid place-self-center flex place-items-center rounded-[15px] py-3 pl-8 pr-8 bg-white">
+          Scene: {{ count }}
+        </div>
+        <div @click="showMenu"
+          class="focus:bg-rose-600 z-50 text-3xl mali font-semibold text-[#f82b74] mt-4 mr-12 hover:bg-rose-600 hover:text-white cursor-pointer border-[#f82b74] border-2 border-solid place-self-center flex place-items-center rounded-[15px] py-3 pl-8 pr-8 bg-white">
+          MENU
+        </div>
+        <div @click="checkHistory"
+          class="z-50 text-3xl mali font-semibold text-[#f82b74] mt-4 mr-12 hover:bg-rose-600 hover:text-white cursor-pointer border-[#f82b74] border-2 border-solid place-self-center flex place-items-center rounded-[15px] py-3 pl-8 pr-8 bg-white">
+          HISTORY
+        </div>
+        <div @click="goHomePage"
+          class="z-50 text-3xl mali font-semibold text-[#f82b74] mt-4 mr-12 hover:bg-rose-600 hover:text-white cursor-pointer border-[#f82b74] border-2 border-solid place-self-center flex place-items-center rounded-[15px] py-3 pl-8 pr-8 bg-white">
+          RESTART
+        </div>
+      </div>
+    </div>
+
+    <!-- menu-->
+    <div v-show="displayMenu" class="w-[90%] h-[90%]  -z-10 bg">
+      <div>
+
+      </div>
+
+    </div>
 
     <!-- cutScene -->
-    <div v-show="showDirectorScene()" class="w-full h-full page-change">
+    <div v-show="showDirectorScene()" class="w-full h-full page-change z-10">
       <img :src="getBackground()" class=" absolute w-full h-full -z-50 " />
       <div class="w-full h-full flex justify-center text-xl font-semibold mali items-center"
         @click="selectOption(getOption()[0].id)">
         <div
-          class="relative w-[50%] h-[95%] border-[#f82b74] border-4 flex mr-auto ml-auto indent-10 p-20 items-center bg-white bg-opacity-70 rounded-bl-[100px] rounded-tr-[100px] show-dialog">
-          <p class="pb-32 leading-[2em] text-[#f82b74] typing break-words text-3xl indent-16">{{ getDialog() }}</p>
+          class="relative w-[50%] h-[75%] border-[#f82b74] border-4 flex mr-auto ml-auto indent-10 p-20 items-center bg-white bg-opacity-70 rounded-bl-[100px] rounded-tr-[100px] show-dialog">
+          <p class="pb-32 leading-[2em] text-[#f82b74] typing break-words text-2xl indent-16">{{ getDialog() }}</p>
           <div v-show="true" class="z-50 bounce absolute cursor-pointer text-2xl w-20 h-20 bottom-4 right-8">
             <img src="./assets/images/element/skipwhite.png">
           </div>
@@ -275,7 +636,7 @@ const { gameStart, getDialog, getOption, selectOption, showNextDialogBtn, getCur
             v-show="!showNextDialogBtn()">
             <!-- choice -->
             <div v-for="(option, index) in getOption()" :key="index" @click="selectOption(option.id)"
-              v-show="option.id !== null" 
+              v-show="option.id !== null"
               class="opacity-80 hover:opacity-100 mr-12 break-all w-fit hover:bg-[#f82b74] hover:border-white hover:scale-[105%] duration-300 each-in-out hover:text-white cursor-pointer border-[#f82b74] border-y-4 border-solid place-self-center flex place-items-center rounded-full py-3 pl-12 pr-12 bg-fuchsia-50">
               {{ option.message }}
             </div>
@@ -311,30 +672,34 @@ const { gameStart, getDialog, getOption, selectOption, showNextDialogBtn, getCur
       <div class="w-1/2 h-[90%] mt-20">
         <div class="w-5/6 h-[70%] mt-8 ml-auto mr-auto m-1">
           <!-- Ending Image Character -->
-          <img class=" -z-50 w-full h-full border-red-300 border-2 rounded-3xl bg-red-200 bg-opacity-70" :src="getEndScene().image">
+          <img class=" -z-50 w-full h-full border-red-300 border-2 rounded-3xl bg-red-200 bg-opacity-70"
+            :src="getEndScene().image">
         </div>
         <div class="w-5/6 h-1/3 mt-4 ml-auto mr-auto m-1 justify-center flex items-center">
           <!-- Ending -->
-        <div class="mali flex text-7xl font-bold border-red-300 border-2 rounded-3xl bg-red-200 px-14 py-5 -mt-[260px]" >{{  getEndScene().endingWord }}</div>
+          <div class="mali flex text-7xl font-bold border-red-300 border-2 rounded-3xl bg-red-200 px-14 py-5 -mt-[260px]">
+            {{ getEndScene().endingWord }}</div>
 
         </div>
       </div>
       <!-- right -->
       <div class="w-1/2 ml-1 h-[90%] ">
         <!-- score -->
-        <div class="mali w-3/4 h-[30%] m-1 mt-24 mr-auto ml-auto text-7xl flex justify-center	relative border-2 bg-rose-50 rounded-3xl drop-shadow-3xl bg-opacity-80"  >
+        <div
+          class="mali w-3/4 h-[30%] m-1 mt-24 mr-auto ml-auto text-7xl flex justify-center	relative border-2 bg-rose-50 rounded-3xl drop-shadow-3xl bg-opacity-80">
           <div
             class="flex  justify-center -top-8 h-16 -left-10 absolute mali border-red-300 border-2 border-solid font-bold place-items-center px-8 text-3xl bg-[#f82b74] rounded-3xl drop-shadow-3xl ">
             <p class="text-white font-bold "> Total Score </p>
           </div>
-          <p class="flex justify-center items-center mb-5 ">{{ getEndScene().score }}  point(s)</p>
+          <p class="flex justify-center items-center mb-5 ">{{ getEndScene().score }} point(s)</p>
         </div>
-        
+
         <!-- ending text -->
-        <div class=" w-3/4 h-[45%] mt-16 mr-auto ml-auto border-red-300 border-2 relative flex justify-center bg-rose-50 rounded-3xl bg-opacity-80">
+        <div
+          class=" w-3/4 h-[45%] mt-16 mr-auto ml-auto border-red-300 border-2 relative flex justify-center bg-rose-50 rounded-3xl bg-opacity-80">
           <div
             class="text-white mali border-red-300 border-2 border-solid font-bold -top-8 h-16 absolute -left-10 flex justify-center place-items-center pl-6 pr-6 text-3xl bg-[#f82b74] rounded-3xl drop-shadow-3xl">
-            <p class="flex text-center text-semibold">  บทสรุปของ  "{{ playername }}" </p>
+            <p class="flex text-center text-semibold"> บทสรุปของ "{{ playername }}" </p>
           </div>
           <p class="mr-10 ml-10 mt-14 text-2xl mali indent-10 font-semibold break-words leading-10">
             {{ getEndScene().message }}
@@ -343,7 +708,7 @@ const { gameStart, getDialog, getOption, selectOption, showNextDialogBtn, getCur
       </div>
       <div @click="goHomePage"
         class="absolute bounce z-30 bottom-4 right-4 text-3xl mali font-semibold text-[#f82b74] cursor-pointer border-rose-500 border-y-4 border-solid place-self-center flex place-items-center rounded-full p-1 bg-fuchsia-50 retry-btn">
-       <div class="bg-[#ffffff] rounded-full py-3 pl-8 pr-8 ">Retry</div>
+        <div class="bg-[#ffffff] rounded-full py-3 pl-8 pr-8 ">Retry</div>
       </div>
     </div>
   </div>
@@ -414,12 +779,13 @@ body {
 @keyframes pageTransitionFade {
 
   50% {
-    
+
     background-color: #b10239;
     opacity: 0.8;
   }
 
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(100%);
     opacity: 1;
   }
@@ -464,47 +830,66 @@ body {
     transform: translateX(0)
   }
 }
-.retry-btn{
+
+.retry-btn {
   background: linear-gradient(60deg, #ef4e7b, #a166ab, #5073b8, #1098ad, #088877);
   animation: animatedbordergradient 3s ease-in-out alternate infinite;
   background-size: 300% 300%;
 }
 
 @keyframes animatedbordergradient {
-	0% {
-		background-position: 0% 50%;
-    bottom:20px;
-	}
-	50% {
-		background-position: 100% 50%;
-    bottom:15px;
-	}
-	100% {
-		background-position: 0% 50%;
-    bottom:20px;
-	}
+  0% {
+    background-position: 0% 50%;
+    bottom: 20px;
+  }
+
+  50% {
+    background-position: 100% 50%;
+    bottom: 15px;
+  }
+
+  100% {
+    background-position: 0% 50%;
+    bottom: 20px;
+  }
 }
 
 .typing {
-  overflow: hidden; /* Ensures the content is not revealed until the animation */
-  white-space: break-spaces; /* Keeps the content on a single line / / Gives that scrolling effect as the typing happens */
-  letter-spacing: .05em; /* Adjust as needed */
-  animation: 
-    typing 1s steps(1500,end) ,
+  overflow: hidden;
+  /* Ensures the content is not revealed until the animation */
+  white-space: break-spaces;
+  /* Keeps the content on a single line / / Gives that scrolling effect as the typing happens */
+  letter-spacing: .05em;
+  /* Adjust as needed */
+  animation:
+    typing 1s steps(1500, end),
     blink-caret .75s step-end infinite;
 }
+
 /* The typing effect */
 @keyframes typing {
-  from { width: 0}
-  to { width: 100% }
-/* The typewriter cursor effect */
+  from {
+    width: 0
+  }
+
+  to {
+    width: 100%
+  }
+
+  /* The typewriter cursor effect */
 }
 
 @keyframes blink-caret {
-  from, to { border-color: transparent }
-  50% { border-color: rgb(255, 255, 255); }
-}
 
+  from,
+  to {
+    border-color: transparent
+  }
+
+  50% {
+    border-color: rgb(255, 255, 255);
+  }
+}
 </style>
 
 

@@ -321,7 +321,7 @@ const { getThemesong, playPauseSong, saveCharacter, gameStart, getDialog, getOpt
       <div class="bg-slate-50 rounded-lg p-5 my-3">
         <div class="absolute right-[26%] top-[80px] text-5xl text-[#f82b74] hover:scale-110 duration-200 ease-in-out"
           @click="setting = !setting">
-          <ion-icon @click="selectCharacter = !selectCharacter" name="close-sharp"></ion-icon>
+          <ion-icon name="close-sharp"></ion-icon>
         </div>
         <div class="flex justify-between">
           <div class="text-lg font-bold">Background Music </div>
@@ -369,7 +369,7 @@ const { getThemesong, playPauseSong, saveCharacter, gameStart, getDialog, getOpt
       <div class="text-center color-black font-extrabold text-4xl rounded-lg p-5 my-3">Achievement</div>
       <div class="absolute right-[26%] top-[80px] text-5xl text-[#f82b74] hover:scale-110 duration-200 ease-in-out"
         @click="achieve = !achieve">
-        <ion-icon @click="selectCharacter = !selectCharacter" name="close-sharp"></ion-icon>
+        <ion-icon name="close-sharp"></ion-icon>
       </div>
       <div class="grid grid-cols-3 gap-6 mt-5">
         <div class="flex flex-col first-letter w-64 ">

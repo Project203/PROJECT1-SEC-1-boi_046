@@ -1,44 +1,44 @@
 [
     {
-        "th":"ไข่ตุ๋น",
+        "th": "ไข่ตุ๋น",
         "en": "kaitoon",
-        "image":"images/character/kaitoon/base.png",
-        "message":"dsasadsa",
-        "who":"อีนางเอก"
+        "image": "images/character/kaitoon/base.png",
+        "message": "dsasadsa",
+        "who": "อีนางเอก"
     },
     {
-        "th":"ไข่น้ำ",
+        "th": "ไข่น้ำ",
         "en": "kainam",
-        "image":"images/character/kaidu/base.png",
-        "message":"sadsadsa",
-        "who":"อีดุ"
+        "image": "images/character/kainam/base.png",
+        "message": "sadsadsa",
+        "who": "อีดุ"
     },
     {
         "th": "ไข่ต้ม",
         "en": "kaitoom",
-        "image": "images/character/kaidee/base.png",
+        "image": "images/character/kaitoom/base.png",
         "message": "sadsadsa",
         "who": "อีดี"
     },
     {
-        "th":"ไข่แว่น",
-        "en": "kaivan",
-        "image":"images/character/kainerd/base.png",
-        "message":"sadsadsa",
-        "who":"อีเนิร์ด"
+        "th": "ไข่หวาน",
+        "en": "kaiwhan",
+        "image": "images/character/kaiwhan/base.png",
+        "message": "sadsadsa",
+        "who": "อีเนิร์ด"
     },
     {
-        "th":"ไข่เจียว",
+        "th": "ไข่เจียว",
         "en": "kaijeaw",
-        "image":"images/character/kainu/base.png",
-        "message":"ไม่ได้อยากไปด้วยสักหน่อย",
-        "who":"อีนู๋"
+        "image": "images/character/kaijeaw/base.png",
+        "message": "ไม่ได้อยากไปด้วยสักหน่อย",
+        "who": "อีนู๋"
     },
     {
-        "th":"ไข่เย็น",
-        "en": "kaiyen",
-        "image":"images/character/kaiyen/base.png",
-        "message":"",
-        "who":"อีเย็นชา"
+        "th": "ไข่ดาว",
+        "en": "kaidao",
+        "image": "images/character/kaidao/base.png",
+        "message": "",
+        "who": "อีเย็นชา"
     }
 ]

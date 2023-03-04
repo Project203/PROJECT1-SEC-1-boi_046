@@ -12,8 +12,7 @@ let selected = ref(null)
 
 onMounted(() => {
   inputMusic.value.src = 'themesongs/background.mp3'
-  isPlaying.value = !isPlaying.value
-  playPauseSong()
+  inputMusic.value.volume = musicVolume.value
 })
 
 //song
@@ -22,6 +21,28 @@ const inputMusic = ref(null)
 const musicVolume = ref(0.4)
 const effect = ref(null)
 const effectVolume = ref(1.0)
+const selectsong = ref("Choose a background song...")
+
+const setsong = () => {
+  inputMusic.value.volume = musicVolume.value
+  if (selectsong.value == 1) {
+    inputMusic.value.src = 'themesongs/background.mp3'
+  }
+  else if (selectsong.value == 2) {
+    inputMusic.value.src = 'themesongs/dawnoflife.mp3'
+  } 
+  else if (selectsong.value == 3) {
+    inputMusic.value.src = 'themesongs/aot.mp3'
+  } 
+  else if (selectsong.value == 4) {
+    inputMusic.value.src = 'themesongs/kickback.mp3'
+  }else{
+    inputMusic.value.src = 'themesongs/background.mp3'
+  }
+}
+const saveBackgroundsong = () =>{
+  getThemesong()
+}
 
 // btn
 const setting = ref(false)
@@ -164,7 +185,7 @@ function game() {
     if (selected?.characterMood !== null) characterMood = selected?.characterMood
     if (selected.effect !== null) { effectSound(selected.effect) }
     else { effectSound('choice.mp3') }
-    getThemesong()
+    checkThemesong()
     pushHistory()
     console.log(history)
   }
@@ -207,28 +228,26 @@ function game() {
     return getEndScene()
   }
 
+  function checkThemesong(){
+    now.value.themesong === null ? now.value.themesong = null : getThemesong()
+  }
 
   function getThemesong() {
+    setsong()
+    inputMusic.value.volume = musicVolume.value
     if (state.value == 3) {
       inputMusic.value.src = 'themesongs/end.mp3'
-      inputMusic.value.volume = musicVolume.value
-      if (isPlaying.value) inputMusic.value.play()
-      else inputMusic.value.pause()
-    } else if (state.value == 1) {
-      inputMusic.value.src = 'themesongs/background.mp3'
-      inputMusic.value.volume = musicVolume.value
-      if (isPlaying.value) inputMusic.value.play()
-      else inputMusic.value.pause()
-    } else if (now.value.themesong === null) {
-      inputMusic.value.volume = musicVolume.value
-      if (isPlaying.value) inputMusic.value.play()
-      else inputMusic.value.pause()
-    } else {
-      inputMusic.value.src = `themesongs/${now.value.themesong}`
-      inputMusic.value.volume = musicVolume.value
-      if (isPlaying.value) inputMusic.value.play()
-      else inputMusic.value.pause()
     }
+    else if (state.value === 1) {
+    }
+    else if (now.value.themesong === null) {
+    }
+    else {
+      inputMusic.value.src = `themesongs/${now.value.themesong}`
+    }
+    if (isPlaying.value) inputMusic.value.play()
+    else inputMusic.value.pause()
+
   }
 
   function getEndScene() {
@@ -252,7 +271,7 @@ function game() {
   }
 
   function getCharecterMood() {
-    return `images/character/${characterName.en}/${characterMood}`
+    return `images/character/${characterName.value.en}/${characterMood}`
   }
 
   function getBackground() {
@@ -260,29 +279,23 @@ function game() {
   }
 
   function goHomePage() {
-    selected.value = null
+    // selected.value = null
     effectSound((state.value === 2 ? 'goHome.mp3' : 'choice.mp3'))
     state.value = 1
     isPlaying.value = !isPlaying.value
     playPauseSong()
   }
 
-  function effectSound(effectName) {
-    effect.value.src = effectName
-    effect.value.volume = 0.33
-    effect.value.play()
-  }
-
   function playPauseSong() {
     isPlaying.value = !isPlaying.value
-    if (isPlaying.value) getThemesong()
+    if (isPlaying.value) inputMusic.value.play()
     else inputMusic.value.pause()
   }
 
 
   function pushHistory() {
-    if (now.option.message !== ">>")
-      return history.push(now.option.message)
+    if (now.value.options.message !== ">>")
+      return history.push(now.value.options.message)
   }
 
   function checkHistory() {
@@ -344,14 +357,21 @@ const { getThemesong, playPauseSong, saveCharacter, gameStart, getDialog, getOpt
           <div class="text-lg font-bold">Change Background Song </div>
 
         </div>
-        <select id="bg-song"
+        <select id="bg-song" v-model="selectsong"
           class="bg-gray-200 border mt-3 border-gray-300 text-md font-semibold rounded-lg text-slate-700  focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
-          <option selected>Choose a background song...</option>
-          <option value="01">song 01</option>
-          <option value="02">song 02</option>
-          <option value="03">song 03</option>
-          <option value="04">song 04</option>
+          <option disabled value="Choose a background song..." selected >Choose a background song...</option>
+          <option value="1">Deafult</option>
+          <option value="2">Dawn of Life</option>
+          <option value="3">Attack on Titan</option>
+          <option value="4">Kick Back</option>
         </select>
+
+        <div class="bg-[#f82b74] text-white rounded-full hover:scale-105 ease-in-out duration-300"
+          @click="saveBackgroundsong">
+          <div class="text-center text-2xl font-semibold ">
+            Save Background Song
+          </div>
+        </div>
 
       </div>
       <div class="bg-[#f82b74] text-white rounded-full p-5 mt-24 hover:scale-105 ease-in-out duration-300"

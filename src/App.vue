@@ -84,6 +84,7 @@ function game() {
   let characterMood = "";
   let imageBackground = "error.png";
   let endData = {};
+  let history=[];
 
   function gameStart() {
     user.name = playername.value
@@ -164,6 +165,8 @@ function game() {
     if (selected.effect !== null) { effectSound(selected.effect) }
     else { effectSound('choice.mp3') }
     getThemesong()
+    pushHistory()
+    console.log(history)
   }
 
   function getOption() {
@@ -276,11 +279,21 @@ function game() {
     else inputMusic.value.pause()
   }
 
-  return { getThemesong, playPauseSong, saveCharacter, gameStart, getDialog, getOption, selectOption, showNextDialogBtn, getCurrentState, getEndScene, getName, goHomePage, getCharecterMood, getBackground, showDirectorScene }
+
+  function pushHistory(){
+    if(now.option.message!==">>")
+   return  history.push(now.option.message)   
+  }
+
+function checkHistory(){
+  return console.log(history) 
+}
+
+  return { getThemesong, playPauseSong, saveCharacter, gameStart, getDialog, getOption, selectOption, showNextDialogBtn, getCurrentState, getEndScene, getName, goHomePage, getCharecterMood, getBackground, showDirectorScene,checkHistory }
 }
 
 
-const { getThemesong, playPauseSong, saveCharacter, gameStart, getDialog, getOption, selectOption, showNextDialogBtn, getCurrentState, getEndScene, getName, goHomePage, getCharecterMood, getBackground, showDirectorScene } = game()
+const { getThemesong, playPauseSong, saveCharacter, gameStart, getDialog, getOption, selectOption, showNextDialogBtn, getCurrentState, getEndScene, getName, goHomePage, getCharecterMood, getBackground, showDirectorScene,checkHistory } = game()
 
 
 </script>

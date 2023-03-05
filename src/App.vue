@@ -21,7 +21,7 @@ const inputMusic = ref(null)
 const musicVolume = ref(0.4)
 const effect = ref(null)
 const effectVolume = ref(1.0)
-const selectsong = ref("Choose a background song...")
+const selectsong = ref(0)
 
 const setsong = () => {
   inputMusic.value.volume = musicVolume.value
@@ -321,18 +321,15 @@ const { getThemesong, playPauseSong, saveCharacter, gameStart, getDialog, getOpt
       <span class="flex justify-center text-white">{{ isPlaying ? "Pause" : "Play" }}</span>
     </button>
     <!-- Setting Button -->
-    <div
-      class="w-20 h-10 rounded-full hover:scale-[115%] duration-300 each-in-out flex justify-center text-white bg-pink-500 m-1"
-      @click="setting = !setting">
-      Setting</div>
+   
   </div>
 
   <!-- Setting sound v-show setting-->
-  <div class="flex w-full h-full bg-red-200 bg-opacity-50 absolute justify-center rounded-3xl z-50" v-show="setting">
-    <div class="flex flex-col w-1/2 bg-slate-200 m-48 mt-24 p-16 z-30 bg-opacity-90 rounded-3xl">
+  <div class="flex w-full h-full bg-red-200 bg-opacity-50 absolute justify-center z-50" v-show="setting">
+    <div class="flex flex-col w-1/2 bg-slate-200 m-48 mt-24 p-16 z-30 bg-opacity-90 rounded-3xl show-dialog">
       <div class="text-center color-black font-extrabold text-4xl rounded-lg p-5 my-3">Sound Settings</div>
-      <div class="bg-slate-50 rounded-lg p-5 my-3">
-        <div class="absolute right-[26%] top-[80px] text-5xl text-[#f82b74] hover:scale-110 duration-200 ease-in-out"
+      <div class="bg-slate-50 rounded-lg p-5 my-3 delay-500">
+        <div class="absolute right-[26%] top-[80px] text-5xl text-[#f82b74] hover:scale-110 duration-200 ease-in-out "
           @click="setting = !setting">
           <ion-icon name="close-sharp"></ion-icon>
         </div>
@@ -354,27 +351,26 @@ const { getThemesong, playPauseSong, saveCharacter, gameStart, getDialog, getOpt
       </div>
       <div class="bg-slate-50 rounded-lg p-5 my-3">
         <div class="flex justify-between">
-          <div class="text-lg font-bold">Change Background Song </div>
+          <div class="text-lg font-bold"> Change Background Song </div>
 
         </div>
+        <div class="flex">
         <select id="bg-song" v-model="selectsong"
-          class="bg-gray-200 border mt-3 border-gray-300 text-md font-semibold rounded-lg text-slate-700  focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
-          <option disabled value="Choose a background song..." selected >Choose a background song...</option>
-          <option value="1">Deafult</option>
+          class="bg-gray-200 border mt-3 border-gray-300 text-lg font-semibold rounded-lg text-slate-700  focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
+          <option disabled value="0" selected >Choose a background song...</option>
+          <option value="1" class="mx-5">Default</option>
           <option value="2">Dawn of Life</option>
           <option value="3">Attack on Titan</option>
           <option value="4">Kick Back</option>
         </select>
 
-        <div class="bg-[#f82b74] text-white rounded-full hover:scale-105 ease-in-out duration-300"
+        <div class="text-center text-xl rounded-md ease-in-out duration-300 mt-3 ml-5 pt-3 px-6  bg-rose-500  text-white font-bold hover:bg-[#f82b74] active:bg-black"
           @click="saveBackgroundsong">
-          <div class="text-center text-2xl font-semibold ">
-            Save Background Song
-          </div>
+           Save
         </div>
-
       </div>
-      <div class="bg-[#f82b74] text-white rounded-full p-5 mt-24 hover:scale-105 ease-in-out duration-300"
+      </div>
+      <div class="shadow-xl rounded-full p-5 mt-24 hover:scale-105 ease-in-out duration-300 bg-rose-500  text-white font-bold hover:bg-[#f82b74] "
         @click="setting = !setting">
         <div class="text-center text-2xl font-semibold ">
           CLOSE
@@ -384,24 +380,30 @@ const { getThemesong, playPauseSong, saveCharacter, gameStart, getDialog, getOpt
   </div>
 
   <!-- Achievement v-show setting-->
-  <div class="flex w-full h-full bg-red-200 bg-opacity-50 absolute justify-center rounded-3xl z-50" v-show="achieve">
-    <div class="flex flex-col w-1/2 bg-slate-200 m-48 mt-24 p-16 z-30 bg-opacity-90 rounded-3xl">
+  <div class="flex w-full h-full bg-red-200 bg-opacity-50 absolute justify-center z-50 " v-show="achieve">
+    <div class="flex flex-col w-1/2 bg-slate-200 m-48 mt-24 p-16 z-30 bg-opacity-90 rounded-3xl show-dialog">
       <div class="text-center color-black font-extrabold text-4xl rounded-lg p-5 my-3">Achievement</div>
       <div class="absolute right-[26%] top-[80px] text-5xl text-[#f82b74] hover:scale-110 duration-200 ease-in-out"
         @click="achieve = !achieve">
         <ion-icon name="close-sharp"></ion-icon>
       </div>
       <div class="grid grid-cols-3 gap-6 mt-5">
-        <div class="flex flex-col first-letter w-64 ">
+        <div class="flex flex-col first-letter w-64 show-option delay-500 ">
           <div class="bg-white h-64 rounded-xl shadow-gray-400 shadow-xl"> </div>
           <div
             class="bg-slate-50 bg-opacity-50 p-3 rounded-xl mt-5 text-center font-bold text-lg shadow-gray-400 shadow-xl">
             ITEM#01 </div>
         </div>
+        <div class="flex flex-col first-letter w-64 show-option duration-700 delay-800 ">
+          <div class="bg-white h-64 rounded-xl shadow-gray-400 shadow-xl"> </div>
+          <div
+            class="bg-slate-50 bg-opacity-50 p-3 rounded-xl mt-5 text-center font-bold text-lg shadow-gray-400 shadow-xl">
+            ITEM#02 </div>
+        </div>
 
 
       </div>
-      <div class="bg-[#f82b74] text-white rounded-full p-5 mt-36 hover:scale-105 ease-in-out duration-300"
+      <div class=" bg-rose-500  text-white font-bold hover:bg-[#f82b74] rounded-full p-5 mt-36 hover:scale-105 ease-in-out duration-300"
         @click="achieve = !achieve">
         <div class="text-center text-2xl font-semibold ">
           CLOSE
@@ -428,11 +430,11 @@ const { getThemesong, playPauseSong, saveCharacter, gameStart, getDialog, getOpt
 
 
 
-    <div class="flex w-full h-full bg-red-200 bg-opacity-50 absolute justify-center rounded-3xl z-50 overflow-hidden"
+    <div class="flex w-full h-full bg-red-200 bg-opacity-50 absolute justify-center z-50"
       v-show="selectCharacter">
-      <div class="flex flex-col w-1/2 bg-slate-200 m-48 mt-24 p-16 z-30 bg-opacity-90 rounded-3xl">
+      <div class="flex flex-col w-1/2 bg-slate-200 m-48 mt-24 p-16 z-30 bg-opacity-90 rounded-3xl overflow-hidden show-dialog">
         <div class="text-center color-black bg-white font-extrabold text-4xl rounded-lg p-5 my-3 z-50 shadow-lg bg-opacity-70">
-          SELECT CHARACTER <p class="mali mt-5 px-3 text-[#f82b74] ">" N' {{ characterinfo[currentCharacter].en.toUpperCase() }} "</p>
+          CHARACTER : <span class="mali mt-5 px-3 text-[#f82b74] ">N' {{ characterinfo[currentCharacter].en.toUpperCase() }} </span>
         </div>
         <div class="absolute right-[26%] top-[80px] text-5xl text-[#f82b74] hover:scale-110 duration-200 ease-in-out"
           @click="selectCharacter = !selectCharacter">
@@ -442,14 +444,14 @@ const { getThemesong, playPauseSong, saveCharacter, gameStart, getDialog, getOpt
         <div class="flex ">
         <div class="flex w-20 h-10 mt-40 text-7xl text-[#f82b74] hover:scale-110 duration-200 ease-in-out"
           @click="backCharacter"> <ion-icon name="chevron-back-outline"></ion-icon></div>
-        <div class="flex -mt-36 ">
+        <div class="flex -mt-20 ">
           <img :src="characterinfo[currentCharacter].image" class="w-fit" />
         </div>
         <div class="flex w-20 h-10  mt-40  hover:skip text-7xl text-[#f82b74] hover:scale-110 duration-200 ease-in-out"
           @click="nextCharacter"><ion-icon name="chevron-forward-outline"></ion-icon></div>
       </div>
       <div
-        class="bg-white text-5xl -mt-28 ml-[47rem] z-40 hover:scale-[110%] duration-200 each-in-out text-[#f82b74] font-bold hover:bg-[#f82b74] hover:text-white transition delay-100 hover:border-white cursor-pointer flex px-5 py-3 mr-5 w-[18%] h-fit justify-center rounded-full border-[#f82b74] border-4 border-solid"
+        class="bottom-56 left-[30rem] absolute bg-white text-5xl ml-[47rem] z-50 hover:scale-[110%] duration-200 each-in-out text-[#f82b74] font-bold hover:bg-[#f82b74] hover:text-white transition delay-100 hover:border-white cursor-pointer flex px-16 py-3 mr-5 h-fit justify-center rounded-full border-[#f82b74] border-4 border-solid"
         @click="saveCharacter">
         Save
       </div>

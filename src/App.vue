@@ -20,9 +20,9 @@ onMounted(() => {
 //song
 const isPlaying = ref(false)
 const inputMusic = ref(null)
-const musicVolume = ref(0.4)
+const musicVolume = ref(0.2)
 const effect = ref(null)
-const effectVolume = ref(1.0)
+const effectVolume = ref(0.5)
 const selectsong = ref(0)
 
 
@@ -346,7 +346,7 @@ function game() {
   }
 
   function getName() {
-    return now.value?.who == "user" ? user.name : now.value?.who == "system" ? characterName.th : now.value?.who
+    return now.value?.who == "user" ? user.name : now.value?.who == "system" ? characterName.value.th : now.value?.who
   }
 
   function getCharecterMood() {
@@ -586,7 +586,7 @@ const { achieveEnding, getThemesong, playPauseSong, saveCharacter, gameStart, ge
 
 
     <img src="./assets/images/other/Enerd.png"
-      class="absolute -z-20 h-[90%] left-[-10%] scale-[90%] -bottom-16 contrast-150 shadowcharecter delay-900 duration-500 ease-in-out" />
+      class="absolute -z-20 h-[90%] left-[-10%] scale-[90%] -bottom-16 contrast-120 shadowcharecter delay-900 duration-500 ease-in-out" />
     <img src="./assets/images/other/EyenCha.png"
       class="absolute -z-40 h-[70%] left-[7%] -top-[52px] scale-[115%] contrast-150 shadowcharecter duration-500" />
     <img src="./assets/images/other/Enu.png"

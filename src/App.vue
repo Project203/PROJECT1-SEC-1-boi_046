@@ -13,6 +13,8 @@ let selected = ref(null)
 onMounted(() => {
   inputMusic.value.src = 'themesongs/background.mp3'
   inputMusic.value.volume = musicVolume.value
+  isPlaying.value = !isPlaying.value
+  playPauseSong()
 })
 
 //song
@@ -23,25 +25,42 @@ const effect = ref(null)
 const effectVolume = ref(1.0)
 const selectsong = ref(0)
 
+
+
 const setsong = () => {
   inputMusic.value.volume = musicVolume.value
   if (selectsong.value == 1) {
     inputMusic.value.src = 'themesongs/background.mp3'
   }
   else if (selectsong.value == 2) {
-    inputMusic.value.src = 'themesongs/dawnoflife.mp3'
-  } 
+    inputMusic.value.src = 'themesongs/marryme.mp3'
+  }
   else if (selectsong.value == 3) {
-    inputMusic.value.src = 'themesongs/aot.mp3'
-  } 
+    inputMusic.value.src = 'themesongs/ghostrifter.mp3'
+  }
   else if (selectsong.value == 4) {
+    inputMusic.value.src = 'themesongs/spring.mp3'
+  }
+  else if (selectsong.value == 5) {
+    inputMusic.value.src = 'themesongs/matsuri.mp3'
+  }
+  else if (selectsong.value == 6) {
+    inputMusic.value.src = 'themesongs/dawnoflife.mp3'
+  }
+  else if (selectsong.value == 7) {
+    inputMusic.value.src = 'themesongs/aot.mp3'
+  }
+  else if (selectsong.value == 8) {
     inputMusic.value.src = 'themesongs/kickback.mp3'
-  }else{
+  } 
+  else {
     inputMusic.value.src = 'themesongs/background.mp3'
   }
 }
-const saveBackgroundsong = () =>{
+
+const saveBackgroundsong = () => {
   getThemesong()
+
 }
 
 // btn
@@ -49,10 +68,21 @@ const setting = ref(false)
 const achieve = ref(false)
 const info = ref(false)
 const help = ref(false)
-
+const history = ref(false)
+const menu = ref(false)
 // menu
 let count = ref(0)
 const displayMenu = ref(false)
+
+const historyMenu = () => {
+  history.value = !history.value
+  menu.value = !menu.value
+}
+
+const settingMenu = () => {
+  setting.value = !setting.value
+  menu.value = !menu.value
+}
 
 const effectSound = (effectName) => {
   effect.value.src = `effects/${effectName}`
@@ -70,7 +100,6 @@ const Musiccontrol = () => {
 const selectCharacter = ref(false)
 
 let currentCharacter = ref(0)
-
 
 const nextCharacter = () => {
   if (currentCharacter.value === 5) {
@@ -105,7 +134,8 @@ function game() {
   let characterMood = "";
   let imageBackground = "error.png";
   let endData = {};
-  let history = [];
+  let historyArr = [];
+  let endAchieve = ['0', '1', '2', '3', '4']
 
   function gameStart() {
     user.name = playername.value
@@ -115,6 +145,27 @@ function game() {
     state.value = 2
     setScene(1)
     effectSound('alarm.mp3')
+    count.value = 1
+    historyArr.value = []
+  }
+
+  function achieveEnding(keyEnding) {
+    if (keyEnding == 'a1') {
+      endAchieve[0] = endData.endingWord
+    }
+    if (keyEnding == 'a2') {
+      endAchieve[1] = endData.endingWord
+    }
+    if (keyEnding == 'b1') {
+      endAchieve[2] = endData.endingWord
+    }
+    if (keyEnding == 'b2') {
+      endAchieve[3] = endData.endingWord
+    }
+    if (keyEnding == 'b3') {
+      endAchieve[4] = endData.endingWord
+    }
+    return endAchieve
   }
 
   function saveCharacter() {
@@ -183,11 +234,10 @@ function game() {
     score += selected?.score ?? 0
     setScene(selected.next)
     if (selected?.characterMood !== null) characterMood = selected?.characterMood
-    if (selected.effect !== null) { effectSound(selected.effect) }
-    else { effectSound('choice.mp3') }
+    if (selected.effect !== null) {effectSound(selected.effect)}  
+    else {effectSound('choice.mp3')}
     checkThemesong()
-    pushHistory()
-    console.log(history)
+    pushHistory(selected.message)
   }
 
   function getOption() {
@@ -205,16 +255,16 @@ function game() {
     let keyEnding = ""
     // end game summalize
     if (type === 0) {
-      if (score > 34) {
+      if (score > 40) {
         keyEnding = "b1"
-      } else if (score > 14) {
+      } else if (score > 24) {
         keyEnding = "b2"
       } else {
         keyEnding = "b3"
       }
     } else if (type === 9) {
       // endgame in no.150 summalize
-      if (score > 5) {
+      if (score > 12) {
         keyEnding = "a1"
       } else {
         keyEnding = "a2"
@@ -225,10 +275,11 @@ function game() {
     endData.score = score
     endData.image = endObj.image
     endData.endingWord = endObj.endingWord
+    achieveEnding(keyEnding)
     return getEndScene()
   }
 
-  function checkThemesong(){
+  function checkThemesong() {
     now.value.themesong === null ? now.value.themesong = null : getThemesong()
   }
 
@@ -284,6 +335,7 @@ function game() {
     state.value = 1
     isPlaying.value = !isPlaying.value
     playPauseSong()
+    menu.value = false
   }
 
   function playPauseSong() {
@@ -293,22 +345,20 @@ function game() {
   }
 
 
-  function pushHistory() {
-    if (now.value.options.message !== ">>")
-      return history.push(now.value.options.message)
+  function pushHistory(mes) {
+    if (mes !== ">>")
+      return historyArr.push(mes)
   }
 
-  function checkHistory() {
-    return console.log(history)
+  function getHistory() {
+    return historyArr
   }
 
-  return { getThemesong, playPauseSong, saveCharacter, gameStart, getDialog, getOption, selectOption, showNextDialogBtn, getCurrentState, getEndScene, getName, goHomePage, getCharecterMood, getBackground, showDirectorScene, checkHistory }
+  return { achieveEnding, getThemesong, playPauseSong, saveCharacter, gameStart, getDialog, getOption, selectOption, showNextDialogBtn, getCurrentState, getEndScene, getName, goHomePage, getCharecterMood, getBackground, showDirectorScene, getHistory }
 }
 
 
-const { getThemesong, playPauseSong, saveCharacter, gameStart, getDialog, getOption, selectOption, showNextDialogBtn, getCurrentState, getEndScene, getName, goHomePage, getCharecterMood, getBackground, showDirectorScene, checkHistory } = game()
-
-
+const { achieveEnding, getThemesong, playPauseSong, saveCharacter, gameStart, getDialog, getOption, selectOption, showNextDialogBtn, getCurrentState, getEndScene, getName, goHomePage, getCharecterMood, getBackground, showDirectorScene, getHistory } = game()
 </script>
 <template>
   <!-- Icon Web + Song ------------------------------------------------------------------------------------------------------------------------------->
@@ -321,7 +371,7 @@ const { getThemesong, playPauseSong, saveCharacter, gameStart, getDialog, getOpt
       <span class="flex justify-center text-white">{{ isPlaying ? "Pause" : "Play" }}</span>
     </button>
     <!-- Setting Button -->
-   
+
   </div>
 
   <!-- Setting sound v-show setting-->
@@ -329,10 +379,6 @@ const { getThemesong, playPauseSong, saveCharacter, gameStart, getDialog, getOpt
     <div class="flex flex-col w-1/2 bg-slate-200 m-48 mt-24 p-16 z-30 bg-opacity-90 rounded-3xl show-dialog">
       <div class="text-center color-black font-extrabold text-4xl rounded-lg p-5 my-3">Sound Settings</div>
       <div class="bg-slate-50 rounded-lg p-5 my-3 delay-500">
-        <div class="absolute right-[26%] top-[80px] text-5xl text-[#f82b74] hover:scale-110 duration-200 ease-in-out "
-          @click="setting = !setting">
-          <ion-icon name="close-sharp"></ion-icon>
-        </div>
         <div class="flex justify-between">
           <div class="text-lg font-bold">Background Music </div>
           <div class="flex justify-center"> {{ musicVolume * 100 }}% </div>
@@ -355,22 +401,28 @@ const { getThemesong, playPauseSong, saveCharacter, gameStart, getDialog, getOpt
 
         </div>
         <div class="flex">
-        <select id="bg-song" v-model="selectsong"
-          class="bg-gray-200 border mt-3 border-gray-300 text-lg font-semibold rounded-lg text-slate-700  focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
-          <option disabled value="0" selected >Choose a background song...</option>
-          <option value="1" class="mx-5">Default</option>
-          <option value="2">Dawn of Life</option>
-          <option value="3">Attack on Titan</option>
-          <option value="4">Kick Back</option>
-        </select>
+          <select id="bg-song" v-model="selectsong"
+            class="bg-gray-200 border mt-3 border-gray-300 text-lg font-semibold rounded-lg text-slate-700  focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
+            <option disabled value="0" selected>Choose a background song...</option>
+            <option value="1" class="mx-5">Default</option>
+            <option value="2">Marry Me</option>
+            <option value="3">Ghostrifter</option>
+            <option value="4">Spring</option>
+            <option value="5">Matsuri</option>
+            <option value="6">Dawn of Life</option>
+            <option value="7">Attack on Titan</option>
+            <option value="8">Kick Back</option>
+          </select>
 
-        <div class="text-center text-xl rounded-md ease-in-out duration-300 mt-3 ml-5 pt-3 px-6  bg-rose-500  text-white font-bold hover:bg-[#f82b74] active:bg-black"
-          @click="saveBackgroundsong">
-           Save
+          <div
+            class="text-center text-xl rounded-md ease-in-out duration-300 mt-3 ml-5 pt-3 px-6  bg-rose-500  text-white font-bold hover:bg-[#f82b74] active:bg-black"
+            @click="saveBackgroundsong">
+            Save
+          </div>
         </div>
       </div>
-      </div>
-      <div class="shadow-xl rounded-full p-5 mt-24 hover:scale-105 ease-in-out duration-300 bg-rose-500  text-white font-bold hover:bg-[#f82b74] "
+      <div
+        class="shadow-xl rounded-full p-5 mt-8 hover:scale-105 ease-in-out duration-300 bg-rose-500  text-white font-bold hover:bg-[#f82b74] "
         @click="setting = !setting">
         <div class="text-center text-2xl font-semibold ">
           CLOSE
@@ -379,32 +431,120 @@ const { getThemesong, playPauseSong, saveCharacter, gameStart, getDialog, getOpt
     </div>
   </div>
 
-  <!-- Achievement v-show setting-->
+  <!-- Achievement v-show -->
   <div class="flex w-full h-full bg-red-200 bg-opacity-50 absolute justify-center z-50 " v-show="achieve">
     <div class="flex flex-col w-1/2 bg-slate-200 m-48 mt-24 p-16 z-30 bg-opacity-90 rounded-3xl show-dialog">
       <div class="text-center color-black font-extrabold text-4xl rounded-lg p-5 my-3">Achievement</div>
-      <div class="absolute right-[26%] top-[80px] text-5xl text-[#f82b74] hover:scale-110 duration-200 ease-in-out"
-        @click="achieve = !achieve">
-        <ion-icon name="close-sharp"></ion-icon>
-      </div>
-      <div class="grid grid-cols-3 gap-6 mt-5">
-        <div class="flex flex-col first-letter w-64 show-option delay-500 ">
-          <div class="bg-white h-64 rounded-xl shadow-gray-400 shadow-xl"> </div>
+      <div class="flex mt-10 overflow">
+        <div class="flex flex-col first-letter w-64 show-option delay-500 mx-2">
+          <div class="bg-white rounded-xl shadow-gray-400 h-52 pt-4 shadow-xl overflow-hidden"><img
+              src="images/character/kaitoon/base.png" class="scale-[150%]"
+              :class="achieveEnding()[0] == 0 ? 'brightness-[0%]' : ''"></div>
           <div
             class="bg-slate-50 bg-opacity-50 p-3 rounded-xl mt-5 text-center font-bold text-lg shadow-gray-400 shadow-xl">
-            ITEM#01 </div>
+            {{ achieveEnding()[0] == 0 ? 'ENDING 1' : achieveEnding()[0] }} </div>
         </div>
-        <div class="flex flex-col first-letter w-64 show-option duration-700 delay-800 ">
-          <div class="bg-white h-64 rounded-xl shadow-gray-400 shadow-xl"> </div>
+        <div class="flex flex-col first-letter w-64 show-option delay-500 mx-2">
+          <div class="bg-white rounded-xl shadow-gray-400 h-52 pt-4 shadow-xl overflow-hidden"><img
+              src="images/character/kaitoon/base.png" class="scale-[150%]"
+              :class="achieveEnding()[1] == 1 ? 'brightness-[0%]' : ''"></div>
           <div
             class="bg-slate-50 bg-opacity-50 p-3 rounded-xl mt-5 text-center font-bold text-lg shadow-gray-400 shadow-xl">
-            ITEM#02 </div>
+            ENDING 2 </div>
+        </div>
+        <div class="flex flex-col first-letter w-64 show-option delay-500 mx-2">
+          <div class="bg-white rounded-xl shadow-gray-400 h-52 pt-4 shadow-xl overflow-hidden"><img
+              src="images/character/kaitoon/smile.png" class="scale-[150%]"
+              :class="achieveEnding()[2] == 2 ? 'brightness-[0%]' : ''"></div>
+          <div
+            class="bg-slate-50 bg-opacity-50 p-3 rounded-xl mt-5 text-center font-bold text-lg shadow-gray-400 shadow-xl">
+            ENDING 3 </div>
+        </div>
+        <div class="flex flex-col first-letter w-64 show-option delay-500 mx-2">
+          <div class="bg-white rounded-xl shadow-gray-400 h-52 pt-4 shadow-xl overflow-hidden"><img
+              src="images/character/kaitoon/smile.png" class="scale-[150%]"
+              :class="achieveEnding()[3] == 3 ? 'brightness-[0%]' : ''"></div>
+          <div
+            class="bg-slate-50 bg-opacity-50 p-3 rounded-xl mt-5 text-center font-bold text-lg shadow-gray-400 shadow-xl">
+            ENDING 4 </div>
+        </div>
+        <div class="flex flex-col first-letter w-64 show-option delay-500 mx-2">
+          <div class="bg-white rounded-xl shadow-gray-400 h-52 pt-4 shadow-xl overflow-hidden"><img
+              src="images/character/kaitoon/sad.png" class="scale-[150%]"
+              :class="achieveEnding()[4] == 4 ? 'brightness-[0%]' : ''"></div>
+          <div
+            class="bg-slate-50 bg-opacity-50 p-3 rounded-xl mt-5 text-center font-bold text-lg shadow-gray-400 shadow-xl">
+            ENDING 5 </div>
         </div>
 
 
+
       </div>
-      <div class=" bg-rose-500  text-white font-bold hover:bg-[#f82b74] rounded-full p-5 mt-36 hover:scale-105 ease-in-out duration-300"
+      <div
+        class=" bg-rose-500  text-white font-bold hover:bg-[#f82b74] rounded-full p-5 mt-20 hover:scale-105 ease-in-out duration-300"
         @click="achieve = !achieve">
+        <div class="text-center text-2xl font-semibold ">
+          CLOSE
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- History v-show -->
+  <div class="flex w-full h-full bg-red-200 bg-opacity-50 absolute justify-center z-50 " v-show="history">
+    <div class="flex flex-col w-1/2 bg-slate-200 m-48 mt-24 p-16 z-30 bg-opacity-90 rounded-3xl show-dialog">
+      <div class="text-center color-black font-extrabold text-4xl rounded-lg p-5 my-3">History</div>
+      <div class="overflow-y-auto flex flex-col mt-5 ">
+        <div class=" bg-white rounded-xl shadow-gray-400 shadow-md indent-16 px-3 py-3 my-3"
+          v-for="(item, index) in getHistory()"> - {{ item }}
+        </div>
+
+      </div>
+
+      <div
+        class=" bg-rose-500 text-white font-bold hover:bg-[#f82b74] rounded-full p-5 mt-16 hover:scale-105 ease-in-out duration-300"
+        @click="history = !history">
+        <div class="text-center text-2xl font-semibold ">
+          CLOSE
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- info -->
+  <div class="flex w-full h-full bg-red-200 bg-opacity-50 absolute justify-center z-50 " v-show="info">
+    <div class="flex flex-col w-1/2 bg-slate-200 m-48 mt-24 p-16 z-30 bg-opacity-90 rounded-3xl show-dialog">
+      <div class="text-center color-black font-extrabold text-4xl rounded-lg p-5 my-3">Game Information</div>
+     
+      <div class="overflow-y-auto flex flex-col mt-3 ">
+        <div class="bg-white rounded-xl px-5 py-5 my-2">
+          <div class="text-2xl font-bold px-3">Information</div>
+          <hr>
+          <div class="text-md indent-10 mt-4 mali">เกมส์นี้เป็นส่วนหนึ่งของวิชา INT203
+            CLIENT-SIDE WEB PROGRAMMING II ปีการศึกษา 2565 คณะเทคโนโลยีสารสนเทศ มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าธนบุรี</div>
+        </div>
+        <div class="bg-white rounded-xl px-5 py-5 my-2">
+          <div class="text-2xl font-bold px-3">Browser support</div>
+          <hr>
+          <div class="text-md indent-10 mt-4 mali">
+          เพื่อให้ได้รับประสบการณ์ที่ดีที่สุดในการใช้งาน กรุณาใช้งานผ่าน Browser ที่รองรับ ดังนี้
+            <li>Edge เวอร์ชัน 110 ขึ้นไป </li>
+            <li>Google Chrome เวอร์ชัน 110 ขึ้นไป </li>
+            <li>สัดส่วนหน้าจอ 16:9 </li>
+          </div>
+        </div>
+         <div class="bg-white rounded-xl px-5 py-5 my-2">
+          <div class="text-2xl font-bold px-3">Game Support</div>
+          <hr>
+          <div class="text-md indent-10 mt-4 mali">หากพบปัญหาในการใช้งาน หรือต้องการติดต่อผู้พัฒนา สามารถติดต่อได้ทาง <a href="mailto:project203@kasidate.me?subject=BOI-046%20Support" class="text-blue-500">project203@kasidate.me</a></div>
+        </div>
+
+      </div>
+
+      <div
+        class=" bg-rose-500  text-white font-bold hover:bg-[#f82b74] rounded-full p-5 mt-16 hover:scale-105 ease-in-out duration-300"
+        @click="info = !info">
         <div class="text-center text-2xl font-semibold ">
           CLOSE
         </div>
@@ -414,6 +554,9 @@ const { getThemesong, playPauseSong, saveCharacter, gameStart, getDialog, getOpt
 
   <!-- firstpage------------------------------------------------------------------------------------------------------------------------------->
   <div class="w-screen h-screen" v-if="getCurrentState() == 1">
+
+
+
     <img src="./assets/images/other/Enerd.png"
       class="absolute -z-20 h-[90%] left-[-10%] scale-[90%] -bottom-16 contrast-150 shadowcharecter delay-900 duration-500 ease-in-out" />
     <img src="./assets/images/other/EyenCha.png"
@@ -430,47 +573,43 @@ const { getThemesong, playPauseSong, saveCharacter, gameStart, getDialog, getOpt
 
 
 
-    <div class="flex w-full h-full bg-red-200 bg-opacity-50 absolute justify-center z-50"
-      v-show="selectCharacter">
-      <div class="flex flex-col w-1/2 bg-slate-200 m-48 mt-24 p-16 z-30 bg-opacity-90 rounded-3xl overflow-hidden show-dialog">
-        <div class="text-center color-black bg-white font-extrabold text-4xl rounded-lg p-5 my-3 z-50 shadow-lg bg-opacity-70">
-          CHARACTER : <span class="mali mt-5 px-3 text-[#f82b74] ">N' {{ characterinfo[currentCharacter].en.toUpperCase() }} </span>
-        </div>
-        <div class="absolute right-[26%] top-[80px] text-5xl text-[#f82b74] hover:scale-110 duration-200 ease-in-out"
-          @click="selectCharacter = !selectCharacter">
-          <ion-icon name="close-sharp"></ion-icon>
+    <div class="flex w-full h-full bg-red-200 bg-opacity-50 absolute justify-center z-50" v-show="selectCharacter">
+      <div
+        class="flex flex-col w-1/2 bg-slate-200 m-48 mt-24 p-16 z-30 bg-opacity-90 rounded-3xl overflow-hidden show-dialog">
+        <div
+          class="text-center color-black bg-white font-extrabold text-4xl rounded-lg p-5 my-3 z-50 shadow-lg bg-opacity-70">
+          CHARACTER : <span class="mali mt-5 px-3 text-[#f82b74] ">N' {{ characterinfo[currentCharacter].en.toUpperCase()
+          }} </span>
         </div>
 
         <div class="flex ">
-        <div class="flex w-20 h-10 mt-40 text-7xl text-[#f82b74] hover:scale-110 duration-200 ease-in-out"
-          @click="backCharacter"> <ion-icon name="chevron-back-outline"></ion-icon></div>
-        <div class="flex -mt-20 ">
-          <img :src="characterinfo[currentCharacter].image" class="w-fit" />
+          <div class="flex w-20 h-10 mt-40 text-7xl text-[#f82b74] hover:scale-110 duration-200 ease-in-out"
+            @click="backCharacter"> <ion-icon name="chevron-back-outline"></ion-icon></div>
+          <div class="flex -mt-20 ">
+            <img :src="characterinfo[currentCharacter].image" class="w-fit" />
+          </div>
+          <div class="flex w-20 h-10  mt-40  hover:skip text-7xl text-[#f82b74] hover:scale-110 duration-200 ease-in-out"
+            @click="nextCharacter"><ion-icon name="chevron-forward-outline"></ion-icon></div>
         </div>
-        <div class="flex w-20 h-10  mt-40  hover:skip text-7xl text-[#f82b74] hover:scale-110 duration-200 ease-in-out"
-          @click="nextCharacter"><ion-icon name="chevron-forward-outline"></ion-icon></div>
-      </div>
-      <div
-        class="bottom-56 left-[30rem] absolute bg-white text-5xl ml-[47rem] z-50 hover:scale-[110%] duration-200 each-in-out text-[#f82b74] font-bold hover:bg-[#f82b74] hover:text-white transition delay-100 hover:border-white cursor-pointer flex px-16 py-3 mr-5 h-fit justify-center rounded-full border-[#f82b74] border-4 border-solid"
-        @click="saveCharacter">
-        Save
-      </div>
-        
-        
+        <div
+          class="bottom-56 -left-[16rem] absolute bg-white text-3xl ml-[47rem] z-50 hover:scale-[110%] duration-200 each-in-out text-[#f82b74] font-bold hover:bg-[#f82b74] hover:text-white transition delay-100 hover:border-white cursor-pointer flex px-8 py-2 mr-5 h-fit justify-center rounded-full border-[#f82b74] border-4 border-solid"
+          @click="saveCharacter">
+          Cancel
+        </div>
+        <div
+          class="bottom-56 left-[30rem] absolute bg-white text-3xl ml-[47rem] z-50 hover:scale-[110%] duration-200 each-in-out text-[#f82b74] font-bold hover:bg-[#f82b74] hover:text-white transition delay-100 hover:border-white cursor-pointer flex px-8 py-2 mr-5 h-fit justify-center rounded-full border-[#f82b74] border-4 border-solid"
+          @click="saveCharacter">
+          Save
+        </div>
+
+
       </div>
     </div>
 
 
     <div class="w-full h-full relative">
 
-
-
-      <!-- Achivement -->
-      
       <!-- help -->
-    
-      <!-- info -->
-
       <div class="w-1/2 h-3/5 absolute right-20 bottom-12">
         <div class="w-full h-full flex flex-col mt-6 place-items-end relative">
           <div class="h-1/6 w-1/2 rounded-full flex justify-center items-center text-3xl mali text-[#9B4F5E] font-bold">
@@ -522,10 +661,11 @@ const { getThemesong, playPauseSong, saveCharacter, gameStart, getDialog, getOpt
               class="text-4xl bg-white rounded-full flex border-[#f82b74] border-4 border-solid justify-center items-center hover:scale-[115%] duration-200 each-in-out text-[#f82b74] font-bold hover:bg-[#f82b74] hover:text-white transition delay-100 hover:border-white cursor-pointer">
               <ion-icon name="information-sharp"></ion-icon>
             </div>
-            <div @click=""
+            <a href="https://www.facebook.com/sharer/sharer.php?u=https://game.kasp.codes&t=Let play now!!"
+              target="_blank"
               class="text-4xl bg-white rounded-full border-[#f82b74] border-4 border-solid flex justify-center items-center hover:scale-[115%] duration-200 each-in-out text-[#f82b74] font-bold hover:bg-[#f82b74] hover:text-white transition delay-100 hover:border-white cursor-pointer">
               <ion-icon name="share-social-sharp"></ion-icon>
-            </div>
+            </a>
           </div>
         </div>
       </div>
@@ -534,6 +674,38 @@ const { getThemesong, playPauseSong, saveCharacter, gameStart, getDialog, getOpt
 
   <!-- subtitles------------------------------------------------------------------------------------------------------------------------------->
   <div class="w-screen h-screen" v-if="getCurrentState() == 2">
+    <div class="flex w-full h-full bg-red-200 bg-opacity-50 absolute justify-center z-40 " v-show="menu">
+      <div class="flex flex-col w-1/2 bg-slate-200 m-48 mt-24 p-16 z-30 bg-opacity-90 rounded-3xl show-dialog">
+        <div class="text-center color-black font-extrabold text-4xl rounded-lg p-5 my-3">Game Menu</div>
+      
+        <div class=" flex flex-col  ">
+          <div class="rounded-xl px-5 py-5">
+            <div @click="historyMenu"
+              class="text-3xl mali font-semibold text-[#f82b74] hover:bg-rose-600 hover:text-white cursor-pointer border-[#f82b74] border-2 border-solid text-center rounded-[15px] py-3 pl-8 pr-8 bg-white">
+              HISTORY
+            </div>
+            <div @click="goHomePage"
+              class="text-3xl mali font-semibold text-[#f82b74] mt-12 hover:bg-rose-600 hover:text-white cursor-pointer border-[#f82b74] border-2 border-solid text-center rounded-[15px] py-3 pl-8 pr-8 bg-white">
+              RESTART
+            </div>
+            <div @click="settingMenu"
+              class="text-3xl mali font-semibold text-[#f82b74] mt-12 hover:bg-rose-600 hover:text-white cursor-pointer border-[#f82b74] border-2 border-solid text-center rounded-[15px] py-3 pl-8 pr-8 bg-white">
+              SOUNDSETTING
+            </div>
+          </div>
+
+        </div>
+
+        <div
+          class=" bg-rose-500  text-white font-bold hover:bg-[#f82b74] rounded-full p-5 mt-10 hover:scale-105 ease-in-out duration-300"
+          @click="menu = !menu">
+          <div class="text-center text-2xl font-semibold ">
+            CLOSE
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="w-full h-24 flex absolute">
       <div class="w-30 w-full flex justify-end">
         <!-- Back Btn -->
@@ -541,17 +713,9 @@ const { getThemesong, playPauseSong, saveCharacter, gameStart, getDialog, getOpt
           class="z-50 mr-auto ml-36 text-3xl mali font-semibold text-[#f82b74] mt-4 mr-12 hover:bg-rose-600 hover:text-white cursor-pointer border-[#f82b74] border-2 border-solid place-self-center flex place-items-center rounded-[15px] py-3 pl-8 pr-8 bg-white">
           Scene: {{ count }}
         </div>
-        <div @click="displayMenu = !displayMenu"
+        <div @click="menu = !menu"
           class="focus:bg-rose-600 z-50 text-3xl mali font-semibold text-[#f82b74] mt-4 mr-12 hover:bg-rose-600 hover:text-white cursor-pointer border-[#f82b74] border-2 border-solid place-self-center flex place-items-center rounded-[15px] py-3 pl-8 pr-8 bg-white">
           MENU
-        </div>
-        <div @click="checkHistory"
-          class="z-50 text-3xl mali font-semibold text-[#f82b74] mt-4 mr-12 hover:bg-rose-600 hover:text-white cursor-pointer border-[#f82b74] border-2 border-solid place-self-center flex place-items-center rounded-[15px] py-3 pl-8 pr-8 bg-white">
-          HISTORY
-        </div>
-        <div @click="goHomePage"
-          class="z-50 text-3xl mali font-semibold text-[#f82b74] mt-4 mr-12 hover:bg-rose-600 hover:text-white cursor-pointer border-[#f82b74] border-2 border-solid place-self-center flex place-items-center rounded-[15px] py-3 pl-8 pr-8 bg-white">
-          RESTART
         </div>
       </div>
     </div>
@@ -572,7 +736,7 @@ const { getThemesong, playPauseSong, saveCharacter, gameStart, getDialog, getOpt
         <div
           class="relative w-[50%] h-[75%] border-[#f82b74] border-4 flex mr-auto ml-auto indent-10 p-20 items-center bg-white bg-opacity-70 rounded-bl-[100px] rounded-tr-[100px] show-dialog">
           <p class="pb-32 leading-[2em] text-[#f82b74] typing break-words text-2xl indent-16">{{ getDialog() }}</p>
-          <div v-show="true" class="z-50 bounce absolute cursor-pointer text-2xl w-20 h-20 bottom-4 right-8">
+          <div v-show="true" class="z-40 bounce absolute cursor-pointer text-2xl w-20 h-20 bottom-4 right-8">
             <img src="./assets/images/element/skipwhite.png">
           </div>
         </div>
@@ -668,6 +832,10 @@ const { getThemesong, playPauseSong, saveCharacter, gameStart, getDialog, getOpt
             {{ getEndScene().message }}
           </p>
         </div>
+      </div>
+      <div @click="history = !history"
+        class="absolute bounce z-30 bottom-4 right-48 text-3xl mali font-semibold text-[#f82b74] cursor-pointer border-rose-500 border-y-4 border-solid place-self-center flex place-items-center rounded-full p-1 bg-fuchsia-50 retry-btn">
+        <div class="bg-[#ffffff] rounded-full py-3 pl-8 pr-8 ">show history</div>
       </div>
       <div @click="goHomePage"
         class="absolute bounce z-30 bottom-4 right-4 text-3xl mali font-semibold text-[#f82b74] cursor-pointer border-rose-500 border-y-4 border-solid place-self-center flex place-items-center rounded-full p-1 bg-fuchsia-50 retry-btn">

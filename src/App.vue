@@ -12,6 +12,7 @@ let selected = ref(null)
 
 onMounted(() => {
   inputMusic.value.src = 'themesongs/background.mp3'
+  inputMusic.value.loop = true
   inputMusic.value.volume = musicVolume.value
   isPlaying.value = !isPlaying.value
   playPauseSong()
@@ -20,7 +21,7 @@ onMounted(() => {
 //song
 const isPlaying = ref(false)
 const inputMusic = ref(null)
-const musicVolume = ref(0.2)
+const musicVolume = ref(0.1)
 const effect = ref(null)
 const effectVolume = ref(0.5)
 const selectsong = ref(0)
@@ -45,10 +46,10 @@ const setsong = () => {
     inputMusic.value.src = 'themesongs/matsuri.mp3'
   }
   else if (selectsong.value == 6) {
-    inputMusic.value.src = 'themesongs/dawnoflife.mp3'
+    inputMusic.value.src = 'themesongs/aot1.mp3'
   }
   else if (selectsong.value == 7) {
-    inputMusic.value.src = 'themesongs/aot.mp3'
+    inputMusic.value.src = 'themesongs/aot2.mp3'
   }
   else if (selectsong.value == 8) {
     inputMusic.value.src = 'themesongs/kickback.mp3'
@@ -118,17 +119,16 @@ const backCharacter = () => {
 }
 
 // How to play
-const Howtoplay = ref(false)
 const currentHowto = ref(0)
 const Howtoimage = [
-{image:"images/character/kaitom/simple.jpg"}, 
-{image: "images/character/kaitom/speak.jpg"},
-{image: "images/character/kaitom/shy.jpg"},
-{image: "images/character/kaitom/confi.jpg"},
-{image: "images/character/kaitom/boring.jpg"}
+{image:"images/help/simple.jpg"}, 
+{image: "images/help/speak.jpg"},
+{image: "images/help/shy.jpg"},
+{image: "images/help/confi.jpg"},
+{image: "images/help/boring.jpg"}
 ]
 const showHelp = () =>{
-  Howtoplay.value = !Howtoplay.value
+  help.value = !help.value
   currentHowto.value = 0
 }
 const nextHowto = () => {
@@ -164,6 +164,7 @@ function game() {
   let endData = {};
   let historyArr = [];
   let endAchieve = ['0', '1', '2', '3', '4']
+  let keyEnding = ""
 
   function gameStart() {
     user.name = playername.value
@@ -248,7 +249,7 @@ function game() {
     while (replaceDialog?.includes("$") && i < 3) {
       i++
       if (replaceDialog?.includes("$NAME")) replaceDialog = replaceDialog.replace("$NAME", user.name)
-      if (replaceDialog?.includes("$CHARNAME")) replaceDialog = replaceDialog.replace("$CHARNAME", characterName.th)
+      if (replaceDialog?.includes("$CHARNAME")) replaceDialog = replaceDialog.replace("$CHARNAME", characterName.value.th)
     }
     return replaceDialog
   }
@@ -280,7 +281,7 @@ function game() {
 
   function endScene(type) {
     state.value = 3
-    let keyEnding = ""
+    // let keyEnding = ""
     // end game summalize
     if (type === 0) {
       if (score > 40) {
@@ -301,7 +302,10 @@ function game() {
     const endObj = summalize.find(e => e.id == keyEnding)
     endData.message = interactiveDialogs(endObj.message)
     endData.score = score
-    endData.image = endObj.image
+    // endData.image = endObj.image
+    if(keyEnding == 'a1' || keyEnding == 'a2') endData.image = `images/character/${characterName.value.en}/base.png`
+    if(keyEnding == 'b1' || keyEnding == 'b2') endData.image = `images/character/${characterName.value.en}/smile.png`
+    if (keyEnding == 'b3') endData.image = `images/character/${characterName.value.en}/shy.png`
     endData.endingWord = endObj.endingWord
     achieveEnding(keyEnding)
     return getEndScene()
@@ -314,13 +318,16 @@ function game() {
   function getThemesong() {
     setsong()
     inputMusic.value.volume = musicVolume.value
-    if (state.value == 3) {
-      inputMusic.value.src = 'themesongs/end.mp3'
-    }
-    else if (state.value === 1) {
+    if (state.value === 1) {
     }
     else if (now.value.themesong === null) {
-    }
+    } 
+    else if (state.value === 3 && (keyEnding == 'a1' || keyEnding == 'a2')) {
+      inputMusic.value.src = 'themesongs/end.mp3'
+    } 
+    else if (state.value === 3 && (keyEnding !== 'a1' || keyEnding !== 'a2')) {
+      inputMusic.value.src = 'themesongs/kawai.mp3'
+    } 
     else {
       inputMusic.value.src = `themesongs/${now.value.themesong}`
     }
@@ -362,6 +369,7 @@ function game() {
     effectSound((state.value === 2 ? 'goHome.mp3' : 'choice.mp3'))
     state.value = 1
     isPlaying.value = !isPlaying.value
+    setsong()
     playPauseSong()
     menu.value = false
   }
@@ -437,8 +445,8 @@ const { achieveEnding, getThemesong, playPauseSong, saveCharacter, gameStart, ge
             <option value="3">Ghostrifter</option>
             <option value="4">Spring</option>
             <option value="5">Matsuri</option>
-            <option value="6">Dawn of Life</option>
-            <option value="7">Attack on Titan</option>
+            <option value="6">Attack on Titan 1</option>
+            <option value="7">Attack on Titan 2</option>
             <option value="8">Kick Back</option>
           </select>
 
@@ -638,7 +646,7 @@ const { achieveEnding, getThemesong, playPauseSong, saveCharacter, gameStart, ge
     <div class="w-full h-full relative">
 
       <!-- help -->
-          <div class="flex w-full h-full bg-red-200 bg-opacity-50 absolute justify-center z-50" v-show="Howtoplay">
+          <div class="flex w-full h-full bg-red-200 bg-opacity-50 absolute justify-center z-50" v-show="help">
         <div
           class="flex flex-col w-1/2 bg-slate-200 m-48 mt-24 p-16 z-30 bg-opacity-90 rounded-3xl overflow-hidden show-dialog">
 
@@ -703,7 +711,7 @@ const { achieveEnding, getThemesong, playPauseSong, saveCharacter, gameStart, ge
             </div>
           </div>
           <div class="mt-5 h-1/6 w-96 ml-64 grid grid-cols-3 gap-20 p-4">
-            <div @click="Howtoplay = !Howtoplay"
+            <div @click="showHelp"
               class="text-4xl bg-white rounded-full border-[#f82b74] border-4 border-solid flex justify-center items-center hover:scale-[115%] duration-200 each-in-out text-[#f82b74] font-bold hover:bg-[#f82b74] hover:text-white transition delay-100 hover:border-white cursor-pointer">
               <ion-icon name="help-sharp"></ion-icon>
             </div>
@@ -760,7 +768,7 @@ const { achieveEnding, getThemesong, playPauseSong, saveCharacter, gameStart, ge
       <div class="w-30 w-full flex justify-end">
         <!-- Back Btn -->
         <div
-          class="z-50 mr-auto ml-36 text-3xl mali font-semibold text-[#f82b74] mt-4 mr-12 hover:bg-rose-600 hover:text-white cursor-pointer border-[#f82b74] border-2 border-solid place-self-center flex place-items-center rounded-[15px] py-3 pl-8 pr-8 bg-white">
+          class="z-50  ml-36 text-3xl mali font-semibold text-[#f82b74] mt-4 mr-12 hover:bg-rose-600 hover:text-white cursor-pointer border-[#f82b74] border-2 border-solid place-self-center flex place-items-center rounded-[15px] py-3 pl-8 pr-8 bg-white">
           Scene: {{ count }}
         </div>
         <div @click="menu = !menu"

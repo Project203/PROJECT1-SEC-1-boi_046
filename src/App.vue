@@ -99,7 +99,7 @@ const Musiccontrol = () => {
 // select character
 const selectCharacter = ref(false)
 
-let currentCharacter = ref(0)
+const currentCharacter = ref(0)
 
 const nextCharacter = () => {
   if (currentCharacter.value === 5) {
@@ -115,7 +115,35 @@ const backCharacter = () => {
   } else {
     currentCharacter.value--
   }
+}
 
+// How to play
+const Howtoplay = ref(false)
+const currentHowto = ref(0)
+const Howtoimage = [
+{image:"images/character/kaitom/simple.jpg"}, 
+{image: "images/character/kaitom/speak.jpg"},
+{image: "images/character/kaitom/shy.jpg"},
+{image: "images/character/kaitom/confi.jpg"},
+{image: "images/character/kaitom/boring.jpg"}
+]
+const showHelp = () =>{
+  Howtoplay.value = !Howtoplay.value
+  currentHowto.value = 0
+}
+const nextHowto = () => {
+    if (currentHowto.value === 4) {
+      currentHowto.value = 0
+    } else {
+      currentHowto.value++
+    }
+  }
+const backHowto = () => {
+    if (currentHowto.value === 0) {
+      currentHowto.value = 4
+    } else {
+      currentHowto.value--
+    }
 }
 // randomname
 const randomName = () => {
@@ -572,7 +600,7 @@ const { achieveEnding, getThemesong, playPauseSong, saveCharacter, gameStart, ge
     <img src="./assets/images/element/gameName.png" class="w-full h-full absolute -z-50" />
 
 
-
+<!-- Select Character -->
     <div class="flex w-full h-full bg-red-200 bg-opacity-50 absolute justify-center z-50" v-show="selectCharacter">
       <div
         class="flex flex-col w-1/2 bg-slate-200 m-48 mt-24 p-16 z-30 bg-opacity-90 rounded-3xl overflow-hidden show-dialog">
@@ -610,6 +638,28 @@ const { achieveEnding, getThemesong, playPauseSong, saveCharacter, gameStart, ge
     <div class="w-full h-full relative">
 
       <!-- help -->
+          <div class="flex w-full h-full bg-red-200 bg-opacity-50 absolute justify-center z-50" v-show="Howtoplay">
+        <div
+          class="flex flex-col w-1/2 bg-slate-200 m-48 mt-24 p-16 z-30 bg-opacity-90 rounded-3xl overflow-hidden show-dialog">
+
+          <div class="flex ">
+            <div class="flex w-20 h-10 mt-40 text-7xl text-[#f82b74] hover:scale-110 duration-200 ease-in-out"
+              @click="backHowto()"> <ion-icon name="chevron-back-outline"></ion-icon></div>
+            <div class="flex -mt-20 ">
+              <img :src="Howtoimage[currentHowto].image" class="w-fit" />
+            </div>
+            <div class="flex w-20 h-10  mt-40  hover:skip text-7xl text-[#f82b74] hover:scale-110 duration-200 ease-in-out"
+              @click="nextHowto()"><ion-icon name="chevron-forward-outline"></ion-icon></div>
+          </div>
+          <div
+            class="bottom-56 left-[30rem] absolute bg-white text-3xl ml-[47rem] z-50 hover:scale-[110%] duration-200 each-in-out text-[#f82b74] font-bold hover:bg-[#f82b74] hover:text-white transition delay-100 hover:border-white cursor-pointer flex px-8 py-2 mr-5 h-fit justify-center rounded-full border-[#f82b74] border-4 border-solid"
+            @click="showHelp()">
+            Close
+          </div>
+
+        
+        </div>
+      </div>
       <div class="w-1/2 h-3/5 absolute right-20 bottom-12">
         <div class="w-full h-full flex flex-col mt-6 place-items-end relative">
           <div class="h-1/6 w-1/2 rounded-full flex justify-center items-center text-3xl mali text-[#9B4F5E] font-bold">
@@ -653,7 +703,7 @@ const { achieveEnding, getThemesong, playPauseSong, saveCharacter, gameStart, ge
             </div>
           </div>
           <div class="mt-5 h-1/6 w-96 ml-64 grid grid-cols-3 gap-20 p-4">
-            <div @click="help = !help"
+            <div @click="Howtoplay = !Howtoplay"
               class="text-4xl bg-white rounded-full border-[#f82b74] border-4 border-solid flex justify-center items-center hover:scale-[115%] duration-200 each-in-out text-[#f82b74] font-bold hover:bg-[#f82b74] hover:text-white transition delay-100 hover:border-white cursor-pointer">
               <ion-icon name="help-sharp"></ion-icon>
             </div>

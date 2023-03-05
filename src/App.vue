@@ -61,8 +61,9 @@ const setsong = () => {
 
 const saveBackgroundsong = () => {
   getThemesong()
-
+  effectSound()
 }
+
 
 // btn
 const setting = ref(false)
@@ -78,15 +79,18 @@ const displayMenu = ref(false)
 const historyMenu = () => {
   history.value = !history.value
   menu.value = !menu.value
+  effectSound()
 }
 
 const settingMenu = () => {
   setting.value = !setting.value
   menu.value = !menu.value
+  effectSound()
 }
 
 const effectSound = (effectName) => {
   effect.value.src = `effects/${effectName}`
+  if(effectName === null || effectName === undefined) effect.value.src = `effects/drop.mp3`
   effect.value.volume = effectVolume.value
   effect.value.play()
 }
@@ -108,7 +112,7 @@ const nextCharacter = () => {
   } else {
     currentCharacter.value++
   }
-
+  effectSound()
 }
 const backCharacter = () => {
   if (currentCharacter.value === 0) {
@@ -116,6 +120,7 @@ const backCharacter = () => {
   } else {
     currentCharacter.value--
   }
+  effectSound()
 }
 
 // How to play
@@ -130,6 +135,7 @@ const Howtoimage = [
 const showHelp = () =>{
   help.value = !help.value
   currentHowto.value = 0
+  effectSound()
 }
 const nextHowto = () => {
     if (currentHowto.value === 4) {
@@ -137,6 +143,7 @@ const nextHowto = () => {
     } else {
       currentHowto.value++
     }
+    effectSound()
   }
 const backHowto = () => {
     if (currentHowto.value === 0) {
@@ -144,6 +151,7 @@ const backHowto = () => {
     } else {
       currentHowto.value--
     }
+    effectSound()
 }
 // randomname
 const randomName = () => {
@@ -216,8 +224,9 @@ function game() {
     if (currentCharacter.value === 5) {
       characterName.value = characterinfo[5]
     }
-    selectCharacter.value = false
+    selectCharacter.value = !selectCharacter.value
     selected.value = 'DATE WITH ' + characterName.value.en.toUpperCase()
+    effectSound()
   }
 
   function setScene(no) {
@@ -264,7 +273,7 @@ function game() {
     setScene(selected.next)
     if (selected?.characterMood !== null) characterMood = selected?.characterMood
     if (selected.effect !== null) {effectSound(selected.effect)}  
-    else {effectSound('choice.mp3')}
+    else {effectSound('drop.mp3')}
     checkThemesong()
     pushHistory(selected.message)
   }
@@ -366,7 +375,7 @@ function game() {
 
   function goHomePage() {
     // selected.value = null
-    effectSound((state.value === 2 ? 'goHome.mp3' : 'choice.mp3'))
+    effectSound((state.value === 2 ? 'nakomrestart.mp3' : 'drop.mp3'))
     state.value = 1
     isPlaying.value = !isPlaying.value
     setsong()
@@ -403,7 +412,7 @@ const { achieveEnding, getThemesong, playPauseSong, saveCharacter, gameStart, ge
     <img src="./assets/images/element/Logo.png" class="scale-100" />
     <audio ref="inputMusic" id="startMusic-001" autoplay />
     <button fleid="mybtn" class="w-20 h-10 rounded-full hover:scale-[115%] duration-300 each-in-out bg-pink-500 m-1"
-      @click="playPauseSong()">
+      @click="playPauseSong(), effectSound()">
       <span class="flex justify-center text-white">{{ isPlaying ? "Pause" : "Play" }}</span>
     </button>
     <!-- Setting Button -->
@@ -459,7 +468,7 @@ const { achieveEnding, getThemesong, playPauseSong, saveCharacter, gameStart, ge
       </div>
       <div
         class="shadow-xl rounded-full p-5 mt-8 hover:scale-105 ease-in-out duration-300 bg-rose-500  text-white font-bold hover:bg-[#f82b74] "
-        @click="setting = !setting">
+        @click="setting = !setting, effectSound()">
         <div class="text-center text-2xl font-semibold ">
           CLOSE
         </div>
@@ -518,7 +527,7 @@ const { achieveEnding, getThemesong, playPauseSong, saveCharacter, gameStart, ge
       </div>
       <div
         class=" bg-rose-500  text-white font-bold hover:bg-[#f82b74] rounded-full p-5 mt-20 hover:scale-105 ease-in-out duration-300"
-        @click="achieve = !achieve">
+        @click="achieve = !achieve, effectSound()">
         <div class="text-center text-2xl font-semibold ">
           CLOSE
         </div>
@@ -540,7 +549,7 @@ const { achieveEnding, getThemesong, playPauseSong, saveCharacter, gameStart, ge
 
       <div
         class=" bg-rose-500 text-white font-bold hover:bg-[#f82b74] rounded-full p-5 mt-16 hover:scale-105 ease-in-out duration-300"
-        @click="history = !history">
+        @click="history = !history, effectSound()">
         <div class="text-center text-2xl font-semibold ">
           CLOSE
         </div>
@@ -580,7 +589,7 @@ const { achieveEnding, getThemesong, playPauseSong, saveCharacter, gameStart, ge
 
       <div
         class=" bg-rose-500  text-white font-bold hover:bg-[#f82b74] rounded-full p-5 mt-16 hover:scale-105 ease-in-out duration-300"
-        @click="info = !info">
+        @click="info = !info, effectSound()">
         <div class="text-center text-2xl font-semibold ">
           CLOSE
         </div>
@@ -629,7 +638,7 @@ const { achieveEnding, getThemesong, playPauseSong, saveCharacter, gameStart, ge
         </div>
         <div
           class="bottom-56 -left-[16rem] absolute bg-white text-3xl ml-[47rem] z-50 hover:scale-[110%] duration-200 each-in-out text-[#f82b74] font-bold hover:bg-[#f82b74] hover:text-white transition delay-100 hover:border-white cursor-pointer flex px-8 py-2 mr-5 h-fit justify-center rounded-full border-[#f82b74] border-4 border-solid"
-          @click="saveCharacter">
+          @click="selectCharacter = !selectCharacter, effectSound()">
           Cancel
         </div>
         <div
@@ -681,7 +690,7 @@ const { achieveEnding, getThemesong, playPauseSong, saveCharacter, gameStart, ge
             </div>
           </div>
 
-          <div @click="selectCharacter = !selectCharacter"
+          <div @click="selectCharacter = !selectCharacter, effectSound()" 
             class="mali hover:scale-[110%] duration-200 each-in-out text-[#f82b74] font-bold hover:bg-[#f82b74] hover:text-white transition delay-100 hover:border-white cursor-pointer mt-5 border-[#f82b74] border-4 border-solid h-[12%] w-fit pl-20 pr-20 ml-64 rounded-full flex justify-center items-center text-4xl bg-white">
             {{ selected === null ? 'SELECT CHARACTER' : selected }}
             <div class="pl-4 flex items-center">
@@ -696,14 +705,14 @@ const { achieveEnding, getThemesong, playPauseSong, saveCharacter, gameStart, ge
               <ion-icon name="arrow-forward-sharp"></ion-icon>
             </div>
           </div>
-          <div @click="setting = !setting"
+          <div @click="setting = !setting, effectSound()"
             class="mali hover:scale-[110%] duration-200 each-in-out text-[#f82b74] font-bold hover:bg-[#f82b74] hover:text-white transition delay-100 hover:border-white cursor-pointer mt-8 border-[#f82b74] border-4 border-solid h-[12%] w-fit pl-20 pr-20 ml-64 rounded-full flex justify-center items-center text-4xl bg-white">
             SETTING
             <div class="pl-4 flex items-center">
               <ion-icon name="settings-sharp"></ion-icon>
             </div>
           </div>
-          <div @click="achieve = !achieve"
+          <div @click="achieve = !achieve, effectSound()"
             class="mali hover:scale-[110%] duration-200 each-in-out text-[#f82b74] font-bold hover:bg-[#f82b74] hover:text-white transition delay-100 hover:border-white cursor-pointer mt-8 border-[#f82b74] border-4 border-solid h-[12%] w-fit pl-20 pr-20 ml-64 rounded-full flex justify-center items-center text-4xl bg-white">
             ACHIEVEMENT
             <div class="pl-4 flex items-center">
@@ -715,11 +724,11 @@ const { achieveEnding, getThemesong, playPauseSong, saveCharacter, gameStart, ge
               class="text-4xl bg-white rounded-full border-[#f82b74] border-4 border-solid flex justify-center items-center hover:scale-[115%] duration-200 each-in-out text-[#f82b74] font-bold hover:bg-[#f82b74] hover:text-white transition delay-100 hover:border-white cursor-pointer">
               <ion-icon name="help-sharp"></ion-icon>
             </div>
-            <div @click="info = !info"
+            <div @click="info = !info, effectSound()"
               class="text-4xl bg-white rounded-full flex border-[#f82b74] border-4 border-solid justify-center items-center hover:scale-[115%] duration-200 each-in-out text-[#f82b74] font-bold hover:bg-[#f82b74] hover:text-white transition delay-100 hover:border-white cursor-pointer">
               <ion-icon name="information-sharp"></ion-icon>
             </div>
-            <a href="https://www.facebook.com/sharer/sharer.php?u=https://game.kasp.codes&t=Let play now!!"
+            <a href="https://www.facebook.com/sharer/sharer.php?u=https://game.kasp.codes&t=Let play now!!" @click="effectSound()"
               target="_blank"
               class="text-4xl bg-white rounded-full border-[#f82b74] border-4 border-solid flex justify-center items-center hover:scale-[115%] duration-200 each-in-out text-[#f82b74] font-bold hover:bg-[#f82b74] hover:text-white transition delay-100 hover:border-white cursor-pointer">
               <ion-icon name="share-social-sharp"></ion-icon>
@@ -756,7 +765,7 @@ const { achieveEnding, getThemesong, playPauseSong, saveCharacter, gameStart, ge
 
         <div
           class=" bg-rose-500  text-white font-bold hover:bg-[#f82b74] rounded-full p-5 mt-10 hover:scale-105 ease-in-out duration-300"
-          @click="menu = !menu">
+          @click="menu = !menu, effectSound()">
           <div class="text-center text-2xl font-semibold ">
             CLOSE
           </div>
@@ -771,7 +780,7 @@ const { achieveEnding, getThemesong, playPauseSong, saveCharacter, gameStart, ge
           class="z-50  ml-36 text-3xl mali font-semibold text-[#f82b74] mt-4 mr-12 hover:bg-rose-600 hover:text-white cursor-pointer border-[#f82b74] border-2 border-solid place-self-center flex place-items-center rounded-[15px] py-3 pl-8 pr-8 bg-white">
           Scene: {{ count }}
         </div>
-        <div @click="menu = !menu"
+        <div @click="menu = !menu, effectSound()"
           class="focus:bg-rose-600 z-50 text-3xl mali font-semibold text-[#f82b74] mt-4 mr-12 hover:bg-rose-600 hover:text-white cursor-pointer border-[#f82b74] border-2 border-solid place-self-center flex place-items-center rounded-[15px] py-3 pl-8 pr-8 bg-white">
           MENU
         </div>
@@ -891,7 +900,7 @@ const { achieveEnding, getThemesong, playPauseSong, saveCharacter, gameStart, ge
           </p>
         </div>
       </div>
-      <div @click="history = !history"
+      <div @click="history = !history, effectSound()"
         class="absolute bounce z-30 bottom-4 right-48 text-3xl mali font-semibold text-[#f82b74] cursor-pointer border-rose-500 border-y-4 border-solid place-self-center flex place-items-center rounded-full p-1 bg-fuchsia-50 retry-btn">
         <div class="bg-[#ffffff] rounded-full py-3 pl-8 pr-8 ">show history</div>
       </div>

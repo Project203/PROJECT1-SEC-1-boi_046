@@ -183,7 +183,7 @@ function game() {
     setScene(1)
     effectSound('alarm.mp3')
     count.value = 1
-    historyArr.value = []
+    historyArr= []
   }
 
   function achieveEnding(keyEnding) {
@@ -390,9 +390,9 @@ function game() {
   }
 
 
-  function pushHistory(mes) {
-    if (mes !== ">>")
-      return historyArr.push(mes)
+  function pushHistory(message) {
+    if (message !== ">>")
+      return historyArr.push(message)
   }
 
   function getHistory() {
@@ -542,7 +542,7 @@ const { achieveEnding, getThemesong, playPauseSong, saveCharacter, gameStart, ge
       <div class="text-center color-black font-extrabold text-4xl rounded-lg p-5 my-3">History</div>
       <div class="overflow-y-auto flex flex-col mt-5 ">
         <div class=" bg-white rounded-xl shadow-gray-400 shadow-md indent-16 px-3 py-3 my-3"
-          v-for="(item, index) in getHistory()"> - {{ item }}
+          v-for="(item, index) in getHistory()"> Question{{ index+1 }} : {{ item }}
         </div>
 
       </div>

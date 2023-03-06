@@ -5,7 +5,7 @@
 | 64130500003 | กรพิณธ์ จงศรีวัฒนพร | Sound management functions, background track and effect + game dialog, plots | 20%
 | 64130500004 | กษิดิ์เดช พลายเผือก | Core game function, state management, dialog type management, JSON structure | 24%
 | 64130500009 | จิรพงศ์ รติวัฒน์ | Ingame management, change dialog, end game function UI and Vue directives | 20%
-| 64130500012 | ชนาธิป บุพพัณหสมัย | Game dialog replacing function, send dialog output to user interface | 18%
+| 64130500012 | ชนาธิป บุพพัณหสมัย | Game dialog replacing function, send dialog output to user interface,Dynamic in end Scene | 18%
 |	64130500018 | ณวรรธน์ ศรีสะอาด | Dynamic image of character, background game and send to user interface, JSON writer | 18%
 
 <h3>รายการฟีเจอร์และคำอธิบาย</h3>

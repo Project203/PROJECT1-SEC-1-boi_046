@@ -18,7 +18,7 @@ onMounted(() => {
   playPauseSong()
 })
 
-//song
+//song na kub
 const isPlaying = ref(false)
 const inputMusic = ref(null)
 const musicVolume = ref(0.1)
